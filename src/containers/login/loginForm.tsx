@@ -58,25 +58,25 @@ const LoginForm: React.SFC<{}> = (props: any) => {
       await Auth.signIn(email, password)
       await Auth.currentSession()
         .then(token => {
+          setLoading(false)
           props.userLogin({
             payload: token,
             type: 'LOGIN'
           })
+          renderRedirect('/')
         })
         .catch(err => {
+          renderRedirect('/login')
           console.log(err)
         })
-
-      renderRedirect()
-      setLoading(false)
     } catch (e) {
       console.log(e)
       setLoading(false)
     }
   }
 
-  const renderRedirect = () => {
-    return <Redirect to="/" />
+  const renderRedirect = (path: string) => {
+    return <Redirect to={path} />
   }
 
   return (

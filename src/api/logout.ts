@@ -1,9 +1,11 @@
-// AWS API
+// React-Redux
+import { userLogin } from '../redux/userLogin'
 
+// AWS API
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
 import AWScognito from '../AWScognito'
 
-export const handleLogout = async () => {
+export const AWSLogout = async () => {
   var poolData = {
     UserPoolId: AWScognito.cognito.USER_POOL_ID, // Your user pool id here
     ClientId: AWScognito.cognito.APP_CLIENT_ID // Your client id here
@@ -13,8 +15,8 @@ export const handleLogout = async () => {
     cognitoUser.getSession((err: Error, result: any) => {
       if (err) throw err
       if (result && cognitoUser) {
-        console.log('You are now logged in.')
-        console.log(result.accessToken.payload.device_key)
+        // console.log('You are now logged in.')
+        // console.log(result.accessToken.payload.device_key)
 
         cognitoUser.forgetSpecificDevice(
           result.accessToken.payload.device_key,

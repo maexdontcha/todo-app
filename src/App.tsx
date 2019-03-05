@@ -20,7 +20,7 @@ import { Content } from './containers'
 import { Login } from './views'
 
 // _APIs // Libary
-import { handleLogout } from './api'
+import { AWSLogout } from './api'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -31,8 +31,7 @@ interface IState {}
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
-    // Inti Login Load from Localstorage!!!
-    // props.userLogin({ type: 'LOGIN' })
+
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -41,16 +40,19 @@ class App extends Component<IProps, IState> {
         })
       })
       .catch(err => {
-        this.setState({ login: false })
         console.log(err)
       })
+  }
+
+  handleLogout() {
+    AWSLogout()
+    this.props.userLogin({ type: 'LOGOUT' })
   }
 
   render() {
     const {
       darkMode,
-      userLoginState: { loggedin },
-      userLogin
+      userLoginState: { loggedin }
     } = this.props
 
     return loggedin ? (
@@ -58,14 +60,7 @@ class App extends Component<IProps, IState> {
         <React.Fragment>
           <DesktopNavigation />
           <Content />
-          <button onClick={handleLogout}>Logout2</button>
-          <button
-            onClick={() => {
-              userLogin({ type: 'LOGOUT' })
-            }}
-          >
-            Logout
-          </button>
+          <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <div>{darkMode === true ? 'true' : 'false'}</div>
         </React.Fragment>
       </BrowserRouter>

@@ -1,3 +1,3 @@
-import { handleLogout } from './logout'
+import { AWSLogout } from './logout'
 
-export { handleLogout }
+export { AWSLogout }
