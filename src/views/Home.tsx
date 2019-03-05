@@ -6,7 +6,7 @@ class Home extends Component {
     return (
       <React.Fragment>
         Dashboard geht immer
-        <AddName />
+        {/* <AddName /> */}
       </React.Fragment>
     )
   }

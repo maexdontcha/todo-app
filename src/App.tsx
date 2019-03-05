@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { BrowserRouter, Link } from 'react-router-dom'
 
 import { Login } from './views'
-import { DesktopNavigation, Content } from './components'
+import { DesktopNavigation } from './components'
+import { Content } from './containers'
 import { userLogin } from './redux/userLogin'
 
 interface IProps {

@@ -88,14 +88,14 @@ const theme = createMuiTheme({
 })
 
 export interface Props extends WithStyles<typeof styles> {
-  myfunction: Function
+  onChange: Function
   myLabel: string
   myType?: string
 }
 
 function CustomizedInputs(props: Props) {
-  const { classes, myfunction, myLabel, myType } = props
-
+  // const { classes, myfunction, myLabel, myType } = props
+  const { classes, onChange, myLabel, myType } = props
   return (
     <TextField
       className={classes.margin}
@@ -112,12 +112,11 @@ function CustomizedInputs(props: Props) {
           notchedOutline: classes.notchedOutline
         }
       }}
+      id={myType}
       label={myLabel}
       variant="outlined"
       type={myType || ''}
-      onChange={env => {
-        myfunction(env.target.value)
-      }}
+      onChange={onChange.bind('')}
     />
   )
 }

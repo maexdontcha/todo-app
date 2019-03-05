@@ -3,14 +3,44 @@ import React, { useState } from 'react'
 import { userLogin } from '../../redux/userLogin'
 import { IAppState } from '../../redux/store'
 import { connect } from 'react-redux'
-import LoginInput from './loginInputs'
-import LoginButton from './loginButton'
+import LoginInput from '../../components/login/loginInputs'
+import LoginButton from '../../components/login/loginButton'
+
+interface IfuncDir {
+  [key: string]: Function
+  email: Function
+  password: Function
+}
 
 const LoginForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
-  const [email, setemail] = useState('')
-  const [password, setpassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const { classes } = props
+
+  const funcDir: IfuncDir = {
+    email: setEmail,
+    password: setPassword
+  }
+
+  const handleLogin = () => {
+    setLoading(true)
+    runLogin(props.userLogin, setLoading, {
+      email: email,
+      password: password
+    })
+    setPassword('')
+  }
+
+  const validateForm = () => {
+    return email.length > 0 && password.length > 0
+  }
+
+  // Handle Change in singup Form
+  const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    funcDir[event.currentTarget.id](event.currentTarget.value)
+  }
+
   return (
     <React.Fragment>
       {loading ? (
@@ -19,25 +49,16 @@ const LoginForm: React.SFC<{}> = (props: any) => {
         <React.Fragment>
           <form noValidate autoComplete="on">
             <LoginInput
-              myfunction={setpassword}
+              onChange={handleChange}
               myLabel={'password'}
               myType={'password'}
             />
             <LoginInput
-              myfunction={setemail}
+              onChange={handleChange}
               myLabel={'email'}
               myType={'email'}
             />
-            <LoginButton
-              onClick={() => {
-                setLoading(true)
-                runLogin(props.userLogin, setLoading, {
-                  email: email,
-                  password: password
-                })
-                setpassword('')
-              }}
-            />
+            <LoginButton onClick={handleLogin} />
           </form>
         </React.Fragment>
       )}
@@ -70,7 +91,7 @@ export default connect(
 
 const runLogin = (
   PropsuserLogin: Function,
-  spinner: Function,
+  setLoading: Function,
   credentials: any
 ) => {
   fetch('https://jsonplaceholder.typicode.com/users/10')
@@ -88,26 +109,6 @@ const runLogin = (
     })
     .catch(err => {
       console.log(err)
-      spinner(false)
+      setLoading(false)
     })
 }
-
-// <ReactReduxContext.Consumer>
-//   {({ store }: any) => (
-// <button
-//   onClick={() => {
-//     store.dispatch(
-//       userLogin({
-//         payload: {
-//           username: 'max',
-//           email: 'max@irgenwas'
-//         },
-//         type: EUserActionTypes.LOGIN
-//       })
-//     )
-//   }}
-// >
-//   LOGIN
-// </button>
-//   )}
-// </ReactReduxContext.Consumer>

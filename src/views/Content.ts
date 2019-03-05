@@ -1,31 +1,37 @@
-import Home from '../views/Home'
-import Login from '../views/Login'
-import Info from '../views/Info'
+import { Login, Info } from './index'
+
+import Home from './Home'
 
 export interface IRoute {
   path: string
   displayName: string
-  component: any | React.ReactNode
+  component: any
   groups: any | string | string[]
   test?: any
+}
+//React.ReactNode
+
+const deliver = () => {
+  return Home
 }
 
 const myroutes: IRoute[] = [
   {
     path: '/',
-    component: Home,
+    test: Home,
+    component: deliver,
     groups: '',
     displayName: 'Home'
   },
   {
     path: '/Info',
-    component: Info,
+    component: deliver,
     groups: ['save'],
     displayName: 'Info mit Gruppen'
   },
   {
     path: '/Infox',
-    component: Info,
+    component: deliver,
     groups: '',
     displayName: 'ohne Gruppen'
   }

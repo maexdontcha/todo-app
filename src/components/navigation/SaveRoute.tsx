@@ -45,21 +45,12 @@ class SaveRoute extends Component<propTypes, {}> {
         path={this.props.path}
         exact
         {...rest}
-        render={
-          props =>
-            this.checkAccess(permittedGroups[0]) ? (
-              <Component {...props} />
-            ) : (
-              <Redirect to="/" />
-            )
-
-          // if (!loggedIn && this.props.path !== '/login') {
-          //   return <Redirect to="/login" />
-          // } else if (loggedIn || this.props.path === '/login') {
-          //   return <Component {...props} />
-          // } else if (!this.checkAccess(permittedGroups[0])) {
-          //   return <Redirect to="/" />
-          // }
+        render={props =>
+          this.checkAccess(permittedGroups[0]) ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to="/" />
+          )
         }
       />
     )
@@ -81,3 +72,11 @@ const Layout: React.SFC = props => {
 export default connect((store: IAppState) => ({
   userLogin: store.userState
 }))(SaveRoute)
+
+// if (!loggedIn && this.props.path !== '/login') {
+//   return <Redirect to="/login" />
+// } else if (loggedIn || this.props.path === '/login') {
+//   return <Component {...props} />
+// } else if (!this.checkAccess(permittedGroups[0])) {
+//   return <Redirect to="/" />
+// }
