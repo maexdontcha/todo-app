@@ -11,8 +11,11 @@ import { connect } from 'react-redux'
 import { Auth } from 'aws-amplify'
 
 // _components
-import LoginInput from '../../components/login/loginInputs'
-import LoginButton from '../../components/login/loginButton'
+import {
+  OutlinedTextField,
+  LoginButton,
+  IconLabelButtons
+} from '../../components'
 
 interface IfuncDir {
   [key: string]: Function
@@ -86,17 +89,20 @@ const LoginForm: React.SFC<{}> = (props: any) => {
       ) : (
         <React.Fragment>
           <form noValidate autoComplete="on">
-            <LoginInput
+            <OutlinedTextField
               onChange={handleChange}
               myLabel={'password'}
               myType={'password'}
             />
-            <LoginInput
+            <OutlinedTextField
               onChange={handleChange}
               myLabel={'email'}
               myType={'email'}
             />
-            <LoginButton onClick={handleSubmit} />
+            <IconLabelButtons
+              onClick={handleSubmit}
+              buttonContent={{ color: 'primary', text: 'Login' }}
+            />
           </form>
         </React.Fragment>
       )}

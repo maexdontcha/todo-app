@@ -10,8 +10,7 @@ import { userLogin } from '../../redux/userLogin'
 import { Auth } from 'aws-amplify'
 
 // _components
-import LoginInput from '../../components/login/loginInputs'
-import LoginButton from '../../components/login/loginButton'
+import { OutlinedTextField, IconLabelButtons } from '../../components'
 
 // Interfaces
 interface IfuncDir {
@@ -77,57 +76,37 @@ const SignupForm: React.SFC<IState> = (props: any) => {
   // render singupForm
   const renderForm = (): JSX.Element => (
     <React.Fragment>
-      <div>
-        <div>Email</div>
-        <input
-          autoFocus
-          type="email"
-          id={'email'}
-          value={email}
+      <form noValidate autoComplete="on">
+        <OutlinedTextField
           onChange={handleChange}
+          myLabel={'email'}
+          myType={'email'}
         />
-      </div>
-      <div>
-        <div>name</div>
-        <input
-          autoFocus
-          type="text"
-          id={'name'}
-          value={name}
+        <OutlinedTextField
           onChange={handleChange}
+          myLabel={'name'}
+          myType={'name'}
         />
-      </div>
-      <div>
-        <div>Workspace</div>
-        <input
-          autoFocus
-          type="text"
-          id={'workspace'}
-          value={workspace}
+        <OutlinedTextField
           onChange={handleChange}
+          myLabel={'Workspace'}
+          myType={'Workspace'}
         />
-      </div>
-      <div>
-        <div>Password</div>
-        <input
-          autoFocus
-          type="password"
-          id={'password'}
-          value={password}
+        <OutlinedTextField
           onChange={handleChange}
+          myLabel={'password'}
+          myType={'password'}
         />
-      </div>
-      <div>
-        <div>Confirm Password</div>
-        <input
-          autoFocus
-          type="password"
-          id={'confirmPassword'}
-          value={confirmPassword}
+        <OutlinedTextField
           onChange={handleChange}
+          myLabel={'confirmPassword'}
+          myType={'confirmPassword'}
         />
-      </div>
-      <button onClick={handleSubmit}> Submit </button>
+        <IconLabelButtons
+          onClick={handleSubmit}
+          buttonContent={{ color: 'primary', text: 'Registrieren' }}
+        />
+      </form>
     </React.Fragment>
   )
 

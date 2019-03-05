@@ -93,7 +93,7 @@ export interface Props extends WithStyles<typeof styles> {
   myType?: string
 }
 
-function CustomizedInputs(props: Props) {
+function outlinedTextField(props: Props) {
   // const { classes, myfunction, myLabel, myType } = props
   const { classes, onChange, myLabel, myType } = props
   return (
@@ -121,8 +121,8 @@ function CustomizedInputs(props: Props) {
   )
 }
 
-CustomizedInputs.propTypes = {
+outlinedTextField.propTypes = {
   classes: PropTypes.object.isRequired
 } as any
 
-export default withStyles(styles)(CustomizedInputs)
+export default withStyles(styles)(outlinedTextField)
