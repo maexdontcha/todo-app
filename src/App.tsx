@@ -1,13 +1,26 @@
+// React
 import React, { Component } from 'react'
+import { BrowserRouter, Link, withRouter } from 'react-router-dom'
+
+// React-Redux
+import { userLogin } from './redux/userLogin'
 import { IAppState } from './redux/store'
 import { connect } from 'react-redux'
-import { BrowserRouter, Link } from 'react-router-dom'
 
-import { Login } from './views'
+// AWS API
+import { Auth } from 'aws-amplify'
+
+// _component
 import { DesktopNavigation } from './components'
-import { Content } from './containers'
-import { userLogin } from './redux/userLogin'
 
+// _container
+import { Content } from './containers'
+
+// _views
+import { Login } from './views'
+
+// _APIs // Libary
+import { handleLogout } from './api'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -20,16 +33,32 @@ class App extends Component<IProps, IState> {
     super(props)
     // Inti Login Load from Localstorage!!!
     // props.userLogin({ type: 'LOGIN' })
+    Auth.currentSession()
+      .then(token => {
+        props.userLogin({
+          payload: token,
+          type: 'LOGIN'
+        })
+      })
+      .catch(err => {
+        this.setState({ login: false })
+        console.log(err)
+      })
   }
+
   render() {
-    const { darkMode, userLoginState, userLogin } = this.props
-    const loggedIn = userLoginState.loggedin
-    console.log(userLoginState)
-    return loggedIn ? (
+    const {
+      darkMode,
+      userLoginState: { loggedin },
+      userLogin
+    } = this.props
+
+    return loggedin ? (
       <BrowserRouter>
         <React.Fragment>
           <DesktopNavigation />
           <Content />
+          <button onClick={handleLogout}>Logout2</button>
           <button
             onClick={() => {
               userLogin({ type: 'LOGOUT' })

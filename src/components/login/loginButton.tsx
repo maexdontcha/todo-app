@@ -22,12 +22,10 @@ export interface Props {
 }
 
 function FloatingActionButtons(props: Props) {
-  const { classes } = props
+  const { classes, onClick } = props
   return (
     <Fab
-      onClick={() => {
-        props.onClick()
-      }}
+      onClick={onClick.bind('')}
       variant="extended"
       aria-label="Delete"
       className={classes.fab}

@@ -1,8 +1,16 @@
+// React
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
+// Redux API
 
 import { userLogin } from '../../redux/userLogin'
 import { IAppState } from '../../redux/store'
 import { connect } from 'react-redux'
+
+// AWS API
+import { Auth } from 'aws-amplify'
+
+// _components
 import LoginInput from '../../components/login/loginInputs'
 import LoginButton from '../../components/login/loginButton'
 
@@ -14,8 +22,8 @@ interface IfuncDir {
 
 const LoginForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('1')
+  const [password, setPassword] = useState('1')
   const { classes } = props
 
   const funcDir: IfuncDir = {
@@ -41,6 +49,36 @@ const LoginForm: React.SFC<{}> = (props: any) => {
     funcDir[event.currentTarget.id](event.currentTarget.value)
   }
 
+  const handleSubmit = async (event: React.FormEvent<HTMLInputElement>) => {
+    event.preventDefault()
+
+    setLoading(true)
+
+    try {
+      await Auth.signIn(email, password)
+      await Auth.currentSession()
+        .then(token => {
+          props.userLogin({
+            payload: token,
+            type: 'LOGIN'
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
+      renderRedirect()
+      setLoading(false)
+    } catch (e) {
+      console.log(e)
+      setLoading(false)
+    }
+  }
+
+  const renderRedirect = () => {
+    return <Redirect to="/" />
+  }
+
   return (
     <React.Fragment>
       {loading ? (
@@ -58,7 +96,7 @@ const LoginForm: React.SFC<{}> = (props: any) => {
               myLabel={'email'}
               myType={'email'}
             />
-            <LoginButton onClick={handleLogin} />
+            <LoginButton onClick={handleSubmit} />
           </form>
         </React.Fragment>
       )}
