@@ -18,7 +18,6 @@ import { Auth } from 'aws-amplify'
 
 // _component
 import { DesktopNavigation, CircularIndeterminate } from './components'
-import SimpleSnackbar from './components/snackbar/snackbar'
 
 // _container
 import { Content } from './containers'
@@ -34,7 +33,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles'
 import { lightTheme } from './theme'
 import { darkTheme } from './theme'
 import Paper from '@material-ui/core/Paper'
-
+import { BottomNavigation } from './containers/'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -70,9 +69,9 @@ class App extends Component<IProps, IState> {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <DesktopNavigation />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
+          <BottomNavigation />
         </React.Fragment>
       </BrowserRouter>
     )
@@ -98,7 +97,6 @@ class App extends Component<IProps, IState> {
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <Paper square={true}>
           {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
-          <SimpleSnackbar />
         </Paper>
         <button
           onClick={() => {
