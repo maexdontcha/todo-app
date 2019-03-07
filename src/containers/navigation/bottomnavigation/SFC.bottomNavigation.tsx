@@ -22,14 +22,6 @@ const _BottomNavigation = () => {
     await setValue(newValue)
   }
 
-  async function handleChange2(event: any) {
-    return (
-      <Route>
-        <Redirect to={'/'} />
-      </Route>
-    )
-  }
-
   return (
     <BottomNavigation
       value={value}
