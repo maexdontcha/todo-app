@@ -35,8 +35,9 @@ const _BottomNavigation = () => {
               label={e.displayName}
               value={e.displayName}
               icon={e.icon}
+              key={e.path}
             >
-              <Link to={e.path} key={e.path} />
+              <Link to={e.path} />
             </BottomNavigationAction>
           )
       })}
