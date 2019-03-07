@@ -40,10 +40,11 @@ describe('SignupForm', () => {
   //   )
   // })
 
-  it('Render SignupForm and find Button', () => {
-    expect(validateForm({ email: '1', password: '1' })).toBe(true)
+  it('Render SignupForm and find Button', async () => {
+    await expect(() => {
+      validateForm({ email: '1', password: '' })
+    }).toThrow()
     // expect(validateForm({ email: '', password: '' })).toThrow()
-    expect(test()).toThrow()
   })
 
   // it('Render SignupForm and find Button', () => {

@@ -9,6 +9,9 @@ import { userLogin } from '../../redux/userLogin'
 // AWS API
 import { Auth } from 'aws-amplify'
 
+// material-ui
+import {AddToHomeScreen} from '@material-ui/icons'
+
 // _components
 import {
   OutlinedTextField,
@@ -123,7 +126,11 @@ const SignupForm: React.SFC<IState> = (props: any) => {
         />
         <IconLabelButtons
           onClick={handleSubmit}
-          buttonContent={{ color: 'primary', text: 'Registrieren' }}
+          buttonContent={{
+            color: 'primary',
+            text: 'Registrieren',
+            icon: <AddToHomeScreen />
+          }}
         />
       </form>
     </React.Fragment>

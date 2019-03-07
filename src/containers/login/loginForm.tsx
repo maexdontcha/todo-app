@@ -7,6 +7,9 @@ import { userLogin } from '../../redux/userLogin'
 import { IAppState } from '../../redux/store'
 import { connect } from 'react-redux'
 
+//material-ui
+import { FlightTakeoff } from '@material-ui/icons'
+
 // AWS API
 import { Auth } from 'aws-amplify'
 
@@ -101,7 +104,11 @@ const LoginForm: React.SFC<{}> = () => {
             onClick={() => {
               handleSubmit({ email, password, setLoading })
             }}
-            buttonContent={{ color: 'primary', text: 'Login' }}
+            buttonContent={{
+              color: 'primary',
+              text: 'Login',
+              icon: <FlightTakeoff />
+            }}
           />
         </form>
       )}
