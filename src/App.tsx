@@ -1,6 +1,12 @@
 // React
 import React, { Component } from 'react'
-import { BrowserRouter, Link, withRouter } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Link,
+  withRouter,
+  Route,
+  Switch
+} from 'react-router-dom'
 
 // React-Redux
 import { userLogin } from './redux/userLogin'
@@ -11,22 +17,33 @@ import { connect } from 'react-redux'
 import { Auth } from 'aws-amplify'
 
 // _component
-import { DesktopNavigation } from './components'
+import { DesktopNavigation, CircularIndeterminate } from './components'
 
 // _container
 import { Content } from './containers'
 
 // _views
-import { Login } from './views'
+import { Login, Register } from './views'
 
 // _APIs // Libary
 import { AWSLogout } from './api'
+
+// material-UI and Styles
+import { MuiThemeProvider } from '@material-ui/core/styles'
+
+import { theme as defaultTheme } from './theme'
+import { themered as defaultThemered } from './theme'
+
+import Paper from '@material-ui/core/Paper'
+
 interface IProps {
   darkMode: boolean
   userLoginState: any
   userLogin: any
 }
-interface IState {}
+interface IState {
+  theme: boolean
+}
 
 class App extends Component<IProps, IState> {
   constructor(props: any) {
@@ -42,6 +59,7 @@ class App extends Component<IProps, IState> {
       .catch(err => {
         console.log(err)
       })
+    this.state = { theme: true }
   }
 
   handleLogout() {
@@ -49,13 +67,9 @@ class App extends Component<IProps, IState> {
     this.props.userLogin({ type: 'LOGOUT' })
   }
 
-  render() {
-    const {
-      darkMode,
-      userLoginState: { loggedin }
-    } = this.props
-
-    return loggedin ? (
+  renderMainFrame() {
+    const { darkMode } = this.props
+    return (
       <BrowserRouter>
         <React.Fragment>
           <DesktopNavigation />
@@ -64,8 +78,38 @@ class App extends Component<IProps, IState> {
           <div>{darkMode === true ? 'true' : 'false'}</div>
         </React.Fragment>
       </BrowserRouter>
-    ) : (
-      <Login />
+    )
+  }
+
+  renderNoLoginMode() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/register" exact component={Register} />
+          <Route component={Login} />
+        </Switch>
+      </BrowserRouter>
+    )
+  }
+
+  render() {
+    const {
+      darkMode,
+      userLoginState: { loggedin }
+    } = this.props
+    return (
+      <MuiThemeProvider
+        theme={this.state.theme ? defaultTheme : defaultThemered}
+      >
+        <Paper square={true}>
+          {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
+        </Paper>
+        <button
+          onClick={() => {
+            this.setState({ theme: !this.state.theme })
+          }}
+        />
+      </MuiThemeProvider>
     )
   }
 }
@@ -92,3 +136,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App)
+
+/* <button
+onClick={() => {
+  this.setState({ theme: !this.state.theme })
+}}
+/>
+<CircularIndeterminate /> */

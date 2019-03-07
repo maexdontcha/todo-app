@@ -2,14 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // import classNames from 'classnames'
 import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, MuiThemeProvider, Theme } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
 
-const styles = (theme: any) => ({
+import { theme as defaultTheme } from '../../theme'
+
+const styles = (theme: Theme) => ({
   button: {
     margin: theme.spacing.unit
   },
@@ -33,17 +35,19 @@ export interface IProps {
   classes: any
   onClick: Function
   buttonContent: IbuttonContent
+  fullWidth?: boolean
 }
 
 const IconLabelButtons: React.SFC<IProps> = (props: IProps) => {
   const {
     classes,
     onClick,
+    fullWidth,
     buttonContent: { color, text }
   } = props
-  console.log(onClick)
   return (
     <Button
+      fullWidth={fullWidth || true}
       onClick={onClick.bind('')}
       variant="contained"
       color={color}

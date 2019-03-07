@@ -10,7 +10,11 @@ import { userLogin } from '../../redux/userLogin'
 import { Auth } from 'aws-amplify'
 
 // _components
-import { OutlinedTextField, IconLabelButtons } from '../../components'
+import {
+  OutlinedTextField,
+  IconLabelButtons,
+  CircularIndeterminate
+} from '../../components'
 
 // Interfaces
 interface IfuncDir {
@@ -29,10 +33,10 @@ const SignupForm: React.SFC<IState> = (props: any) => {
   const [sendRegistration, setSendRegistration] = useState(false)
 
   const [email, setEmail] = useState('')
-  const [name, setName] = useState('max')
-  const [workspace, setWorkspace] = useState('default')
-  const [password, setPassword] = useState('Password123')
-  const [confirmPassword, setConfirmPassword] = useState('Password123')
+  const [name, setName] = useState('')
+  const [workspace, setWorkspace] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   const funcDir: IfuncDir = {
     email: setEmail,
@@ -43,29 +47,45 @@ const SignupForm: React.SFC<IState> = (props: any) => {
   }
   const { classes } = props
 
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLElement>
-  ): Promise<void> => {
-    e.preventDefault()
-
-    setLoading(true)
-
-    try {
-      const newUser = await Auth.signUp({
-        username: email,
-        password: password,
-        attributes: {
-          email: email,
-          name: name,
-          'custom:workspace': workspace
-        }
-      })
-    } catch (e) {
-      alert(e.message)
+  const proofInput = () => {
+    if (
+      email.length != 0 &&
+      name.length != 0 &&
+      workspace.length != 0 &&
+      password.length != 0 &&
+      password === confirmPassword
+    ) {
+      return true
+    } else {
+      return false
     }
+  }
 
-    setLoading(false)
-    setSendRegistration(true)
+  const handleSubmit = async (
+    event: React.MouseEvent<HTMLElement>
+  ): Promise<void> => {
+    event.preventDefault()
+    console.log(workspace)
+    if (proofInput()) {
+      setLoading(true)
+
+      try {
+        await Auth.signUp({
+          username: email,
+          password: password,
+          attributes: {
+            email: email,
+            name: name,
+            'custom:workspace': workspace
+          }
+        })
+      } catch (e) {
+        console.log(e.message)
+      }
+
+      setLoading(false)
+      setSendRegistration(true)
+    }
   }
 
   // Handle Change in singup Form
@@ -89,8 +109,8 @@ const SignupForm: React.SFC<IState> = (props: any) => {
         />
         <OutlinedTextField
           onChange={handleChange}
-          myLabel={'Workspace'}
-          myType={'Workspace'}
+          myLabel={'workspace'}
+          myType={'workspace'}
         />
         <OutlinedTextField
           onChange={handleChange}
@@ -110,19 +130,19 @@ const SignupForm: React.SFC<IState> = (props: any) => {
     </React.Fragment>
   )
 
+  const renderSpinner = (): JSX.Element => <CircularIndeterminate />
+
   // render Email Link Text
   const renderLinkText = (): JSX.Element => <div>Warte auf die Kack mail</div>
 
   // Return Content
   return (
     <React.Fragment>
-      {loading ? (
-        <div>Spinner</div>
-      ) : sendRegistration ? (
-        renderLinkText()
-      ) : (
-        renderForm()
-      )}
+      {loading
+        ? renderSpinner()
+        : sendRegistration
+        ? renderLinkText()
+        : renderForm()}
     </React.Fragment>
   )
 }

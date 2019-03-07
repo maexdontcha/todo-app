@@ -14,7 +14,8 @@ import { Auth } from 'aws-amplify'
 import {
   OutlinedTextField,
   LoginButton,
-  IconLabelButtons
+  IconLabelButtons,
+  CircularIndeterminate
 } from '../../components'
 
 interface IfuncDir {
@@ -85,20 +86,21 @@ const LoginForm: React.SFC<{}> = (props: any) => {
   return (
     <React.Fragment>
       {loading ? (
-        <div>Spinner</div>
+        <CircularIndeterminate />
       ) : (
         <React.Fragment>
           <form noValidate autoComplete="on">
             <OutlinedTextField
               onChange={handleChange}
-              myLabel={'password'}
-              myType={'password'}
-            />
-            <OutlinedTextField
-              onChange={handleChange}
               myLabel={'email'}
               myType={'email'}
             />
+            <OutlinedTextField
+              onChange={handleChange}
+              myLabel={'password'}
+              myType={'password'}
+            />
+
             <IconLabelButtons
               onClick={handleSubmit}
               buttonContent={{ color: 'primary', text: 'Login' }}

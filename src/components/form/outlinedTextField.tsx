@@ -1,20 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   createStyles,
   Theme,
   withStyles,
-  WithStyles,
-  MuiThemeProvider,
-  createMuiTheme
+  WithStyles
 } from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
-import InputBase from '@material-ui/core/InputBase'
-import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
-import FormControl from '@material-ui/core/FormControl'
 import purple from '@material-ui/core/colors/purple'
-import green from '@material-ui/core/colors/green'
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -31,11 +23,11 @@ const styles = (theme: Theme) =>
       }
     },
     cssFocused: {},
-    cssUnderline: {
-      '&:after': {
-        borderBottomColor: purple[500]
-      }
-    },
+    // cssUnderline: {
+    //   '&:after': {
+    //     borderBottomColor: purple[500]
+    //   }
+    // },
     cssOutlinedInput: {
       '&$cssFocused $notchedOutline': {
         borderColor: purple[500]
@@ -80,38 +72,27 @@ const styles = (theme: Theme) =>
     }
   })
 
-const theme = createMuiTheme({
-  palette: {
-    primary: green
-  },
-  typography: { useNextVariants: true }
-})
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: green
+//   },
+//   typography: { useNextVariants: true }
+// })
 
-export interface Props extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   onChange: Function
   myLabel: string
   myType?: string
+  fullWidth?: boolean
 }
 
-function outlinedTextField(props: Props) {
+function outlinedTextField(props: IProps) {
   // const { classes, myfunction, myLabel, myType } = props
-  const { classes, onChange, myLabel, myType } = props
+  const { classes, onChange, myLabel, myType, fullWidth } = props
   return (
     <TextField
       className={classes.margin}
-      InputLabelProps={{
-        classes: {
-          root: classes.cssLabel,
-          focused: classes.cssFocused
-        }
-      }}
-      InputProps={{
-        classes: {
-          root: classes.cssOutlinedInput,
-          focused: classes.cssFocused,
-          notchedOutline: classes.notchedOutline
-        }
-      }}
+      fullWidth={fullWidth || true}
       id={myType}
       label={myLabel}
       variant="outlined"
@@ -121,8 +102,18 @@ function outlinedTextField(props: Props) {
   )
 }
 
-outlinedTextField.propTypes = {
-  classes: PropTypes.object.isRequired
-} as any
-
 export default withStyles(styles)(outlinedTextField)
+
+// InputLabelProps={{
+//   classes: {
+//     root: classes.cssLabel,
+//     focused: classes.cssFocused
+//   }
+// }}
+// InputProps={{
+//   classes: {
+//     root: classes.cssOutlinedInput,
+//     focused: classes.cssFocused,
+//     notchedOutline: classes.notchedOutline
+//   }
+// }}

@@ -11,11 +11,15 @@ import IconLabelButtons from './buttons/iconLabelButtons'
 import OutlinedTextField from './form/outlinedTextField'
 import LoginButton from './form/loginButton'
 
+// progress
+import CircularIndeterminate from './progress/circularIndeterminate'
+
 export {
   AddName,
   DesktopNavigation,
   SaveRoute,
   OutlinedTextField,
   LoginButton,
-  IconLabelButtons
+  IconLabelButtons,
+  CircularIndeterminate
 }
