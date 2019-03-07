@@ -43,18 +43,17 @@ describe('SignupForm', () => {
     // expect(validateForm({ email: '', password: '' })).toThrow()
   })
 
-    expect(() => {
-      validateForm({ email: '', password: '' })
-    }).toThrow()
+  expect(() => {
+    validateForm({ email: '', password: '' })
+  }).toThrow()
 
-    expect(() => {
-      validateForm({ email: 'a', password: '' })
-    }).toThrow()
+  expect(() => {
+    validateForm({ email: 'a', password: '' })
+  }).toThrow()
 
-    expect(() => {
-      validateForm({ email: '', password: 'b' })
-    }).toThrow()
-  })
+  expect(() => {
+    validateForm({ email: '', password: 'b' })
+  }).toThrow()
 })
 
 // const i = wrapper.find(Test)
