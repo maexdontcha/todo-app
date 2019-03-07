@@ -3,4 +3,8 @@ import SignupForm from './form/signup/SFC.signupForm'
 
 import Content from './content/Content'
 
-export { LoginForm, SignupForm, Content }
+// Navigation
+
+import BottomNavigation from './navigation/bottomnavigation/SFC.bottomNavigation'
+
+export { LoginForm, SignupForm, Content, BottomNavigation }
