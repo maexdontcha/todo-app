@@ -9,8 +9,6 @@ import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
 
-import { theme as defaultTheme } from '../../theme'
-
 const styles = (theme: Theme) => ({
   button: {
     margin: theme.spacing.unit

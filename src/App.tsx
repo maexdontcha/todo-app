@@ -18,6 +18,7 @@ import { Auth } from 'aws-amplify'
 
 // _component
 import { DesktopNavigation, CircularIndeterminate } from './components'
+import SimpleSnackbar from './components/snackbar/snackbar'
 
 // _container
 import { Content } from './containers'
@@ -30,10 +31,8 @@ import { AWSLogout } from './api'
 
 // material-UI and Styles
 import { MuiThemeProvider } from '@material-ui/core/styles'
-
-import { theme as defaultTheme } from './theme'
-import { themered as defaultThemered } from './theme'
-
+import { lightTheme } from './theme'
+import { darkTheme } from './theme'
 import Paper from '@material-ui/core/Paper'
 
 interface IProps {
@@ -57,7 +56,7 @@ class App extends Component<IProps, IState> {
         })
       })
       .catch(err => {
-        console.log(`${err} text`)
+        // console.log(`${err} text`)
       })
     this.state = { theme: true }
   }
@@ -68,14 +67,12 @@ class App extends Component<IProps, IState> {
   }
 
   renderMainFrame() {
-    const { darkMode } = this.props
     return (
       <BrowserRouter>
         <React.Fragment>
           <DesktopNavigation />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
-          <div>{darkMode === true ? 'true' : 'false'}</div>
         </React.Fragment>
       </BrowserRouter>
     )
@@ -98,11 +95,10 @@ class App extends Component<IProps, IState> {
       userLoginState: { loggedin }
     } = this.props
     return (
-      <MuiThemeProvider
-        theme={this.state.theme ? defaultTheme : defaultThemered}
-      >
+      <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <Paper square={true}>
           {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
+          <SimpleSnackbar />
         </Paper>
         <button
           onClick={() => {
@@ -136,10 +132,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App)
-
-/* <button
-onClick={() => {
-  this.setState({ theme: !this.state.theme })
-}}
-/>
-<CircularIndeterminate /> */

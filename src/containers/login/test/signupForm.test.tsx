@@ -24,10 +24,6 @@ import { async } from 'q'
 
 // configure({ adapter: new Adapter() })
 
-const test = () => {
-  throw new Error()
-}
-
 describe('SignupForm', () => {
   afterEach(cleanup)
   // let store, wrapper: ReactWrapper
@@ -41,16 +37,20 @@ describe('SignupForm', () => {
   // })
 
   it('Render SignupForm and find Button', () => {
-    expect(validateForm({ email: '1', password: '1' })).toBe(true)
-    // expect(validateForm({ email: '', password: '' })).toThrow()
-    expect(test()).toThrow()
+    expect(validateForm({ email: 'user', password: 'password' })).toBe(true)
+
+    expect(() => {
+      validateForm({ email: '', password: '' })
+    }).toThrow()
+
+    expect(() => {
+      validateForm({ email: 'a', password: '' })
+    }).toThrow()
+
+    expect(() => {
+      validateForm({ email: '', password: 'b' })
+    }).toThrow()
   })
-
-  // it('Render SignupForm and find Button', () => {
-  //   const instance = wrapper.instance()
-  //   expect(instance).not.toBe(null)
-
-  // })
 })
 
 // const i = wrapper.find(Test)

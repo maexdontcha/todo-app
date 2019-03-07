@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import { withStyles, MuiThemeProvider, Theme } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-import { theme as defaultTheme } from '../../theme'
-import { themered as defaultThemered } from '../../theme'
-
 const styles = (theme: Theme) => ({
   progress: {
     margin: theme.spacing.unit * 2

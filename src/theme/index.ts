@@ -5,7 +5,7 @@ import red from '@material-ui/core/colors/red'
 import blueGrey from '@material-ui/core/colors/blueGrey'
 import { background } from 'styled-system'
 
-export const theme = createMuiTheme({
+export const lightTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#00897b'
@@ -17,7 +17,7 @@ export const theme = createMuiTheme({
   typography: { useNextVariants: true }
 })
 
-export const themered = createMuiTheme({
+export const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     // primary: {
