@@ -29,6 +29,7 @@ const styles = (theme: Theme) => ({
 export interface IbuttonContent {
   color: 'primary' | 'default'
   text: string
+  icon: Object
 }
 
 export interface IProps {
@@ -42,7 +43,7 @@ const IconLabelButtons: React.SFC<IProps> = ({
   classes,
   onClick,
   fullWidth,
-  buttonContent: { color, text }
+  buttonContent: { color, text, icon }
 }: IProps) => {
   // const {
   //   classes,
@@ -59,7 +60,7 @@ const IconLabelButtons: React.SFC<IProps> = ({
       className={classes.button}
     >
       {text}
-      <CloudUploadIcon className={classes.rightIcon} />
+      <div className={classes.rightIcon}>{icon}</div>
     </Button>
   )
 }
