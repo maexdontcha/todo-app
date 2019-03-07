@@ -1,7 +1,5 @@
-// Navigation
-import DesktopNavigation from './navigation/DesktopNavigation'
-
-import SaveRoute from './navigation/SaveRoute'
+// routing
+import SaveRoute from './routing/SaveRoute'
 
 // Buttons
 import IconLabelButtons from './buttons/iconLabelButton'
@@ -14,7 +12,6 @@ import LoginButton from './form/loginButton'
 import CircularIndeterminate from './progress/circularIndeterminate'
 
 export {
-  DesktopNavigation,
   SaveRoute,
   OutlinedTextField,
   LoginButton,
