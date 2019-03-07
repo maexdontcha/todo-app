@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify'
 // Types
 import { FhandleSubmit, FproofInput } from './Types.signupForm'
 
-const proofInput: FproofInput = val => {
+export const proofInput: FproofInput = val => {
   const { email, name, workspace, password, confirmPassword } = val
   if (
     email.length != 0 &&
