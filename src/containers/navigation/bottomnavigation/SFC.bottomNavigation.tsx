@@ -47,7 +47,6 @@ const _BottomNavigation = () => {
               value={e.displayName}
               icon={e.icon}
               key={e.path}
-              onClick={() => <Redirect to={'/'} />}
             />
           )
       })}
