@@ -58,7 +58,15 @@ const IconLabelButtons: React.SFC<IProps> = ({
       className={classes.button}
     >
       {text}
-      <div className={classes.rightIcon}>{icon}</div>
+      <div
+        style={{
+          display: 'flex',
+          alginItems: 'center'
+        }}
+        className={classes.rightIcon}
+      >
+        {icon}
+      </div>
     </Button>
   )
 }
