@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../views/Home'
+import Inbox from '../views/Inbox'
 import Login from '../views/Login'
 import Info from '../views/Info'
 import RestoreIcon from '@material-ui/icons/Restore'
@@ -20,9 +20,9 @@ export interface IRoute {
 const myroutes: IRoute[] = [
   {
     path: '/',
-    component: Home,
+    component: Inbox,
     groups: '',
-    displayName: 'Home',
+    displayName: 'Inbox',
     bottomNavigation: true,
     icon: <BookIcon />
   },

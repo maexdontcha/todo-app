@@ -1,6 +1,6 @@
 import Login from './Login'
 import Info from './Info'
-import Home from './Home'
+import Inbox from './Inbox'
 import Register from './Register'
 
-export { Login, Info, Home, Register }
+export { Login, Info, Inbox, Register }
