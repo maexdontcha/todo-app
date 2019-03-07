@@ -1,37 +1,26 @@
 // React
 import React, { useState } from 'react'
 
-// Redux API
-import { connect } from 'react-redux'
-import { IAppState } from '../../redux/store'
-import { userLogin } from '../../redux/userLogin'
-
-// AWS API
-import { Auth } from 'aws-amplify'
-
 // material-ui
-import {AddToHomeScreen} from '@material-ui/icons'
+import { AddToHomeScreen } from '@material-ui/icons'
 
 // _components
 import {
   OutlinedTextField,
   IconLabelButtons,
   CircularIndeterminate
-} from '../../components'
+} from '../../../components'
 
-// Interfaces
-interface IfuncDir {
-  [key: string]: Function
-  email: Function
-  name: Function
-  workspace: Function
-  password: Function
-  confirmPassword: Function
-}
+// Api
+import { handleHookChange } from '../../../api/utils/handleHookChanges'
 
-interface IState {}
+// Types
+import { IState, IProps, IfuncDir } from './Types.signupForm'
 
-const SignupForm: React.SFC<IState> = (props: any) => {
+// Functions
+import { handleSubmit } from './Function.signupForm'
+
+const SignupForm: React.SFC<IState> = (props: IProps) => {
   const [loading, setLoading] = useState(false)
   const [sendRegistration, setSendRegistration] = useState(false)
   const [email, setEmail] = useState('')
@@ -47,52 +36,10 @@ const SignupForm: React.SFC<IState> = (props: any) => {
     password: setPassword,
     confirmPassword: setConfirmPassword
   }
-  const { classes } = props
-
-  const proofInput = () => {
-    if (
-      email.length != 0 &&
-      name.length != 0 &&
-      workspace.length != 0 &&
-      password.length != 0 &&
-      password === confirmPassword
-    ) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  const handleSubmit = async (
-    event: React.MouseEvent<HTMLElement>
-  ): Promise<void> => {
-    event.preventDefault()
-    console.log(workspace)
-    if (proofInput()) {
-      setLoading(true)
-
-      try {
-        await Auth.signUp({
-          username: email,
-          password: password,
-          attributes: {
-            email: email,
-            name: name,
-            'custom:workspace': workspace
-          }
-        })
-      } catch (e) {
-        console.log(e.message)
-      }
-
-      setLoading(false)
-      setSendRegistration(true)
-    }
-  }
 
   // Handle Change in singup Form
-  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    funcDir[e.currentTarget.id](e.currentTarget.value)
+  const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    handleHookChange(event, funcDir)
   }
 
   // render singupForm
@@ -125,7 +72,19 @@ const SignupForm: React.SFC<IState> = (props: any) => {
           myType={'confirmPassword'}
         />
         <IconLabelButtons
-          onClick={handleSubmit}
+          onClick={(event: React.MouseEvent<HTMLElement>) => {
+            handleSubmit(
+              event,
+              {
+                email,
+                name,
+                workspace,
+                password,
+                confirmPassword
+              },
+              { setLoading, setSendRegistration }
+            )
+          }}
           buttonContent={{
             color: 'primary',
             text: 'Registrieren',
@@ -153,15 +112,4 @@ const SignupForm: React.SFC<IState> = (props: any) => {
   )
 }
 
-const mapStateToProps = (store: IAppState) => {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {}
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignupForm)
+export default SignupForm

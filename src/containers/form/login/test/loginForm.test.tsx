@@ -1,7 +1,6 @@
 // __tests__/CheckboxWithLabel-test.js
 import React from 'react'
 import { render, fireEvent, cleanup } from 'react-testing-library'
-import SignupForm from '../signupForm'
 import { Provider } from 'react-redux'
 // import { store } from '../../redux'
 import renderer from 'react-test-renderer'
@@ -10,14 +9,14 @@ import Adapter from 'enzyme-adapter-react-16'
 import { shallow, configure, mount, ReactWrapper } from 'enzyme'
 import configureStore from 'redux-mock-store'
 
-import {
-  OutlinedTextField,
-  LoginButton,
-  IconLabelButtons,
-  CircularIndeterminate
-} from '../../../components'
-import { handleSubmit, validateForm } from '../loginForm'
-import { async } from 'q'
+// import {
+//   OutlinedTextField,
+//   LoginButton,
+//   IconLabelButtons,
+//   CircularIndeterminate
+// } from '../../../components'
+
+import { handleSubmit, validateForm } from '../Function.loginForm'
 // automatically unmount and cleanup DOM after the test is finished.
 
 // const mockStore = configureStore()
