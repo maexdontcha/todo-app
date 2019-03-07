@@ -5,7 +5,7 @@ import SignupForm from './signupForm'
 import { Provider } from 'react-redux'
 // import { store } from '../../redux'
 import renderer from 'react-test-renderer'
-import Test from './Test'
+
 import Adapter from 'enzyme-adapter-react-16'
 import { shallow, configure, mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
@@ -28,13 +28,13 @@ describe('SignupForm', () => {
     store = mockStore('')
     wrapper = shallow(
       <Provider store={store}>
-        <Test />
+        <div />
       </Provider>
     )
 
     wrapper2 = mount(
       <Provider store={store}>
-        <Test />
+        <div />
       </Provider>
     )
   })
@@ -53,11 +53,7 @@ describe('SignupForm', () => {
 
     expect(
       x.simulate('click', {
-        preventDefault() {
-          x => {
-            x.toBe(2)
-          }
-        }
+        preventDefault() {}
       })
     ).toBeDefined()
     // expect(x.simulate('click'))

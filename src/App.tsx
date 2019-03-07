@@ -57,7 +57,7 @@ class App extends Component<IProps, IState> {
         })
       })
       .catch(err => {
-        console.log(err)
+        console.log(`${err} text`)
       })
     this.state = { theme: true }
   }

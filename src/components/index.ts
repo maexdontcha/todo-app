@@ -1,11 +1,10 @@
-import AddName from './addName'
-
+// Navigation
 import DesktopNavigation from './navigation/DesktopNavigation'
 
 import SaveRoute from './navigation/SaveRoute'
 
 // Buttons
-import IconLabelButtons from './buttons/iconLabelButtons'
+import IconLabelButtons from './buttons/iconLabelButton'
 
 // Form
 import OutlinedTextField from './form/outlinedTextField'
@@ -15,7 +14,6 @@ import LoginButton from './form/loginButton'
 import CircularIndeterminate from './progress/circularIndeterminate'
 
 export {
-  AddName,
   DesktopNavigation,
   SaveRoute,
   OutlinedTextField,

@@ -1,3 +1,3 @@
-import { AWSLogout } from './logout'
+import { AWSLogout } from './AWSLogout'
 
 export { AWSLogout }

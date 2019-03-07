@@ -31,7 +31,6 @@ interface IState {}
 const SignupForm: React.SFC<IState> = (props: any) => {
   const [loading, setLoading] = useState(false)
   const [sendRegistration, setSendRegistration] = useState(false)
-
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [workspace, setWorkspace] = useState('')

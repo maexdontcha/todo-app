@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
-import { AddName } from '../components'
 
 class Home extends Component {
   render() {
-    return (
-      <React.Fragment>
-        Dashboard geht immer
-        {/* <AddName /> */}
-      </React.Fragment>
-    )
+    return <React.Fragment>Dashboard geht immer</React.Fragment>
   }
 }
 

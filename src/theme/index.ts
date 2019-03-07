@@ -8,10 +8,10 @@ import { background } from 'styled-system'
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#f57c00'
+      main: '#00897b'
     },
     secondary: {
-      main: '#333'
+      main: '#ef6c00'
     }
   },
   typography: { useNextVariants: true }
@@ -27,7 +27,7 @@ export const themered = createMuiTheme({
     // },
 
     primary: {
-      main: '#f57c00'
+      main: '#00897b'
     },
     secondary: {
       main: '#ffd180'

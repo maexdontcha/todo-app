@@ -10,7 +10,6 @@ Redux Thunk middleware allows you to write action creators that return a functio
 */
 import thunk from 'redux-thunk'
 // Import reducers and state type
-import { characterReducer, ICharacterState } from './reducers/appReducer'
 
 import { IThemeState } from './theme/themeTypes'
 import { themeReducer } from './theme/themeReducer'
@@ -21,14 +20,12 @@ import { userLogin } from './userLogin/userAction'
 
 // Create an interface for the application state
 export interface IAppState {
-  characterState: ICharacterState
   themeState: IThemeState
   userState: IUserState
 }
 
 // Create the root reducer
 const rootReducer = combineReducers<IAppState>({
-  characterState: characterReducer,
   themeState: themeReducer,
   userState: userReducer
 })

@@ -38,13 +38,18 @@ export interface IProps {
   fullWidth?: boolean
 }
 
-const IconLabelButtons: React.SFC<IProps> = (props: IProps) => {
-  const {
-    classes,
-    onClick,
-    fullWidth,
-    buttonContent: { color, text }
-  } = props
+const IconLabelButtons: React.SFC<IProps> = ({
+  classes,
+  onClick,
+  fullWidth,
+  buttonContent: { color, text }
+}: IProps) => {
+  // const {
+  //   classes,
+  //   onClick,
+  //   fullWidth,
+  //   buttonContent: { color, text }
+  // } = props
   return (
     <Button
       fullWidth={fullWidth || true}
