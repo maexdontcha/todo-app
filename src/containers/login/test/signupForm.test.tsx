@@ -20,9 +20,13 @@ import { handleSubmit, validateForm } from '../loginForm'
 import { async } from 'q'
 // automatically unmount and cleanup DOM after the test is finished.
 
-const mockStore = configureStore()
+// const mockStore = configureStore()
 
-configure({ adapter: new Adapter() })
+// configure({ adapter: new Adapter() })
+
+const test = () => {
+  throw new Error()
+}
 
 describe('SignupForm', () => {
   afterEach(cleanup)
@@ -37,7 +41,9 @@ describe('SignupForm', () => {
   // })
 
   it('Render SignupForm and find Button', () => {
-    expect(validateForm({ email: '', password: '' })).toThrow()
+    expect(validateForm({ email: '1', password: '1' })).toBe(true)
+    // expect(validateForm({ email: '', password: '' })).toThrow()
+    expect(test()).toThrow()
   })
 
   // it('Render SignupForm and find Button', () => {
