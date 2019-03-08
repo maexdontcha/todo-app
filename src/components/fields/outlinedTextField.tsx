@@ -15,7 +15,8 @@ const styles = (theme: Theme) =>
       flexWrap: 'wrap'
     },
     margin: {
-      margin: theme.spacing.unit
+      marginTop: theme.spacing.unit,
+      marginBottom: theme.spacing.unit
     },
     cssLabel: {
       '&$cssFocused': {
@@ -84,11 +85,12 @@ interface IProps extends WithStyles<typeof styles> {
   myLabel: string
   myType?: string
   fullWidth?: boolean
+  multiline?: boolean
 }
 
 function outlinedTextField(props: IProps) {
   // const { classes, myfunction, myLabel, myType } = props
-  const { classes, onChange, myLabel, myType, fullWidth } = props
+  const { classes, onChange, myLabel, myType, fullWidth, multiline } = props
   return (
     <TextField
       className={classes.margin}
@@ -98,6 +100,7 @@ function outlinedTextField(props: IProps) {
       variant="outlined"
       type={myType || ''}
       onChange={onChange.bind('')}
+      multiline={multiline || false}
     />
   )
 }

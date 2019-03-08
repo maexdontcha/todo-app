@@ -7,15 +7,12 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 // React-Redux
 import { userLogin } from './redux/userLogin'
 import { IAppState } from './redux/store'
 import { connect } from 'react-redux'
-
-// Apollo
-import { ApolloProvider } from "react-apollo";
-
 
 // AWS API
 import { Auth } from 'aws-amplify'
@@ -35,7 +32,8 @@ import { lightTheme } from './theme'
 import { darkTheme } from './theme'
 import Paper from '@material-ui/core/Paper'
 import { BottomNavigation } from './containers/'
-import { Tabbar } from './components'
+import { Tabbar, FabButton } from './components'
+import CreateTaskDrawer from './containers/drawer/createTask/SFC.createTask'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -73,6 +71,7 @@ class App extends Component<IProps, IState> {
           <Tabbar theme={this.state.theme} />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
+          <CreateTaskDrawer />
           <BottomNavigation />
         </React.Fragment>
       </BrowserRouter>

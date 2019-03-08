@@ -6,12 +6,14 @@ import Icon from '@material-ui/core/Icon'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import { routes as NavigationItems } from '../../../routes'
 import { Link, Redirect, Route } from 'react-router-dom'
+import { zIndex } from 'styled-system'
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+    width: '100vw',
     position: 'fixed',
     bottom: 0,
-    boxShadow: '0px 1px 3px #121212'
+    boxShadow: '0px 1px 3px #121212',
+    zIndex: 10000
   }
 })
 
