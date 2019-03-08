@@ -1,3 +1,4 @@
 import helloQuery from './query/hello'
+import createTaskMutation from './mutation/createTask'
 
-export { helloQuery }
+export { helloQuery,createTaskMutation }

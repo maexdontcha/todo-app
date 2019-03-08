@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Button } from '@material-ui/core'
-import { helloQuery } from '../api/apollo/schema'
+import { helloQuery, createTaskMutation } from '../api/apollo/schema'
 import { _query as query } from '../api/apollo/resolver'
+import { _mutation } from '../api/apollo/resolver/mutation'
 class Info extends Component<
   { datax: string },
   { datax: string; name: string }
@@ -20,11 +21,24 @@ class Info extends Component<
     this.setState({ datax: res.hello })
   }
 
+  async handleMutation() {
+    const res = await _mutation({
+      variables: {
+        workspace: 'testworkspace',
+        editor: 'philipp',
+        title: 'resolverTask'
+      },
+      mutation: createTaskMutation
+    })
+    console.log(res)
+    this.setState({ datax: res.hello })
+  }
+
   render() {
     return (
       <React.Fragment>
         <input onChange={e => this.setState({ name: e.currentTarget.value })} />
-        <Button onClick={this.handleQuery.bind(this)}>Apollo</Button>
+        <Button onClick={this.handleMutation.bind(this)}>Apollo</Button>
         <div>{this.state.datax}</div>
       </React.Fragment>
     )
