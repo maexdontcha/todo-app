@@ -13,11 +13,12 @@ import { userLogin } from './redux/userLogin'
 import { IAppState } from './redux/store'
 import { connect } from 'react-redux'
 
+// Apollo
+import { ApolloProvider } from "react-apollo";
+
+
 // AWS API
 import { Auth } from 'aws-amplify'
-
-// _component
-import { DesktopNavigation, CircularIndeterminate } from './components'
 
 // _container
 import { Content } from './containers'
@@ -34,6 +35,7 @@ import { lightTheme } from './theme'
 import { darkTheme } from './theme'
 import Paper from '@material-ui/core/Paper'
 import { BottomNavigation } from './containers/'
+import { Tabbar } from './components'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -46,7 +48,6 @@ interface IState {
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
-
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -69,6 +70,7 @@ class App extends Component<IProps, IState> {
     return (
       <BrowserRouter>
         <React.Fragment>
+          <Tabbar theme={this.state.theme} />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <BottomNavigation />
@@ -95,14 +97,18 @@ class App extends Component<IProps, IState> {
     } = this.props
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
-        <Paper square={true}>
-          {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
-        </Paper>
-        <button
-          onClick={() => {
-            this.setState({ theme: !this.state.theme })
-          }}
-        />
+        <React.Fragment>
+          <Paper square={true} style={{ height: '100vh' }}>
+            {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
+            <button
+              onClick={() => {
+                this.setState({ theme: !this.state.theme })
+              }}
+            >
+              theme
+            </button>
+          </Paper>
+        </React.Fragment>
       </MuiThemeProvider>
     )
   }

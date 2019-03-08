@@ -13,11 +13,15 @@ import LoginButton from './form/loginButton'
 // progress
 import CircularIndeterminate from './progress/circularIndeterminate'
 
+//tabbar
+import Tabbar from './tabbar/Tabbar'
+
 export {
   DesktopNavigation,
   SaveRoute,
   OutlinedTextField,
   LoginButton,
   IconLabelButtons,
-  CircularIndeterminate
+  CircularIndeterminate,
+  Tabbar
 }
