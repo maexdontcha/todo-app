@@ -30,7 +30,7 @@ const myroutes: IRoute[] = [
     path: '/Info',
     component: Info,
     groups: ['save'],
-    displayName: 'Info mit Gruppen',
+    displayName: 'Projekte',
     bottomNavigation: true,
     icon: <FolderIcon />
   },
@@ -38,7 +38,7 @@ const myroutes: IRoute[] = [
     path: '/Infox',
     component: Info,
     groups: '',
-    displayName: 'ohne Gruppen',
+    displayName: 'Dashboard',
     bottomNavigation: true,
     icon: <DashboardIcon />
   },

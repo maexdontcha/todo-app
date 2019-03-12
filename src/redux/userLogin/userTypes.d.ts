@@ -13,6 +13,7 @@ export interface IUserState {
   email?: string
   jwt?: any
   refreshToken?: any
+  userData?: any
 }
 
 type TUserPlaylod = IUser

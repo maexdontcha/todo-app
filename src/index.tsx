@@ -31,7 +31,9 @@ Amplify.configure({
         endpoint: AWScognito.apiGateway.URL,
         region: AWScognito.apiGateway.REGION
       }
-    ]
+    ],
+    graphql_endpoint: `${AWScognito.apiGateway.URL}/graphql`,
+    graphql_endpoint_iam_region: AWScognito.cognito.REGION
   }
 })
 

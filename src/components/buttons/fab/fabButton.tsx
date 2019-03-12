@@ -19,25 +19,31 @@ const styles = (theme: any) => ({
 export interface Props {
   classes: any
   onClick: Function
+  icon?: JSX.Element
 }
 
-function FloatingActionButtons(props: Props) {
-  const { classes, onClick } = props
+function fabButton(props: Props) {
+  const { classes, onClick, icon } = props
+
   return (
     <Fab
       onClick={onClick.bind('')}
       variant="extended"
       aria-label="Delete"
       className={classes.fab}
+      color="secondary"
+      style={{
+        position: 'fixed',
+        bottom: 60,
+        left: '50%',
+        width: '200px',
+        transform: 'translateX(-100px)'
+      }}
     >
-      <NavigationIcon className={classes.extendedIcon} />
-      Login
+      {icon}
+      add
     </Fab>
   )
 }
 
-FloatingActionButtons.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(FloatingActionButtons)
+export default withStyles(styles)(fabButton)

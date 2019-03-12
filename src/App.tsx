@@ -7,6 +7,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 // React-Redux
 import { userLogin } from './redux/userLogin'
@@ -15,9 +16,6 @@ import { connect } from 'react-redux'
 
 // AWS API
 import { Auth } from 'aws-amplify'
-
-// _component
-import { DesktopNavigation, CircularIndeterminate } from './components'
 
 // _container
 import { Content } from './containers'
@@ -34,6 +32,8 @@ import { lightTheme } from './theme'
 import { darkTheme } from './theme'
 import Paper from '@material-ui/core/Paper'
 import { BottomNavigation } from './containers/'
+import { Tabbar, FabButton } from './components'
+import CreateTaskDrawer from './containers/drawer/createTask/SFC.createTask'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -46,7 +46,6 @@ interface IState {
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
-
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -69,8 +68,10 @@ class App extends Component<IProps, IState> {
     return (
       <BrowserRouter>
         <React.Fragment>
+          <Tabbar theme={this.state.theme} />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
+          <CreateTaskDrawer />
           <BottomNavigation />
         </React.Fragment>
       </BrowserRouter>
@@ -95,14 +96,18 @@ class App extends Component<IProps, IState> {
     } = this.props
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
-        <Paper square={true}>
-          {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
-        </Paper>
-        <button
-          onClick={() => {
-            this.setState({ theme: !this.state.theme })
-          }}
-        />
+        <React.Fragment>
+          <Paper square={true} style={{ height: '100vh' }}>
+            {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
+            <button
+              onClick={() => {
+                this.setState({ theme: !this.state.theme })
+              }}
+            >
+              theme
+            </button>
+          </Paper>
+        </React.Fragment>
       </MuiThemeProvider>
     )
   }

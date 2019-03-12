@@ -11,7 +11,8 @@ import SaveIcon from '@material-ui/icons/Save'
 
 const styles = (theme: Theme) => ({
   button: {
-    margin: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   },
   leftIcon: {
     marginRight: theme.spacing.unit
