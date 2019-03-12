@@ -9,8 +9,6 @@ interface propTypes {
   path: string
   permittedGroups: any
   userLogin: any
-  // groups: string | string[]
-  // key: 'string'
 }
 
 class SaveRoute extends Component<propTypes, {}> {
@@ -18,18 +16,8 @@ class SaveRoute extends Component<propTypes, {}> {
     super(props)
   }
 
-  deineGruppen = ['user']
-
   checkAccess(groups: any | string[]) {
-    // console.log(groups)
-    //return true
     return groups.length === 0 ? true : false
-    // console.log('check permission')
-    // const x = this.deineGruppen.map(yours => {
-    //   return groups.includes(yours)
-    // })
-
-    // return true
   }
 
   componentWillUnmount() {
@@ -37,7 +25,6 @@ class SaveRoute extends Component<propTypes, {}> {
   }
 
   render() {
-    // console.log(this.props.userLogin)
     const { component: Component, permittedGroups, ...rest } = this.props
     return (
       <Route
@@ -57,26 +44,6 @@ class SaveRoute extends Component<propTypes, {}> {
   }
 }
 
-// const mapStateToProps = (store: IAppState) => {
-//   return {
-//     characters: store.characterState.characters
-//   }
-// }
-
-// export default connect(mapStateToProps)(SaveRoute)
-
-const Layout: React.SFC = props => {
-  return <div id={'LAYOUT'}>{props.children}</div>
-}
-
 export default connect((store: IAppState) => ({
   userLogin: store.userState
 }))(SaveRoute)
-
-// if (!loggedIn && this.props.path !== '/login') {
-//   return <Redirect to="/login" />
-// } else if (loggedIn || this.props.path === '/login') {
-//   return <Component {...props} />
-// } else if (!this.checkAccess(permittedGroups[0])) {
-//   return <Redirect to="/" />
-// }

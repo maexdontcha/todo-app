@@ -1,7 +1,5 @@
-// Navigation
-import DesktopNavigation from './navigation/DesktopNavigation'
-
-import SaveRoute from './navigation/SaveRoute'
+// routing
+import SaveRoute from './routing/SaveRoute'
 
 // Buttons
 import IconLabelButtons from './buttons/iconLabelButton'
@@ -22,7 +20,6 @@ import Tabbar from './tabbar/Tabbar'
 import BottomDrawer from './drawer/bottomDrawer/bottomDrawer'
 
 export {
-  DesktopNavigation,
   SaveRoute,
   OutlinedTextField,
   LoginButton,
