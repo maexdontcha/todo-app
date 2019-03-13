@@ -42,7 +42,20 @@ const LoginForm: React.SFC<{}> = props => {
       {loading ? (
         <CircularIndeterminate />
       ) : (
-        <form noValidate autoComplete="on">
+        <form
+          noValidate
+          autoComplete="on"
+          onSubmit={e => {
+            e.preventDefault()
+            e.stopPropagation()
+            handleSubmit({
+              email,
+              password,
+              setLoading,
+              props: props
+            })
+          }}
+        >
           <OutlinedTextField
             onChange={handleChange}
             myLabel={'email'}
@@ -63,6 +76,7 @@ const LoginForm: React.SFC<{}> = props => {
                 props: props
               })
             }}
+            type={'submit'}
             buttonContent={{
               color: 'primary',
               text: 'Login',

@@ -36,13 +36,15 @@ export interface IProps {
   onClick: Function
   buttonContent: IbuttonContent
   fullWidth?: boolean
+  type?: string
 }
 
 const IconLabelButtons: React.SFC<IProps> = ({
   classes,
   onClick,
   fullWidth,
-  buttonContent: { color, text, icon }
+  buttonContent: { color, text, icon },
+  type
 }: IProps) => {
   // const {
   //   classes,
@@ -57,6 +59,7 @@ const IconLabelButtons: React.SFC<IProps> = ({
       variant="contained"
       color={color}
       className={classes.button}
+      type={type}
     >
       {text}
       <div
