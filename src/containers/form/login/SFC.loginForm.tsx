@@ -22,7 +22,7 @@ import { IfuncDir, FhandleHookChange } from './Types.loginForm'
 // Functions
 import { handleSubmit } from './Function.loginForm'
 
-const LoginForm: React.SFC<{}> = () => {
+const LoginForm: React.SFC<{}> = props => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -56,7 +56,12 @@ const LoginForm: React.SFC<{}> = () => {
 
           <IconLabelButtons
             onClick={() => {
-              handleSubmit({ email, password, setLoading })
+              handleSubmit({
+                email,
+                password,
+                setLoading,
+                props: props
+              })
             }}
             buttonContent={{
               color: 'primary',
