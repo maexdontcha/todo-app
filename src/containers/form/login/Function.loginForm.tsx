@@ -40,9 +40,7 @@ export const handleSubmit: FhandleSubmit = async ({
           payload: token,
           type: 'LOGIN'
         })
-        setTimeout(() => {
-          history.push('/home')
-        }, 10000)
+        history.push('/')
       })
       .catch(err => {
         console.log(err.message)

@@ -9,7 +9,7 @@ interface Friend {
 //
 // Declare Database
 //
-class Database extends Dexie {
+export class Database extends Dexie {
   public friends: Dexie.Table<Friend, number> // id is number in this case
 
   public constructor(dbName: string, tableName: string, tableModel: string) {
@@ -19,5 +19,4 @@ class Database extends Dexie {
   }
 }
 
-export const db = new Database('TODO_APP', 'TASKS','id++, Name, age')
-
+export const db = new Database('TODO_APP', 'TASKS', 'id++, Name, age')

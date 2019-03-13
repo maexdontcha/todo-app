@@ -36,12 +36,14 @@ import Paper from '@material-ui/core/Paper'
 import { BottomNavigation } from './containers/'
 import { Tabbar, FabButton } from './components'
 import { CreateTaskDrawer } from './containers'
-import { loadTodos } from './api/indexeddb/action'
+import { loadTodos, clearTodos } from './api/indexeddb/action'
+import { Database } from './api/indexeddb/db'
 interface IProps {
   darkMode: boolean
   userLoginState: any
   userLogin: any
   taskLoad: Function
+  clearTodos: Function
 }
 interface IState {
   theme: boolean
@@ -141,6 +143,7 @@ class App extends Component<IProps, IState> {
   handleLogout() {
     AWSLogout()
     this.props.userLogin({ type: 'LOGOUT' })
+    this.props.clearTodos()
   }
 
   renderMainFrame() {
@@ -210,7 +213,8 @@ const mapDispatchToProps = (dispatch: any) => {
           type: transfer.type
         })
       ),
-    taskLoad: (transfer: any) => dispatch(loadTodos())
+    taskLoad: (transfer: any) => dispatch(loadTodos()),
+    clearTodos: () => dispatch(clearTodos())
   }
 }
 

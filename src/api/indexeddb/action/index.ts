@@ -4,7 +4,8 @@ export enum ETaskActionTypes {
   ADD_TODO = 'ADD_TODO',
   LOAD_TODOS = 'LOAD_TODOS',
   UPDATE_TODO = 'UPDATE_TODO',
-  DELETE_TODO = 'DELETE_TODO'
+  DELETE_TODO = 'DELETE_TODO',
+  CLEAR_TODOS = 'CLEAR_TODOS'
 }
 const tablename: string = 'TASKS'
 
@@ -56,6 +57,18 @@ export function updateTodo(id: any, done: any) {
         dispatch({
           type: ETaskActionTypes.UPDATE_TODO,
           payload: { id, done }
+        })
+      })
+  }
+}
+
+export function clearTodos() {
+  return (dispatch: any) => {
+    db.table(tablename)
+      .clear()
+      .then(() => {
+        dispatch({
+          type: ETaskActionTypes.CLEAR_TODOS
         })
       })
   }

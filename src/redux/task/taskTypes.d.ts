@@ -6,7 +6,8 @@ export enum ETaskActionTypes {
   ADD_TODO = 'ADD_TODO',
   LOAD_TODOS = 'LOAD_TODOS',
   UPDATE_TODO = 'UPDATE_TODO',
-  DELETE_TODO = 'DELETE_TODO'
+  DELETE_TODO = 'DELETE_TODO',
+  CLEAR_TODOS = 'CLEAR_TODOS'
 }
 
 // export interface ITaskState {
