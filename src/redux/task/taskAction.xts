@@ -1,0 +1,24 @@
+// Import Reducer type
+// import { Dispatch, AnyAction } from 'redux'
+
+// import { ActionCreator } from 'redux'
+// import { ThunkAction } from 'redux-thunk'
+
+// // Import Character Typing
+// import { ITaskState, ETaskActionTypes, ITaskReduxAction } from './taskTypes'
+
+// export const Task: ActionCreator<
+//   ThunkAction<Promise<any>, ITaskState, null, ITaskReduxAction>
+// > = (obj: ITaskReduxAction) => {
+//   return async (dispatch: Dispatch<AnyAction>): Promise<any> => {
+//     try {
+//       dispatch({
+//         payload: obj.payload,
+//         // characters: response.data.results,
+//         type: ETaskActionTypes[obj.type]
+//       })
+//     } catch (err) {
+//       console.error(err)
+//     }
+//   }
+// }

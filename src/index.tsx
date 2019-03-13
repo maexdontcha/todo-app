@@ -15,6 +15,9 @@ import { store } from './redux'
 import Amplify from 'aws-amplify'
 import AWScognito from './AWScognito'
 
+//indexeddb
+import { loadTodos } from './api/indexeddb/action'
+
 // configure AWS-Congito
 Amplify.configure({
   Auth: {
@@ -50,4 +53,15 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister()
+// serviceWorker.register()
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/service-worker.js', { scope: '/' })
+    .then(function(registration) {
+      console.log('Service Worker Registered')
+    })
+  navigator.serviceWorker.ready.then(function(registration) {
+    console.log('Service Worker Ready')
+  })
+}

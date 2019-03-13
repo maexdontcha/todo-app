@@ -21,11 +21,12 @@ import {
 import { doStates } from './static.createTaskForm'
 import { create } from './Function.createTaskForm'
 
-const CreateTaskForm: React.SFC<{}> = () => {
+const CreateTaskForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
   const [beschreibung, setBeschreibung] = useState('')
-
+  const { handleAddTodo } = props
+  console.log(props)
   const funcDir: any = {
     title: setTitle,
     beschreibung: setBeschreibung
@@ -54,7 +55,8 @@ const CreateTaskForm: React.SFC<{}> = () => {
           {/* <OutlinedNativeSelect selectValues={doStates} onChange={() => {}} /> */}
           <IconLabelButtons
             onClick={() => {
-              create({ workspace: 'test', title, beschreibung })
+              const res = handleAddTodo(title)
+              console.log(res)
             }}
             buttonContent={{
               color: 'primary',

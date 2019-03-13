@@ -12,7 +12,7 @@ import { handleHookChange } from '../../../api/utils/handleHookChanges'
 // Types
 import { IState, IProps, IfuncDir } from './Types.createTask'
 import { Register } from '../../../views'
-import CreateTaskForm from '../../form/createTask/SFC.createTaskForm'
+import CreateTaskForm from '../../form/createTask/connect.createTaskFrom'
 
 const CreateTaskDrawer: React.SFC<IState> = (props: IProps) => {
   const [toggle, setToggle] = useState(false)
