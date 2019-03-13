@@ -16,6 +16,12 @@ const taskReducer: Reducer<{ todos: ITaskState[] }, ITaskReduxAction> = (
         todos: payload
       }
     }
+    //TODO: how to handle update state
+    case ETaskActionTypes.UPDATE_TODO: {
+      return {
+        todos: payload
+      }
+    }
     case ETaskActionTypes.CLEAR_TODOS: {
       return {
         todos: []

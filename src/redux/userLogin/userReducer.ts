@@ -14,14 +14,26 @@ export const userReducer: Reducer<IUserState, IUserLogin> = (
       return {
         ...state,
         loggedin: true,
-        userData: action.payload
+        idToken: action.payload.idToken.jwtToken,
+        username: action.payload.idToken.payload.sub,
+        workspace: action.payload.idToken.payload['custom:workspace'],
+        name: action.payload.idToken.payload.name,
+        email: action.payload.idToken.payload.email,
+        accessToken: action.payload.accessToken.jwtToken,
+        refreshToken: action.payload.refreshToken.token
       }
     }
     case EUserActionTypes.LOGOUT: {
       return {
         ...state,
         loggedin: false,
-        userData: action.payload
+        idToken: action.payload.idToken.jwtToken,
+        username: action.payload.idToken.payload.sub,
+        workspace: action.payload.idToken.payload['custom:workspace'],
+        name: action.payload.idToken.payload.name,
+        email: action.payload.idToken.payload.email,
+        accessToken: action.payload.accessToken.jwtToken,
+        refreshToken: action.payload.refreshToken.token
       }
     }
     default:

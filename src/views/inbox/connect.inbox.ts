@@ -5,7 +5,6 @@ import Inbox from './Inbox'
 import { addTodo, updateTodo, deleteTodo } from '../../api/indexeddb/action'
 
 const mapStateToProps = (store: any) => {
-  console.log(store)
   return {
     tasks: store.taskState.todos || []
   }

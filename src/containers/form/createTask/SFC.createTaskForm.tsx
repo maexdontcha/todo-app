@@ -19,7 +19,7 @@ import {
   OutlinedNativeSelect
 } from '../../../components'
 import { doStates } from './static.createTaskForm'
-import { create } from './Function.createTaskForm'
+import { createTodo } from '../../../api/utils/state/createTodo'
 
 const CreateTaskForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
@@ -65,7 +65,7 @@ const CreateTaskForm: React.SFC<{}> = (props: any) => {
             <Box width={[1 / 4]} px={'2px'}>
               <AddButton
                 onClick={() => {
-                  const res = handleAddTodo(title)
+                  createTodo({ title })
                 }}
                 icon={<CheckIcon />}
               />

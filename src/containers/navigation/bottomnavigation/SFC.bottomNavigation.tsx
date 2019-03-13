@@ -19,12 +19,11 @@ const useStyles = makeStyles({
 
 const _BottomNavigation = () => {
   const classes = useStyles()
-  const [value, setValue] = React.useState('recents')
+  const [value, setValue] = React.useState('Inbox')
 
   async function handleChange(event: any, newValue: any) {
     await setValue(newValue)
   }
-
   return (
     <BottomNavigation
       value={value}

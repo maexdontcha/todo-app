@@ -9,11 +9,13 @@ export enum EUserActionTypes {
 
 export interface IUserState {
   loggedin: boolean
+  idToken?: string
   username?: string
+  workspace?: string
+  name?: string
   email?: string
-  jwt?: any
-  refreshToken?: any
-  userData?: any
+  accessToken?: string
+  refreshToken?: string
 }
 
 type TUserPlaylod = IUser

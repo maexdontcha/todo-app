@@ -2,8 +2,9 @@ import Dexie from 'dexie'
 
 interface Friend {
   id?: number
-  name?: string
-  age?: number
+  editor?: string
+  workspace?: string
+  title?: string
 }
 
 //
@@ -19,4 +20,4 @@ export class Database extends Dexie {
   }
 }
 
-export const db = new Database('TODO_APP', 'TASKS', 'id++, Name, age')
+export const db = new Database('TODO_APP', 'TASKS', 'id++, editor, workspace, title')

@@ -33,6 +33,7 @@ export interface IAppState {
   themeState: IThemeState
   userState: IUserState
   taskState: any
+
 }
 
 // Create the root reducer
