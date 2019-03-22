@@ -58,7 +58,6 @@ class App extends Component<IProps, IState> {
       .catch(err => {
         // console.log(`${err} text`)
       })
-    console.log(this.state)
     this.setTitle = this.setTitle.bind(this)
   }
 
@@ -104,7 +103,7 @@ class App extends Component<IProps, IState> {
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <React.Fragment>
-          <Paper square={true} style={{ height: '100vh' }}>
+          <Paper square={true} style={{ height: '100vh', overflow: 'auto' }}>
             {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
             <button
               onClick={() => {

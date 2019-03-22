@@ -10,7 +10,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    boxShadow: 'none'
   },
   grow: {
     flexGrow: 1
@@ -25,9 +26,9 @@ const _Tabbar = (props: any) => {
   const { classes, title } = props
   return (
     <div className={classes.root}>
-      <AppBar position="static" color={props.theme ? 'primary' : 'default'}>
+      <AppBar className={classes.root} position="static" color={'default'}>
         <Toolbar>
-          <Typography variant="h4" color="inherit" className={classes.grow}>
+          <Typography variant="h1" color="inherit" className={classes.grow}>
             {title}
           </Typography>
           <Button color="inherit">Login</Button>
