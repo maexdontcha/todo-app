@@ -6,7 +6,7 @@ import RestoreIcon from '@material-ui/icons/Restore'
 import MenuIcon from '@material-ui/icons/Menu'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import FolderIcon from '@material-ui/icons/Folder'
-import BookIcon from '@material-ui/icons/Book'
+import InboxIcon from '@material-ui/icons/Inbox'
 
 export interface IRoute {
   path: string
@@ -24,7 +24,7 @@ const myroutes: IRoute[] = [
     groups: '',
     displayName: 'Inbox',
     bottomNavigation: true,
-    icon: <BookIcon />
+    icon: <InboxIcon />
   },
   {
     path: '/Info',

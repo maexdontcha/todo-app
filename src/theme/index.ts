@@ -15,11 +15,11 @@ const defaultTheme = {
       'Roboto'
     ].join(','),
     h1: {
-      fontSize: '2rem',
+      fontSize: '2.25rem',
       fontWeight: 600
     },
     h3: {
-      fontSize: '1rem'
+      fontSize: '1.2rem'
     }
   }
 }

@@ -31,7 +31,7 @@ function fabButton(props: Props) {
       variant="extended"
       aria-label="Delete"
       className={classes.fab}
-      color="secondary"
+      color="primary"
       style={{
         position: 'fixed',
         bottom: 60,
