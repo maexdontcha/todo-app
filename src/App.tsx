@@ -2,6 +2,7 @@
 
 // React
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import {
   BrowserRouter,
   Link,
@@ -52,6 +53,8 @@ interface IState {
   successfullyInstalled: boolean
   acceptedInstall: boolean
   declinedInstall: boolean
+  title: string
+  changeHeader: boolean
 }
 declare const window: any
 
@@ -59,6 +62,7 @@ class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
     props.taskLoad()
+
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -70,11 +74,13 @@ class App extends Component<IProps, IState> {
         // console.log(`${err} text`)
       })
     this.state = {
+      theme: true,
+      title: 'Inbox',
+      changeHeader: false,
       readyToAdd: false,
       successfullyInstalled: false,
       acceptedInstall: false,
-      declinedInstall: false,
-      theme: true
+      declinedInstall: false
     }
     this.addToHome = this.addToHome.bind(this)
     this.shouldShowAddButton = this.shouldShowAddButton.bind(this)
@@ -140,6 +146,8 @@ class App extends Component<IProps, IState> {
   }
   openWindowOrTab(url = window.location.href) {
     window.open(url, '_blank')
+    this.setTitle = this.setTitle.bind(this)
+    this.onScrollNavbar = this.onScrollNavbar.bind(this)
   }
   handleLogout() {
     AWSLogout()
@@ -147,15 +155,39 @@ class App extends Component<IProps, IState> {
     this.props.clearTodos()
   }
 
+  setTitle(name: string) {
+    this.setState({ title: name })
+  }
+  onScrollNavbar() {
+    console.log('calledscroll')
+    var n: any = ReactDOM.findDOMNode(this) || 0
+
+    if (n.scrollTop >= 44) {
+      if (!this.state.changeHeader) {
+        this.setState({ changeHeader: true })
+      }
+    }
+    if (n.scrollTop < 44) {
+      if (this.state.changeHeader) {
+        this.setState({ changeHeader: false })
+      }
+    }
+  }
+
   renderMainFrame() {
+    console.log('calledrender')
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Tabbar theme={this.state.theme} />
+          <Tabbar
+            theme={this.state.theme}
+            title={this.state.title}
+            changeHeader={this.state.changeHeader}
+          />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <CreateTaskDrawer />
-          <BottomNavigation />
+          <BottomNavigation setTitle={this.setTitle} />
         </React.Fragment>
       </BrowserRouter>
     )
@@ -180,7 +212,13 @@ class App extends Component<IProps, IState> {
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <React.Fragment>
-          <Paper square={true} style={{ height: '100vh' }}>
+          <Paper
+            square={true}
+            style={{ height: '100vh', overflow: 'auto' }}
+            onScroll={() => {
+              this.onScrollNavbar()
+            }}
+          >
             {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
             {this.shouldShowAddButton() ? (
               <button onClick={this.addToHome}>Add to Home Screen</button>
