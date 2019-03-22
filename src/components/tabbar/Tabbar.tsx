@@ -6,7 +6,9 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
+import PowerIcon from '@material-ui/icons/Power'
+import ArrowBackIcon from '@material-ui/icons/ArrowBackIos'
+import { Flex, Box } from 'rebass'
 
 const styles = {
   root: {
@@ -33,20 +35,47 @@ const _Tabbar: React.SFC<{
       <AppBar
         className={props.classes.root}
         position={changeHeader ? 'absolute' : 'sticky'}
-        color={'default'}
+        color={'inherit'}
       >
-        <Toolbar style={{ minHeight: 40 }}>
+        <Toolbar style={{ minHeight: 35, padding: 0 }}>
           {changeHeader ? (
             <React.Fragment>
-              <Button color="inherit">Login</Button>
-              <Typography
-                variant="h3"
-                color="inherit"
-                className={props.classes.grow}
+              <Flex
+                style={{ width: '100%' }}
+                alignItems="center"
+                justifyContent="space-between"
               >
-                {props.title}
-              </Typography>
-              <Button color="inherit">Login</Button>
+                <Box width={1 / 4} style={{ textAlign: 'left' }}>
+                  <Button color="inherit" style={{ textTransform: 'none' }}>
+                    <ArrowBackIcon />
+                    <Typography
+                      variant="h3"
+                      color="inherit"
+                      className={props.classes.grow}
+                    >
+                      Zurück
+                    </Typography>
+                  </Button>
+                </Box>
+                <Box style={{ textAlign: 'center' }} width={1 / 2}>
+                  <Typography
+                    variant="h3"
+                    color="inherit"
+                    className={props.classes.grow}
+                  >
+                    {props.title}
+                  </Typography>
+                </Box>
+                <Box width={1 / 4} style={{ textAlign: 'right' }}>
+                  <IconButton
+                    aria-label="Delete"
+                    color="inherit"
+                    className={classes.margin}
+                  >
+                    <PowerIcon fontSize="small" />
+                  </IconButton>
+                </Box>
+              </Flex>
             </React.Fragment>
           ) : (
             ''
@@ -56,9 +85,9 @@ const _Tabbar: React.SFC<{
       <AppBar
         className={props.classes.root}
         position={'static'}
-        color={'default'}
+        color={'inherit'}
       >
-        <Toolbar style={{ minHeight: 40 }}>
+        <Toolbar style={{ minHeight: 50 }}>
           <Typography
             variant="h1"
             color="inherit"
@@ -66,7 +95,14 @@ const _Tabbar: React.SFC<{
           >
             {props.title}
           </Typography>
-          <Button color="inherit">Login</Button>
+          {/* <Fab
+            color="primary"
+            size="small"
+            aria-label="Add"
+            className={classes.margin}
+          >
+            <PowerIcon />
+          </Fab> */}
         </Toolbar>
       </AppBar>
     </div>

@@ -73,13 +73,23 @@ class App extends Component<IProps, IState> {
     this.setState({ title: name })
   }
   onScrollNavbar() {
-    console.log('called')
+    console.log('calledscroll')
     var n: any = ReactDOM.findDOMNode(this) || 0
-    if (n.scrollTop >= 55) this.setState({ changeHeader: true })
-    if (n.scrollTop <= 55) this.setState({ changeHeader: false })
+
+    if (n.scrollTop >= 55) {
+      if (!this.state.changeHeader) {
+        this.setState({ changeHeader: true })
+      }
+    }
+    if (n.scrollTop <= 55) {
+      if (this.state.changeHeader) {
+        this.setState({ changeHeader: false })
+      }
+    }
   }
 
   renderMainFrame() {
+    console.log('calledrender')
     return (
       <BrowserRouter>
         <React.Fragment>
