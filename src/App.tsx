@@ -76,12 +76,12 @@ class App extends Component<IProps, IState> {
     console.log('calledscroll')
     var n: any = ReactDOM.findDOMNode(this) || 0
 
-    if (n.scrollTop >= 55) {
+    if (n.scrollTop >= 44) {
       if (!this.state.changeHeader) {
         this.setState({ changeHeader: true })
       }
     }
-    if (n.scrollTop <= 55) {
+    if (n.scrollTop < 44) {
       if (this.state.changeHeader) {
         this.setState({ changeHeader: false })
       }
