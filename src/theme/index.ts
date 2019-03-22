@@ -17,6 +17,9 @@ const defaultTheme = {
     h1: {
       fontSize: '2rem',
       fontWeight: 600
+    },
+    h3: {
+      fontSize: '1rem'
     }
   }
 }

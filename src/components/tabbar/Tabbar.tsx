@@ -22,14 +22,49 @@ const styles = {
   }
 }
 
-const _Tabbar = (props: any) => {
-  const { classes, title } = props
+const _Tabbar: React.SFC<{
+  theme: any
+  title: string
+  changeHeader: boolean
+}> = (props: any) => {
+  const { classes, title, changeHeader } = props
   return (
     <div className={classes.root}>
-      <AppBar className={classes.root} position="static" color={'default'}>
-        <Toolbar>
-          <Typography variant="h1" color="inherit" className={classes.grow}>
-            {title}
+      <AppBar
+        className={props.classes.root}
+        position={changeHeader ? 'absolute' : 'sticky'}
+        color={'default'}
+      >
+        <Toolbar style={{ minHeight: 40 }}>
+          {changeHeader ? (
+            <React.Fragment>
+              <Button color="inherit">Login</Button>
+              <Typography
+                variant="h3"
+                color="inherit"
+                className={props.classes.grow}
+              >
+                {props.title}
+              </Typography>
+              <Button color="inherit">Login</Button>
+            </React.Fragment>
+          ) : (
+            ''
+          )}
+        </Toolbar>
+      </AppBar>
+      <AppBar
+        className={props.classes.root}
+        position={'static'}
+        color={'default'}
+      >
+        <Toolbar style={{ minHeight: 40 }}>
+          <Typography
+            variant="h1"
+            color="inherit"
+            className={props.classes.grow}
+          >
+            {props.title}
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

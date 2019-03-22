@@ -1,5 +1,6 @@
 // React
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import {
   BrowserRouter,
   Link,
@@ -42,12 +43,13 @@ interface IProps {
 interface IState {
   theme: boolean
   title: string
+  changeHeader: boolean
 }
 
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
-    this.state = { theme: true, title: 'Inbox' }
+    this.state = { theme: true, title: 'Inbox', changeHeader: false }
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -59,6 +61,7 @@ class App extends Component<IProps, IState> {
         // console.log(`${err} text`)
       })
     this.setTitle = this.setTitle.bind(this)
+    this.onScrollNavbar = this.onScrollNavbar.bind(this)
   }
 
   handleLogout() {
@@ -69,12 +72,22 @@ class App extends Component<IProps, IState> {
   setTitle(name: string) {
     this.setState({ title: name })
   }
+  onScrollNavbar() {
+    console.log('called')
+    var n: any = ReactDOM.findDOMNode(this) || 0
+    if (n.scrollTop >= 55) this.setState({ changeHeader: true })
+    if (n.scrollTop <= 55) this.setState({ changeHeader: false })
+  }
 
   renderMainFrame() {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Tabbar theme={this.state.theme} title={this.state.title} />
+          <Tabbar
+            theme={this.state.theme}
+            title={this.state.title}
+            changeHeader={this.state.changeHeader}
+          />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <CreateTaskDrawer />
@@ -103,7 +116,13 @@ class App extends Component<IProps, IState> {
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <React.Fragment>
-          <Paper square={true} style={{ height: '100vh', overflow: 'auto' }}>
+          <Paper
+            square={true}
+            style={{ height: '100vh', overflow: 'auto' }}
+            onScroll={() => {
+              this.onScrollNavbar()
+            }}
+          >
             {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
             <button
               onClick={() => {
