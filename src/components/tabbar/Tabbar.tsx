@@ -22,13 +22,13 @@ const styles = {
 }
 
 const _Tabbar = (props: any) => {
-  const { classes } = props
+  const { classes, title } = props
   return (
     <div className={classes.root}>
       <AppBar position="static" color={props.theme ? 'primary' : 'default'}>
         <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            News
+          <Typography variant="h4" color="inherit" className={classes.grow}>
+            {title}
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

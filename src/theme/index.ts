@@ -14,7 +14,25 @@ export const lightTheme = createMuiTheme({
       main: '#ef6c00'
     }
   },
-  typography: { useNextVariants: true }
+  typography: {
+    useNextVariants: true,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto'
+    ].join(',')
+    // fontFamily:
+    // 'BlinkMacSystemFont',
+    // '"Segoe UI"',
+    // 'Roboto',
+    // '"Helvetica Neue"',
+    // 'Arial',
+    // 'sans-serif',
+    // '"Apple Color Emoji"',
+    // '"Segoe UI Emoji"',
+    // '"Segoe UI Symbol"',
+  }
 })
 
 export const darkTheme = createMuiTheme({
@@ -36,7 +54,15 @@ export const darkTheme = createMuiTheme({
     // primary: blueGrey,
     // secondary: blueGrey
   },
-  typography: { useNextVariants: true },
+  typography: {
+    useNextVariants: true,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto'
+    ].join(',')
+  },
   overrides: {
     MuiInput: {
       root: {

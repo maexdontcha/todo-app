@@ -41,11 +41,13 @@ interface IProps {
 }
 interface IState {
   theme: boolean
+  title: string
 }
 
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
+    this.state = { theme: true, title: 'Inbox' }
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -56,7 +58,8 @@ class App extends Component<IProps, IState> {
       .catch(err => {
         // console.log(`${err} text`)
       })
-    this.state = { theme: true }
+    console.log(this.state)
+    this.setTitle = this.setTitle.bind(this)
   }
 
   handleLogout() {
@@ -64,15 +67,19 @@ class App extends Component<IProps, IState> {
     this.props.userLogin({ type: 'LOGOUT' })
   }
 
+  setTitle(name: string) {
+    this.setState({ title: name })
+  }
+
   renderMainFrame() {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Tabbar theme={this.state.theme} />
+          <Tabbar theme={this.state.theme} title={this.state.title} />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <CreateTaskDrawer />
-          <BottomNavigation />
+          <BottomNavigation setTitle={this.setTitle} />
         </React.Fragment>
       </BrowserRouter>
     )
