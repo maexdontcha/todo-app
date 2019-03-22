@@ -16,12 +16,17 @@ const useStyles = makeStyles({
     zIndex: 10000
   }
 })
+interface IProps {
+  setTitle: Function
+}
 
-const _BottomNavigation = () => {
+const _BottomNavigation = (props: IProps) => {
   const classes = useStyles()
+  const { setTitle } = props
   const [value, setValue] = React.useState('recents')
 
   async function handleChange(event: any, newValue: any) {
+    setTitle(newValue)
     await setValue(newValue)
   }
 

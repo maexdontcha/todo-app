@@ -1,5 +1,6 @@
 // React
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import {
   BrowserRouter,
   Link,
@@ -41,11 +42,14 @@ interface IProps {
 }
 interface IState {
   theme: boolean
+  title: string
+  changeHeader: boolean
 }
 
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
+    this.state = { theme: true, title: 'Inbox', changeHeader: false }
     Auth.currentSession()
       .then(token => {
         props.userLogin({
@@ -56,7 +60,8 @@ class App extends Component<IProps, IState> {
       .catch(err => {
         // console.log(`${err} text`)
       })
-    this.state = { theme: true }
+    this.setTitle = this.setTitle.bind(this)
+    this.onScrollNavbar = this.onScrollNavbar.bind(this)
   }
 
   handleLogout() {
@@ -64,15 +69,39 @@ class App extends Component<IProps, IState> {
     this.props.userLogin({ type: 'LOGOUT' })
   }
 
+  setTitle(name: string) {
+    this.setState({ title: name })
+  }
+  onScrollNavbar() {
+    console.log('calledscroll')
+    var n: any = ReactDOM.findDOMNode(this) || 0
+
+    if (n.scrollTop >= 44) {
+      if (!this.state.changeHeader) {
+        this.setState({ changeHeader: true })
+      }
+    }
+    if (n.scrollTop < 44) {
+      if (this.state.changeHeader) {
+        this.setState({ changeHeader: false })
+      }
+    }
+  }
+
   renderMainFrame() {
+    console.log('calledrender')
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Tabbar theme={this.state.theme} />
+          <Tabbar
+            theme={this.state.theme}
+            title={this.state.title}
+            changeHeader={this.state.changeHeader}
+          />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <CreateTaskDrawer />
-          <BottomNavigation />
+          <BottomNavigation setTitle={this.setTitle} />
         </React.Fragment>
       </BrowserRouter>
     )
@@ -97,7 +126,13 @@ class App extends Component<IProps, IState> {
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <React.Fragment>
-          <Paper square={true} style={{ height: '100vh' }}>
+          <Paper
+            square={true}
+            style={{ height: '100vh', overflow: 'auto' }}
+            onScroll={() => {
+              this.onScrollNavbar()
+            }}
+          >
             {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
             <button
               onClick={() => {
