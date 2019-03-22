@@ -83,6 +83,8 @@ class App extends Component<IProps, IState> {
       declinedInstall: false
     }
     this.addToHome = this.addToHome.bind(this)
+    this.setTitle = this.setTitle.bind(this)
+    this.onScrollNavbar = this.onScrollNavbar.bind(this)
     this.shouldShowAddButton = this.shouldShowAddButton.bind(this)
     this.openWindowOrTab = this.openWindowOrTab.bind(this)
   }
@@ -146,8 +148,6 @@ class App extends Component<IProps, IState> {
   }
   openWindowOrTab(url = window.location.href) {
     window.open(url, '_blank')
-    this.setTitle = this.setTitle.bind(this)
-    this.onScrollNavbar = this.onScrollNavbar.bind(this)
   }
   handleLogout() {
     AWSLogout()
