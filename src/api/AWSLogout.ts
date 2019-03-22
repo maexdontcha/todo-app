@@ -1,9 +1,10 @@
 // React-Redux
 import { userLogin } from '../redux/userLogin'
-
+import Dexie from 'dexie'
 // AWS API
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
 import AWScognito from '../AWScognito'
+import { db } from './indexeddb/db'
 
 export const AWSLogout = async () => {
   var poolData = {
@@ -29,7 +30,8 @@ export const AWSLogout = async () => {
             }
           }
         )
-        cognitoUser.signOut()
+        localStorage.clear()
+      
       }
     })
   }

@@ -1,11 +1,14 @@
 // React
 import { Redirect } from 'react-router-dom'
+import React from 'react'
 
 // AWS API
 import { Auth } from 'aws-amplify'
 
 // Redux API
 import { userLogin } from '../../../redux/userLogin'
+
+import { createBrowserHistory } from 'history'
 
 // Types
 import { FvalidateForm, FhandleSubmit } from './Types.loginForm'
@@ -17,11 +20,13 @@ export const validateForm: FvalidateForm = ({ email, password }) => {
     throw new Error('fehler')
   }
 }
+const history = createBrowserHistory()
 
 export const handleSubmit: FhandleSubmit = async ({
   email,
   password,
-  setLoading
+  setLoading,
+  props
 }) => {
   if (setLoading) setLoading(true)
 
@@ -29,19 +34,21 @@ export const handleSubmit: FhandleSubmit = async ({
     validateForm({ email, password })
     await Auth.signIn(email, password)
     await Auth.currentSession()
-      .then(token => {
+      .then(async token => {
         if (setLoading) setLoading(false)
-        userLogin({
+        props.userLogin({
           payload: token,
           type: 'LOGIN'
         })
-        renderRedirect('/')
+        history.push('/')
       })
       .catch(err => {
         console.log(err.message)
+        console.log(err)
       })
   } catch (err) {
-    console.log(err.message)
+    console.log(err)
+
     if (setLoading) setLoading(false)
   }
 }

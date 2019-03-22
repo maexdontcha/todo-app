@@ -8,6 +8,7 @@ export interface IHooks {
   email: string
   password: string
   setLoading?: Function | undefined
+  props?: any
 }
 
 declare type FvalidateForm = ({ email, password }: IHooks) => boolean | Error

@@ -22,14 +22,17 @@ interface IProps {
 
 const _BottomNavigation = (props: IProps) => {
   const classes = useStyles()
+<<<<<<< HEAD
+  const [value, setValue] = React.useState('Inbox')
+=======
   const { setTitle } = props
   const [value, setValue] = React.useState('recents')
+>>>>>>> origin/master
 
   async function handleChange(event: any, newValue: any) {
     setTitle(newValue)
     await setValue(newValue)
   }
-
   return (
     <BottomNavigation
       value={value}

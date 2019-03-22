@@ -22,6 +22,7 @@ interface IProps {
 function BottomDrawer(props: IProps) {
   const classes = useStyles()
   const { onChange, openState, Component } = props
+  console.log(props)
 
   return (
     <div>

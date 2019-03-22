@@ -86,11 +86,20 @@ interface IProps extends WithStyles<typeof styles> {
   myType?: string
   fullWidth?: boolean
   multiline?: boolean
+  autoFocus?: boolean
 }
 
 function outlinedTextField(props: IProps) {
   // const { classes, myfunction, myLabel, myType } = props
-  const { classes, onChange, myLabel, myType, fullWidth, multiline } = props
+  const {
+    classes,
+    onChange,
+    myLabel,
+    myType,
+    fullWidth,
+    multiline,
+    autoFocus
+  } = props
   return (
     <TextField
       className={classes.margin}
@@ -101,6 +110,7 @@ function outlinedTextField(props: IProps) {
       type={myType || ''}
       onChange={onChange.bind('')}
       multiline={multiline || false}
+      autoFocus={autoFocus}
     />
   )
 }

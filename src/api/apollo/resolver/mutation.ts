@@ -7,15 +7,17 @@ export const _mutation = async ({
   variables?: any
   mutation: any
 }) => {
-  return await client
-    .mutate({
-      mutation,
-      variables
-    })
-    .then((result: any) => {
-      return result.data
-    })
-    .catch((err: any) => {
-      throw err
-    })
+  return new Promise((resolve, reject) => {
+    client
+      .mutate({
+        mutation,
+        variables
+      })
+      .then((result: any) => {
+        resolve(result.data)
+      })
+      .catch((err: any) => {
+        reject(err)
+      })
+  })
 }

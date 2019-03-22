@@ -22,7 +22,7 @@ import { IfuncDir, FhandleHookChange } from './Types.loginForm'
 // Functions
 import { handleSubmit } from './Function.loginForm'
 
-const LoginForm: React.SFC<{}> = () => {
+const LoginForm: React.SFC<{}> = props => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -42,7 +42,20 @@ const LoginForm: React.SFC<{}> = () => {
       {loading ? (
         <CircularIndeterminate />
       ) : (
-        <form noValidate autoComplete="on">
+        <form
+          noValidate
+          autoComplete="on"
+          onSubmit={e => {
+            e.preventDefault()
+            e.stopPropagation()
+            handleSubmit({
+              email,
+              password,
+              setLoading,
+              props: props
+            })
+          }}
+        >
           <OutlinedTextField
             onChange={handleChange}
             myLabel={'email'}
@@ -56,8 +69,14 @@ const LoginForm: React.SFC<{}> = () => {
 
           <IconLabelButtons
             onClick={() => {
-              handleSubmit({ email, password, setLoading })
+              handleSubmit({
+                email,
+                password,
+                setLoading,
+                props: props
+              })
             }}
+            type={'submit'}
             buttonContent={{
               color: 'primary',
               text: 'Login',

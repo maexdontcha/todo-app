@@ -9,6 +9,7 @@ import FabButton from './buttons/fab/fabButton'
 import OutlinedTextField from './fields/outlinedTextField'
 import OutlinedNativeSelect from './fields/outlinedNativeSelect'
 import LoginButton from './buttons/fab/loginButton'
+import AddButton from './buttons/fab/addButton'
 
 // progress
 import CircularIndeterminate from './progress/circularIndeterminate'
@@ -28,5 +29,6 @@ export {
   Tabbar,
   FabButton,
   BottomDrawer,
-  OutlinedNativeSelect
+  OutlinedNativeSelect,
+  AddButton
 }

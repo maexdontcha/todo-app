@@ -9,8 +9,7 @@ import NavigationIcon from '@material-ui/icons/Navigation'
 
 const styles = (theme: any) => ({
   fab: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
+    margin: theme.spacing.unit
   },
   extendedIcon: {
     marginRight: theme.spacing.unit
@@ -20,27 +19,25 @@ const styles = (theme: any) => ({
 export interface Props {
   classes: any
   onClick: Function
-  type?: string
+  icon?: JSX.Element
+  type?:string
 }
 
-function FloatingActionButtons(props: Props) {
-  const { classes, onClick, type } = props
+function addButton(props: Props) {
+  const { classes, onClick, icon, type } = props
+
   return (
     <Fab
       onClick={onClick.bind('')}
       variant="extended"
       aria-label="Delete"
       className={classes.fab}
+      color="secondary"
       type={type}
     >
-      <NavigationIcon className={classes.extendedIcon} />
-      Login
+      {icon}
     </Fab>
   )
 }
 
-FloatingActionButtons.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(FloatingActionButtons)
+export default withStyles(styles)(addButton)

@@ -17,28 +17,36 @@ Redux Thunk middleware allows you to write action creators that return a functio
 import thunk from 'redux-thunk'
 // Import reducers and state type
 
-import { IThemeState } from './theme/themeTypes'
+import { IThemeState } from './theme/themeTypes.d'
 import { themeReducer } from './theme/themeReducer'
 
 import { IUserState } from './userLogin/userTypes.d'
+import { ITaskState } from './task/taskTypes.d'
 import { userReducer } from './userLogin/userReducer'
+import taskReducer from './task/taskReducer'
 import { userLogin } from './userLogin/userAction'
 
 // Create an interface for the application state
+
+// FIXME: taskState funktioniert nur mit any und nicht mit dem ITaskState
 export interface IAppState {
   themeState: IThemeState
   userState: IUserState
+  taskState: any
+
 }
 
 // Create the root reducer
 const rootReducer = combineReducers<IAppState>({
   themeState: themeReducer,
-  userState: userReducer
+  userState: userReducer,
+  taskState: taskReducer
 })
 // @ts-ignore: Wait fix from material-UI
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 // Create a configure store function of type `IAppState`
+// FIXME: Store any typisieren dem richtigen vlt dispatcher
 export default function configureStore(): Store<IAppState, any> {
   return createStore(
     rootReducer,

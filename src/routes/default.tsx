@@ -1,5 +1,5 @@
 import React from 'react'
-import Inbox from '../views/Inbox'
+import Inbox from '../views/inbox/connect.inbox'
 import Login from '../views/Login'
 import Info from '../views/Info'
 import RestoreIcon from '@material-ui/icons/Restore'

@@ -14,18 +14,19 @@ import CheckIcon from '@material-ui/icons/Check'
 // _components
 import {
   OutlinedTextField,
-  IconLabelButtons,
+  AddButton,
   CircularIndeterminate,
   OutlinedNativeSelect
 } from '../../../components'
 import { doStates } from './static.createTaskForm'
-import { create } from './Function.createTaskForm'
+import { createTodo } from '../../../api/utils/state/createTodo'
 
-const CreateTaskForm: React.SFC<{}> = () => {
+const CreateTaskForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
   const [beschreibung, setBeschreibung] = useState('')
-
+  const { handleAddTodo } = props
+  console.log(props)
   const funcDir: any = {
     title: setTitle,
     beschreibung: setBeschreibung
@@ -39,29 +40,37 @@ const CreateTaskForm: React.SFC<{}> = () => {
   return (
     <Flex alignItems={'center'} justifyContent={'center'}>
       <Box width={[0.9, 1 / 2]}>
-        <form noValidate autoComplete="on">
-          <OutlinedTextField
-            onChange={handleChange}
-            myLabel={'Titel'}
-            myType={'title'}
-          />
-          <OutlinedTextField
-            onChange={handleChange}
-            myLabel={'Beschreibung'}
-            myType={'beschreibung'}
-            multiline={true}
-          />
-          {/* <OutlinedNativeSelect selectValues={doStates} onChange={() => {}} /> */}
-          <IconLabelButtons
-            onClick={() => {
-              create({ workspace: 'test', title, beschreibung })
-            }}
-            buttonContent={{
-              color: 'primary',
-              text: 'Add',
-              icon: <CheckIcon />
-            }}
-          />
+        <form
+          noValidate
+          autoComplete="on"
+          onSubmit={e => {
+            /**
+             * Prevent submit from reloading the page
+             */
+            e.preventDefault()
+            e.stopPropagation()
+            handleAddTodo(title)
+          }}
+        >
+          <Flex alignItems={'center'} justifyContent={'center'}>
+            <Box width={[3 / 4]} px={'2px'}>
+              <OutlinedTextField
+                onChange={handleChange}
+                myLabel={'Titel'}
+                myType={'title'}
+                autoFocus={true}
+              />
+            </Box>
+            {/* <OutlinedNativeSelect selectValues={doStates} onChange={() => {}} /> */}
+            <Box width={[1 / 4]} px={'2px'}>
+              <AddButton
+                onClick={() => {
+                  createTodo({ title })
+                }}
+                icon={<CheckIcon />}
+              />
+            </Box>
+          </Flex>
         </form>
       </Box>
     </Flex>
