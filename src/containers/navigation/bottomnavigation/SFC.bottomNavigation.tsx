@@ -23,7 +23,7 @@ interface IProps {
 const _BottomNavigation = (props: IProps) => {
   const classes = useStyles()
   const { setTitle } = props
-  const [value, setValue] = React.useState('recents')
+  const [value, setValue] = React.useState('Inbox')
 
   async function handleChange(event: any, newValue: any) {
     setTitle(newValue)
