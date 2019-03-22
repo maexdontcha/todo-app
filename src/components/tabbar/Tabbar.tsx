@@ -35,6 +35,7 @@ const _Tabbar: React.SFC<{
   const { classes, title, changeHeader } = props
   return (
     <div className={classes.root}>
+      {/* Component 1 -> Navigation mit zurpck und so */}
       <AppBar
         className={props.classes.root}
         position={changeHeader ? 'absolute' : 'sticky'}
@@ -75,6 +76,7 @@ const _Tabbar: React.SFC<{
           )}
         </Toolbar>
       </AppBar>
+      {/* Component 2 -> Title apple looklike */}
       <AppBar
         className={props.classes.root}
         position={'static'}
