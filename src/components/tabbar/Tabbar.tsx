@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import PowerIcon from '@material-ui/icons/Power'
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos'
 import { Flex, Box } from 'rebass'
+import Fade from 'react-reveal/Fade'
 
 const styles = {
   root: {
@@ -40,42 +41,32 @@ const _Tabbar: React.SFC<{
         <Toolbar style={{ minHeight: 35, padding: 0 }}>
           {changeHeader ? (
             <React.Fragment>
-              <Flex
-                style={{ width: '100%' }}
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Box width={1 / 4} style={{ textAlign: 'left' }}>
-                  <Button color="inherit" style={{ textTransform: 'none' }}>
-                    <ArrowBackIcon />
-                    <Typography
-                      variant="h3"
-                      color="inherit"
-                      className={props.classes.grow}
-                    >
-                      Zurück
+              <Fade duration={300}>
+                <Flex
+                  style={{ width: '100vw' }}
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Box width={1 / 4} style={{ textAlign: 'left' }}>
+                    <Button style={{ textTransform: 'none' }}>
+                      <ArrowBackIcon />
+                      <Typography variant="h3" className={props.classes.grow}>
+                        Zurück
+                      </Typography>
+                    </Button>
+                  </Box>
+                  <Box style={{ textAlign: 'center' }} width={1 / 2}>
+                    <Typography variant="h3" className={props.classes.grow}>
+                      {props.title}
                     </Typography>
-                  </Button>
-                </Box>
-                <Box style={{ textAlign: 'center' }} width={1 / 2}>
-                  <Typography
-                    variant="h3"
-                    color="inherit"
-                    className={props.classes.grow}
-                  >
-                    {props.title}
-                  </Typography>
-                </Box>
-                <Box width={1 / 4} style={{ textAlign: 'right' }}>
-                  <IconButton
-                    aria-label="Delete"
-                    color="inherit"
-                    className={classes.margin}
-                  >
-                    <PowerIcon fontSize="small" />
-                  </IconButton>
-                </Box>
-              </Flex>
+                  </Box>
+                  <Box width={1 / 4} style={{ textAlign: 'right' }}>
+                    <IconButton aria-label="Delete" className={classes.margin}>
+                      <PowerIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
+                </Flex>
+              </Fade>
             </React.Fragment>
           ) : (
             ''
@@ -88,11 +79,7 @@ const _Tabbar: React.SFC<{
         color={'inherit'}
       >
         <Toolbar style={{ minHeight: 50 }}>
-          <Typography
-            variant="h1"
-            color="inherit"
-            className={props.classes.grow}
-          >
+          <Typography variant="h1" className={props.classes.grow}>
             {props.title}
           </Typography>
           {/* <Fab
