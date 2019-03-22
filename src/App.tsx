@@ -158,6 +158,8 @@ class App extends Component<IProps, IState> {
   setTitle(name: string) {
     this.setState({ title: name })
   }
+
+  //FIXME: better Scroll shit mit eventlistener
   onScrollNavbar() {
     console.log('calledscroll')
     var n: any = ReactDOM.findDOMNode(this) || 0

@@ -25,6 +25,8 @@ const styles = {
   }
 }
 
+//FIXME: Split Headbars into 2 components
+
 const _Tabbar: React.SFC<{
   theme: any
   title: string
