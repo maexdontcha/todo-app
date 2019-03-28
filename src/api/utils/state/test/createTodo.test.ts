@@ -1,5 +1,5 @@
-import { createTodo } from '../createTodo'
+import { createTask } from '../createTask'
 
 test('should ', () => {
-  expect(createTodo()).not.toThrow()
+  expect(createTask()).not.toThrow()
 })

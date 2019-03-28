@@ -1,10 +1,12 @@
 import Dexie from 'dexie'
-
+import indexedDB from 'fake-indexeddb'
+import config from './config.json'
 interface Friend {
   id?: number
   editor?: string
   workspace?: string
   title?: string
+  send?: boolean
 }
 
 //
@@ -19,5 +21,17 @@ export class Database extends Dexie {
     this.friends = this.table(tableName)
   }
 }
-
-export const db = new Database('TODO_APP', 'TASKS', 'id++, editor, workspace, title')
+export let db: any
+if (process.env.NODE_ENV === 'test') {
+  const IDBKeyRange = require('fake-indexeddb/lib/FDBKeyRange')
+  db = new Dexie(config.databaseName, { indexedDB, IDBKeyRange })
+  db.version(1).stores({
+    TASKS: config.tables.tasks.schema
+  })
+} else {
+  db = new Database(
+    config.databaseName,
+    config.tables.tasks.name,
+    config.tables.tasks.schema
+  )
+}

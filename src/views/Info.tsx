@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from '@material-ui/core'
 import { getTasksByEditor } from '../api/apollo/schema'
-import { _query as query } from '../api/apollo/resolver'
+import { _query as query } from '../api/apollo/resolver/query'
 import { _mutation } from '../api/apollo/resolver/mutation'
 class Info extends Component<
   { datax: string },

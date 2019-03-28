@@ -1,0 +1,9 @@
+{
+  "databaseName": "TODO_APP",
+  "tables": {
+    "tasks": {
+      "name": "TASKS",
+      "schema": "id++, editor, workspace, title, send"
+    }
+  }
+}

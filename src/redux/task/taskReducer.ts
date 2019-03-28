@@ -1,30 +1,30 @@
 import { Reducer } from 'redux'
 import { ITaskState, ETaskActionTypes, ITaskReduxAction } from './taskTypes.d'
 
-const taskReducer: Reducer<{ todos: ITaskState[] }, ITaskReduxAction> = (
-  state = { todos: [] },
+const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
+  state = { tasks: [] },
   { type, payload }: { type: any; payload: any }
 ) => {
   switch (type) {
-    case ETaskActionTypes.ADD_TODO: {
+    case ETaskActionTypes.ADD_TASK: {
       return {
-        todos: [...state.todos, payload]
+        tasks: [...state.tasks, payload]
       }
     }
-    case ETaskActionTypes.LOAD_TODOS: {
+    case ETaskActionTypes.LOAD_TASKS: {
       return {
-        todos: payload
+        tasks: payload
       }
     }
     //TODO: how to handle update state
-    case ETaskActionTypes.UPDATE_TODO: {
+    case ETaskActionTypes.UPDATE_TASK: {
       return {
-        todos: payload
+        tasks: payload
       }
     }
-    case ETaskActionTypes.CLEAR_TODOS: {
+    case ETaskActionTypes.CLEAR_TASKS: {
       return {
-        todos: []
+        tasks: []
       }
     }
     default:

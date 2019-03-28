@@ -3,11 +3,11 @@ import { ThunkAction } from 'redux-thunk'
 
 // Create Action Constants
 export enum ETaskActionTypes {
-  ADD_TODO = 'ADD_TODO',
-  LOAD_TODOS = 'LOAD_TODOS',
-  UPDATE_TODO = 'UPDATE_TODO',
-  DELETE_TODO = 'DELETE_TODO',
-  CLEAR_TODOS = 'CLEAR_TODOS'
+  ADD_TASK = 'ADD_TASK',
+  LOAD_TASKS = 'LOAD_TASKS',
+  UPDATE_TASK = 'UPDATE_TASK',
+  DELETE_TASK = 'DELETE_TASK',
+  CLEAR_TASKS = 'CLEAR_TASKS'
 }
 
 // export interface ITaskState {

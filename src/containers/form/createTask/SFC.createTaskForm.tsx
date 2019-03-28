@@ -19,7 +19,7 @@ import {
   OutlinedNativeSelect
 } from '../../../components'
 import { doStates } from './static.createTaskForm'
-import { createTodo } from '../../../api/utils/state/createTodo'
+import { createTodo } from '../../../api/utils/state/createTask'
 
 const CreateTaskForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
