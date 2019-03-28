@@ -1,5 +1,5 @@
-import { db } from '../db'
-import config from '../config.json'
+import { db } from '../../db'
+import config from '../../config.json'
 
 export const deleteTaskIDB = async (id: string) => {
   const tablename = config.tables.tasks.name

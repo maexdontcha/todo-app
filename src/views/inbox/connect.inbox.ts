@@ -2,7 +2,11 @@ import { connect } from 'react-redux'
 
 import Inbox from './Inbox'
 
-import { addTodo, updateTodo, deleteTodo } from '../../api/indexeddb/action'
+import {
+  addTaskIDB,
+  editTaskIDB,
+  deleteTaskIDB
+} from '../../api/indexeddb/action'
 
 const mapStateToProps = (store: any) => {
   return {
@@ -13,13 +17,13 @@ const mapStateToProps = (store: any) => {
 function mapDispatchToProps(dispatch: any) {
   return {
     handleAddTodo(title: any) {
-      dispatch(addTodo(title))
+      dispatch(addTaskIDB(title))
     },
     handleDeleteTodo(id: any) {
-      dispatch(deleteTodo(id))
+      dispatch(deleteTaskIDB(id))
     },
     handleUpdateTodo(id: any, done: any) {
-      dispatch(updateTodo(id, done))
+      dispatch(editTaskIDB(id, done))
     }
   }
 }

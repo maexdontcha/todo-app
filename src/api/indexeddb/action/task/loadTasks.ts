@@ -1,11 +1,11 @@
-import { db } from '../db'
-import config from '../config.json'
+import { db } from '../../db'
+import config from '../../config.json'
 
-export const getTaskIDB = async (id: string) => {
+export const loadTasksIDB = async () => {
   const tablename = config.tables.tasks.name
   return new Promise((resolve, reject) => {
     db.table(tablename)
-      .get(id)
+      .toArray()
       .then((res: any) => resolve(res))
       .catch((err: any) => reject(err))
   })

@@ -2,7 +2,7 @@ import { store } from '../../../redux/store'
 import { createTaskAction } from '../../../redux/task/taskAction'
 import { _mutation } from '../../apollo/resolver/mutation'
 import { createTaskMutation } from '../../apollo/schema'
-import { addTaskIDB } from '../../indexeddb/action/addTask'
+import { addTaskIDB } from '../../indexeddb/action/task/addTask'
 import { ETaskActionTypes } from '../../../redux/task/taskTypes'
 /*  Workflow for creating Task
 

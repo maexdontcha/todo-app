@@ -10,7 +10,6 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 // React-Redux
 import { userLogin } from './redux/userLogin'
@@ -37,9 +36,10 @@ import Paper from '@material-ui/core/Paper'
 import { BottomNavigation } from './containers/'
 import { Tabbar, FabButton } from './components'
 import { CreateTaskDrawer } from './containers'
-import { loadTodos, clearTodos } from './api/indexeddb/action'
+// import { loadTodos, clearTodos } from './api/indexeddb/action'
 import { Database } from './api/indexeddb/db'
-import { createTodo } from './api/utils/state/createTask'
+import { loadTasksIDB, clearTasksIDB } from './api/indexeddb/action'
+// import { createTodo } from './api/utils/state/createTask'
 interface IProps {
   darkMode: boolean
   userLoginState: any
@@ -61,7 +61,7 @@ declare const window: any
 class App extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
-    props.taskLoad()
+    // props.taskLoad()
 
     Auth.currentSession()
       .then(token => {
@@ -152,7 +152,7 @@ class App extends Component<IProps, IState> {
   handleLogout() {
     AWSLogout()
     this.props.userLogin({ type: 'LOGOUT' })
-    this.props.clearTodos()
+    // this.props.clearTodos()
   }
 
   setTitle(name: string) {
@@ -254,8 +254,9 @@ const mapDispatchToProps = (dispatch: any) => {
           type: transfer.type
         })
       ),
-    taskLoad: (transfer: any) => dispatch(loadTodos()),
-    clearTodos: () => dispatch(clearTodos())
+    // taskLoad: (transfer: any) => dispatch(loadTasksIDB()),
+    taskLoad: (transfer: any) => console.log('hi'),
+    clearTodos: () => console.log('ciao')
   }
 }
 

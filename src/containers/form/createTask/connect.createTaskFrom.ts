@@ -2,8 +2,12 @@ import { connect } from 'react-redux'
 
 import CreateTaskForm from './SFC.createTaskForm'
 
-import { addTodo, updateTodo, deleteTodo } from '../../../api/indexeddb/action'
-const mapStateToProps = (state:any) => {
+import {
+  addTaskIDB,
+  editTaskIDB,
+  deleteTaskIDB
+} from '../../../api/indexeddb/action'
+const mapStateToProps = (state: any) => {
   const { todos } = state
   return {
     todos
@@ -12,7 +16,7 @@ const mapStateToProps = (state:any) => {
 function mapDispatchToProps(dispatch: any) {
   return {
     handleAddTodo(title: any) {
-      dispatch(addTodo(title))
+      dispatch(addTaskIDB(title))
     }
   }
 }

@@ -16,7 +16,7 @@ import Amplify from 'aws-amplify'
 import AWScognito from './AWScognito'
 
 //indexeddb
-import { loadTodos } from './api/indexeddb/action'
+// import { loadTodos } from './api/indexeddb/action'
 
 // configure AWS-Congito
 Amplify.configure({
