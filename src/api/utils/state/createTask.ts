@@ -3,16 +3,8 @@ import { createTaskAction } from '../../../redux/task/taskAction'
 import { _mutation } from '../../apollo/resolver/mutation'
 import { createTaskMutation } from '../../apollo/schema'
 import { addTaskIDB } from '../../indexeddb/action/task/addTask'
-// import { ETaskActionTypes } from '../../../redux/task/taskTypes'
+import { ETaskActionTypes } from '../../../redux/task/taskTypes.d'
 
-// Create Action Constants
-export enum ETaskActionTypes {
-  ADD_TASK = 'ADD_TASK',
-  LOAD_TASKS = 'LOAD_TASKS',
-  UPDATE_TASK = 'UPDATE_TASK',
-  DELETE_TASK = 'DELETE_TASK',
-  CLEAR_TASKS = 'CLEAR_TASKS'
-}
 /*  Workflow for creating Task
 
 1. Läd userdata aus redux 

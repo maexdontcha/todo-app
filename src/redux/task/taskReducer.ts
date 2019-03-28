@@ -1,7 +1,7 @@
 import { Reducer } from 'redux'
 import { ITaskState, ETaskActionTypes, ITaskReduxAction } from './taskTypes.d'
 
-const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
+export const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
   state = { tasks: [] },
   { type, payload }: { type: any; payload: any }
 ) => {

@@ -32,6 +32,8 @@ export interface ITaskState {
   id?: number
   name?: string
   age?: number
+  title?: string
+  send?: boolean
 }
 
 export interface ITaskReduxAction {

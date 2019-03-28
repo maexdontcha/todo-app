@@ -19,9 +19,7 @@ const authLink = setContext((_, { headers }) => {
     token = configTest.test.token
   } else {
     token = store.getState().userState.accessToken || 'false'
-  }
-
-  // return the headers to the context so httpLink can read them
+  } // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
