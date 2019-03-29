@@ -34,8 +34,7 @@ import { lightTheme } from './theme'
 import { darkTheme } from './theme'
 import Paper from '@material-ui/core/Paper'
 import { BottomNavigation } from './containers/'
-import { Tabbar, FabButton } from './components'
-import { CreateTaskDrawer } from './containers'
+import { Tabbar } from './components'
 // import { loadTodos, clearTodos } from './api/indexeddb/action'
 import { Database } from './api/indexeddb/db'
 import { loadTasksIDB, clearTasksIDB } from './api/indexeddb/action'
@@ -188,7 +187,6 @@ class App extends Component<IProps, IState> {
           />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
-          <CreateTaskDrawer />
           <BottomNavigation setTitle={this.setTitle} />
         </React.Fragment>
       </BrowserRouter>

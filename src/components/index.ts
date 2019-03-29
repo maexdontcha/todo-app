@@ -3,7 +3,6 @@ import SaveRoute from './routing/SaveRoute'
 
 // Buttons
 import IconLabelButtons from './buttons/iconLabelButton'
-import FabButton from './buttons/fab/fabButton'
 
 // Form
 import OutlinedTextField from './fields/outlinedTextField'
@@ -27,7 +26,6 @@ export {
   IconLabelButtons,
   CircularIndeterminate,
   Tabbar,
-  FabButton,
   BottomDrawer,
   OutlinedNativeSelect,
   AddButton

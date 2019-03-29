@@ -52,24 +52,20 @@ const CreateTaskForm: React.SFC<{}> = (props: any) => {
             handleAddTodo(title)
           }}
         >
-          <Flex alignItems={'center'} justifyContent={'center'}>
-            <Box width={[3 / 4]} px={'2px'}>
+          <Flex
+            alignItems={'center'}
+            justifyContent={'center'}
+            flexDirection={'column'}
+          >
+            <Box width={1} px={'2px'}>
               <OutlinedTextField
                 onChange={handleChange}
-                myLabel={'Titel'}
                 myType={'title'}
                 autoFocus={true}
               />
             </Box>
             {/* <OutlinedNativeSelect selectValues={doStates} onChange={() => {}} /> */}
-            <Box width={[1 / 4]} px={'2px'}>
-              <AddButton
-                onClick={() => {
-                  createTask({ title })
-                }}
-                icon={<CheckIcon />}
-              />
-            </Box>
+            <Box width={1} px={'2px'} />
           </Flex>
         </form>
       </Box>

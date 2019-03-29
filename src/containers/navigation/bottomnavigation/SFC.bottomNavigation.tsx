@@ -6,7 +6,7 @@ import Icon from '@material-ui/core/Icon'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import { routes as NavigationItems } from '../../../routes'
 import { Link, Redirect, Route } from 'react-router-dom'
-import { zIndex } from 'styled-system'
+import { CreateTaskDrawer } from '../..'
 const useStyles = makeStyles({
   root: {
     width: '100vw',
@@ -16,12 +16,22 @@ const useStyles = makeStyles({
     zIndex: 10000
   }
 })
+const useStyles2 = makeStyles({
+  root: {
+    padding: '6px 2px 8px'
+  },
+  selected: {
+    fontSize: '0.8rem!important'
+  }
+})
+
 interface IProps {
   setTitle: Function
 }
 
 const _BottomNavigation = (props: IProps) => {
   const classes = useStyles()
+  const cl = useStyles2()
   const { setTitle } = props
   const [value, setValue] = React.useState('Inbox')
 
@@ -36,7 +46,9 @@ const _BottomNavigation = (props: IProps) => {
       className={classes.root}
     >
       {NavigationItems.map(e => {
-        if (e.displayName)
+        if (e.displayName && e.position && e.position <= 2) {
+          console.log(e)
+
           return (
             <BottomNavigationAction
               // @ts-ignore: Wait fix from material-UI
@@ -46,8 +58,31 @@ const _BottomNavigation = (props: IProps) => {
               value={e.displayName}
               icon={e.icon}
               key={e.path}
+              style={{ minWidth: 'auto' }}
+              classes={cl}
             />
           )
+        }
+      })}
+      <CreateTaskDrawer />
+      {NavigationItems.map(e => {
+        if (e.displayName && e.position && e.position > 2) {
+          console.log(e)
+
+          return (
+            <BottomNavigationAction
+              // @ts-ignore: Wait fix from material-UI
+              component={Link}
+              to={e.path}
+              label={e.displayName}
+              value={e.displayName}
+              icon={e.icon}
+              key={e.path}
+              style={{ minWidth: 'auto' }}
+              classes={cl}
+            />
+          )
+        }
       })}
     </BottomNavigation>
   )

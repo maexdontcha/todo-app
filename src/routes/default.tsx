@@ -12,6 +12,7 @@ export interface IRoute {
   path: string
   displayName: string
   component: any | React.ReactNode
+  position?: number
   groups: any | string | string[]
   bottomNavigation: boolean
   icon: JSX.Element
@@ -23,6 +24,7 @@ const myroutes: IRoute[] = [
     component: Inbox,
     groups: '',
     displayName: 'Inbox',
+    position: 1,
     bottomNavigation: true,
     icon: <InboxIcon />
   },
@@ -31,6 +33,7 @@ const myroutes: IRoute[] = [
     component: Info,
     groups: ['save'],
     displayName: 'Projekte',
+    position: 2,
     bottomNavigation: true,
     icon: <FolderIcon />
   },
@@ -39,6 +42,7 @@ const myroutes: IRoute[] = [
     component: Info,
     groups: '',
     displayName: 'Dashboard',
+    position: 3,
     bottomNavigation: true,
     icon: <DashboardIcon />
   },
@@ -47,6 +51,7 @@ const myroutes: IRoute[] = [
     component: Info,
     groups: '',
     displayName: 'Menu',
+    position: 4,
     bottomNavigation: true,
     icon: <MenuIcon />
   }
