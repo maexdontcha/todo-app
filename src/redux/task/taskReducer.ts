@@ -21,7 +21,8 @@ export const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
         )
       }
     }
-    //TODO: create template object auf das payload assigned wird -> dadurch hat man ein valides update objekt
+    //TODO: payload assignen to object for validation
+    //BODY create template object auf das payload assigned wird -> dadurch hat man ein valides update objekt
     case ETaskActionTypes.UPDATE_TASK: {
       const { taskId } = payload
       return {

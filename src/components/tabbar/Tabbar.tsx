@@ -25,8 +25,8 @@ const styles = {
   }
 }
 
-//FIXME: Split Headbars into 2 components
-
+//TODO: Split Headbars into 2 components
+//BODY 2 componets erstellen, sodass man title öfters verwenden kann
 const _Tabbar: React.SFC<{
   theme: any
   title: string

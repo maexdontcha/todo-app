@@ -11,8 +11,8 @@ const failTask = {
   editor: 'fail',
   title: 'failTask'
 }
-//FIXME: Scheinbar nur backend testen -> Möglichkeit mit Component Testing
-
+//TODO: Scheinbar nur backend testen -> Möglichkeit mit Component Testing
+//BODY: Wie geht man damit um
 test('create Task @Dynamo ', async () => {
   await expect(
     _mutation({

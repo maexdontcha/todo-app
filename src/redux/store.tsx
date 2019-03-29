@@ -28,12 +28,12 @@ import { userLogin } from './userLogin/userAction'
 
 // Create an interface for the application state
 
-// FIXME: taskState funktioniert nur mit any und nicht mit dem ITaskState
+// TODO: taskState funktioniert nur mit any und nicht mit dem ITaskState
+//BODY warum funktioniert das nicht?
 export interface IAppState {
   themeState: IThemeState
   userState: IUserState
   taskState: any
-
 }
 
 // Create the root reducer
@@ -46,7 +46,8 @@ const rootReducer = combineReducers<IAppState>({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 // Create a configure store function of type `IAppState`
-// FIXME: Store any typisieren dem richtigen vlt dispatcher
+// TODO: Store any typisieren dem richtigen vlt dispatcher
+//BODY Typisierung hinzufügen
 export default function configureStore(): Store<IAppState, any> {
   return createStore(
     rootReducer,

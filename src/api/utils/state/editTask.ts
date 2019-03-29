@@ -18,7 +18,6 @@ export const editTask = async (params?: any) => {
   // get store
   const editor = store.getState().userState.username || undefined
   const workspace = store.getState().userState.workspace || undefined
-  //TODO: variable für tasks das durch alles funktionen geparst werden kann.
 
   // redux
   await store.dispatch(
@@ -51,7 +50,6 @@ export const editTask = async (params?: any) => {
     .catch(err => {
       addTaskIDB({ workspace, editor, title: params.title, send: false })
         .then(async res => {
-          // TODO: implement reduxreducer action zeug
           await store.dispatch(
             createTaskAction({
               type: ETaskActionTypes.UPDATE_TASK,

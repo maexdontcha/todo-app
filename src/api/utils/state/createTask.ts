@@ -17,9 +17,13 @@ import { ETaskActionTypes } from '../../../redux/task/taskTypes.d'
 */
 export const createTask = async (params?: any) => {
   // get store
+  //TODO: Errorhandling for undefined
+  //BODY: title
   const editor = store.getState().userState.username || undefined
   const workspace = store.getState().userState.workspace || undefined
-  //TODO: variable für tasks das durch alles funktionen geparst werden kann.
+
+  //TODO: create task object for worklow
+  //BODY ein Taskobjekt mit type das für alles verwendet werden kann
 
   // redux
   await store.dispatch(
@@ -52,7 +56,8 @@ export const createTask = async (params?: any) => {
     .catch(err => {
       addTaskIDB({ workspace, editor, title: params.title, send: false })
         .then(async res => {
-          // TODO: implement reduxreducer action zeug
+          // TODO: add to job queue ?
+          // BODY was passiert wenn man offline ist
           await store.dispatch(
             createTaskAction({
               type: ETaskActionTypes.UPDATE_TASK,
