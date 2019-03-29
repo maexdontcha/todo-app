@@ -11,18 +11,34 @@ export const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
         tasks: [...state.tasks, payload]
       }
     }
-    case ETaskActionTypes.LOAD_TASKS: {
+    case ETaskActionTypes.TOGGLE_TASK: {
+      const { taskId } = payload
       return {
-        tasks: payload
+        tasks: state.tasks.map(task =>
+          task.taskId === taskId ? { ...task, done: !task.done } : task
+        )
       }
     }
-    //TODO: how to handle update state
     case ETaskActionTypes.UPDATE_TASK: {
+      const { taskId } = payload
       return {
-        tasks: payload
+        tasks: state.tasks.map(task =>
+          task.taskId === taskId ? { ...task, payload } : task
+        )
+      }
+    }
+    case ETaskActionTypes.DELETE_TASK: {
+      const { taskId } = payload
+      return {
+        tasks: state.tasks.map(task => (task.taskId === taskId ? {} : task))
       }
     }
     case ETaskActionTypes.CLEAR_TASKS: {
+      return {
+        tasks: []
+      }
+    }
+    case ETaskActionTypes.FILL_TASKS: {
       return {
         tasks: []
       }

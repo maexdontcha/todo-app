@@ -16,7 +16,7 @@ describe('Init Store', () => {
   let store: any
   // set up a fake store for all our tests
   beforeEach(() => {
-    store = mockStore({ tasks: [] })
+    store = mockStore(initialState)
   })
   it('add Task Actions', async () => {
     await store
