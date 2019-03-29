@@ -1,9 +1,10 @@
 import { store } from '../../../redux/store'
 import { createTaskAction } from '../../../redux/task/taskAction'
 import { _mutation } from '../../apollo/resolver/mutation'
-import { createTaskMutation } from '../../apollo/schema'
-import { addTaskIDB } from '../../indexeddb/action/task/addTask'
+import { editTaskMutation } from '../../apollo/schema'
 import { ETaskActionTypes, ITaskState } from '../../../redux/task/taskTypes.d'
+import { editTaskIDB } from '../../indexeddb/action'
+import { ITask } from './stateType.d'
 
 /*  Workflow for creating Task
 
@@ -15,8 +16,8 @@ import { ETaskActionTypes, ITaskState } from '../../../redux/task/taskTypes.d'
    b. bei fail zu idb edit und send auf false, da es nicht versendet werden kann.
 
 */
-export const createTask = async (params: ITaskState) => {
-  const task: ITaskState = { ...params, send: false }
+export const editTask = async (params: ITask) => {
+  const task: ITask = { ...params, send: false }
 
   // redux
   await store.dispatch(
@@ -28,10 +29,10 @@ export const createTask = async (params: ITaskState) => {
   //dynamo
   await _mutation({
     variables: task,
-    mutation: createTaskMutation
+    mutation: editTaskMutation(task)
   })
     .then(res => {
-      addTaskIDB({ ...task, send: true })
+      editTaskIDB(task.taskId, { ...task, send: true })
         .then(async res => {
           await store.dispatch(
             createTaskAction({
