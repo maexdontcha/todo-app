@@ -7,10 +7,33 @@ import taskReducer from '../taskReducer'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
-const successTask = { title: 'test' }
+
+const updateTask = {
+  taskId: '123',
+  title: 'updateTask'
+}
+const failTask = {
+  taskId2: '123',
+  title: 'updateTask'
+}
 
 const initialState = {
-  tasks: []
+  tasks: [
+    {
+      taskId: '123',
+      title: 'test',
+      editor: 'philipp',
+      workspace: 'PhilippsWorkspace',
+      project: 'inbox'
+    },
+    {
+      taskId: '1234',
+      title: 'test',
+      editor: 'philipp',
+      workspace: 'PhilippsWorkspace',
+      project: 'inbox'
+    }
+  ]
 }
 describe('Init Store', () => {
   let store: any
@@ -18,33 +41,25 @@ describe('Init Store', () => {
   beforeEach(() => {
     store = mockStore(initialState)
   })
-  it('add Task Actions', async () => {
+  it('clear Task Actions', async () => {
     await store
       .dispatch(
         createTaskAction({
-          type: ETaskActionTypes.ADD_TASK,
-          payload: successTask
+          type: ETaskActionTypes.CLEAR_TASKS
         })
       )
       .then(() =>
         expect(store.getActions()).toContainEqual({
-          type: ETaskActionTypes.ADD_TASK,
-          payload: successTask
+          type: ETaskActionTypes.CLEAR_TASKS
         })
       )
   })
-  it('add Task Reducer', () => {
+  it('clear Task Reducer', () => {
     expect(
       taskReducer(initialState, {
-        type: ETaskActionTypes.ADD_TASK,
-        payload: successTask
+        type: ETaskActionTypes.CLEAR_TASKS,
+        payload: {}
       })
-    ).toMatchObject({ tasks: [successTask] })
+    ).toEqual({ tasks: [] })
   })
-  expect(
-    taskReducer(initialState, {
-      type: ETaskActionTypes.ADD_TASK,
-      payload: successTask
-    })
-  ).toMatchObject({ tasks: [successTask] })
 })

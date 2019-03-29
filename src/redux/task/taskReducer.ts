@@ -15,22 +15,25 @@ export const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
       const { taskId } = payload
       return {
         tasks: state.tasks.map(task =>
-          task.taskId === taskId ? { ...task, done: !task.done } : task
+          task.taskId === taskId
+            ? { ...task, doState: task.doState === 'todo' ? 'done' : 'todo' }
+            : task
         )
       }
     }
+    //TODO: create template object auf das payload assigned wird -> dadurch hat man ein valides update objekt
     case ETaskActionTypes.UPDATE_TASK: {
       const { taskId } = payload
       return {
         tasks: state.tasks.map(task =>
-          task.taskId === taskId ? { ...task, payload } : task
+          task.taskId === taskId ? { ...task, ...payload } : task
         )
       }
     }
     case ETaskActionTypes.DELETE_TASK: {
       const { taskId } = payload
       return {
-        tasks: state.tasks.map(task => (task.taskId === taskId ? {} : task))
+        tasks: state.tasks.splice(state.tasks.indexOf(taskId), 1)
       }
     }
     case ETaskActionTypes.CLEAR_TASKS: {
@@ -40,7 +43,7 @@ export const taskReducer: Reducer<{ tasks: ITaskState[] }, ITaskReduxAction> = (
     }
     case ETaskActionTypes.FILL_TASKS: {
       return {
-        tasks: []
+        tasks: payload
       }
     }
     default:

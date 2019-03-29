@@ -12,16 +12,15 @@ export enum ETaskActionTypes {
 }
 
 export interface ITaskState {
-  workspace: string
+  workspace?: string
   taskId?: string
   creator?: string
-  editor: string
-  title: string
-  done?: boolean
+  editor?: string
+  title?: string
   send?: boolean
   description?: string
   priority?: number
-  project: string
+  project?: string
   parentProject?: string
   startTime?: string
   endTime?: string
@@ -33,7 +32,7 @@ export interface ITaskState {
 
 export interface ITaskReduxAction {
   type: ETaskActionTypes
-  payload: ITaskState
+  payload?: ITaskState | ITaskState[]
 }
 
 type toggleThemeActionCreator = ActionCreator<
