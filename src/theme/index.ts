@@ -20,6 +20,12 @@ const defaultTheme = {
     },
     h3: {
       fontSize: '1.2rem'
+    },
+    h6: {
+      fontSize: '1rem'
+    },
+    subtitle1: {
+      fontSize: '0.7rem'
     }
   }
 }

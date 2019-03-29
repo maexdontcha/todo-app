@@ -5,7 +5,7 @@ import { _query as query } from '../api/apollo/resolver/query'
 import { _mutation as mutation } from '../api/apollo/resolver/mutation'
 import editTask from '../api/apollo/schema/mutation/editTask'
 import { createTask } from '../api/utils/state/createTask'
-
+import TaskCard from '../components/cards/task/SFC.taskCard'
 class Info extends Component<
   { datax: string },
   { datax: string; name: string }
@@ -62,6 +62,7 @@ class Info extends Component<
           createTask
         </Button>
         <div>{this.state.datax}</div>
+        <TaskCard />
       </React.Fragment>
     )
   }

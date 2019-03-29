@@ -59,7 +59,6 @@ function outlinedTextField(props: IProps) {
       autoFocus={autoFocus}
       InputProps={{
         classes: {
-          root: cssClasses.root,
           input: cssClasses.input
         }
       }}
