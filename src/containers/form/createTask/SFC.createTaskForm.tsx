@@ -62,6 +62,11 @@ const CreateTaskForm: React.SFC<{}> = (props: any) => {
                 onChange={handleChange}
                 myType={'title'}
                 autoFocus={true}
+                style={{
+                  input: {
+                    padding: 8
+                  }
+                }}
               />
             </Box>
             {/* <OutlinedNativeSelect selectValues={doStates} onChange={() => {}} /> */}

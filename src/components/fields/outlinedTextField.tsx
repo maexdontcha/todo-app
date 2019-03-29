@@ -13,9 +13,6 @@ const styles = (theme: Theme) =>
     root: {
       marginTop: theme.spacing.unit,
       marginBottom: theme.spacing.unit
-    },
-    input: {
-      padding: 8
     }
   })
 
@@ -48,10 +45,10 @@ function outlinedTextField(props: IProps) {
     autoFocus,
     style
   } = props
-  const cssClasses = { ...classes, ...style }
+  const cssClasses: any = { ...classes, ...style }
   return (
     <TextField
-      className={classes.root}
+      className={cssClasses.root}
       fullWidth={fullWidth || true}
       id={myType}
       label={myLabel}
@@ -62,8 +59,8 @@ function outlinedTextField(props: IProps) {
       autoFocus={autoFocus}
       InputProps={{
         classes: {
-          root: classes.root,
-          input: classes.input
+          root: cssClasses.root,
+          input: cssClasses.input
         }
       }}
     />
