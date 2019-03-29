@@ -32,7 +32,7 @@ export interface ITaskState {
 
 export interface ITaskReduxAction {
   type: ETaskActionTypes
-  payload?: ITaskState | ITaskState[]
+  payload: ITaskState | ITaskState[]
 }
 
 type toggleThemeActionCreator = ActionCreator<

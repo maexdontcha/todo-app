@@ -3,7 +3,7 @@ import { createTaskAction } from '../../../redux/task/taskAction'
 import { _mutation } from '../../apollo/resolver/mutation'
 import { createTaskMutation } from '../../apollo/schema'
 import { addTaskIDB } from '../../indexeddb/action/task/addTask'
-import { ETaskActionTypes } from '../../../redux/task/taskTypes.d'
+import { ETaskActionTypes, ITaskState } from '../../../redux/task/taskTypes.d'
 
 /*  Workflow for creating Task
 
@@ -15,56 +15,45 @@ import { ETaskActionTypes } from '../../../redux/task/taskTypes.d'
    b. bei fail zu idb hinzufügen und status auf false, da es nicht versendet werden kann.
 
 */
-export const createTask = async (params?: any) => {
+export const createTask = async (params: ITaskState) => {
   // get store
-  //TODO: Errorhandling for undefined
-  //BODY: title
-  const editor = store.getState().userState.username || undefined
-  const workspace = store.getState().userState.workspace || undefined
-
-  //TODO: create task object for worklow
-  //BODY ein Taskobjekt mit type das für alles verwendet werden kann
+  if (
+    !store.getState().userState.username ||
+    !store.getState().userState.workspace
+  )
+    throw Error('kein Username oder Store in Redux Store')
+  const task: ITaskState = params
+  const date = new Date().toISOString()
+  task.editor = store.getState().userState.username
+  task.workspace = params.workspace || store.getState().userState.workspace
+  task.taskId = `${task.editor}-${task.title}-${date}`
 
   // redux
   await store.dispatch(
     createTaskAction({
       type: ETaskActionTypes.ADD_TASK,
-      payload: { title: params.title, send: false }
+      payload: { ...task, send: false }
     })
   )
   //dynamo
   await _mutation({
-    variables: {
-      workspace,
-      editor,
-      title: params.title
-    },
-    mutation: createTaskMutation
+    variables: task,
+    mutation: createTaskMutation(task)
   })
     .then(res => {
-      addTaskIDB({ workspace, editor, title: params.title, send: true })
+      addTaskIDB({ ...task, send: true })
         .then(async res => {
           await store.dispatch(
             createTaskAction({
               type: ETaskActionTypes.UPDATE_TASK,
-              payload: { send: true }
+              payload: { taskId: task.taskId, send: true }
             })
           )
         })
         .catch(err => console.log(err))
     })
     .catch(err => {
-      addTaskIDB({ workspace, editor, title: params.title, send: false })
-        .then(async res => {
-          // TODO: add to job queue ?
-          // BODY was passiert wenn man offline ist
-          await store.dispatch(
-            createTaskAction({
-              type: ETaskActionTypes.UPDATE_TASK,
-              payload: { send: false }
-            })
-          )
-        })
-        .catch(err => console.log(err))
+      //TODO: ADD TO QUEUE bzw. start job
+      //BODY nur wenn offline -> muss background job laufen
     })
 }

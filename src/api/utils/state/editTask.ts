@@ -3,60 +3,47 @@ import { createTaskAction } from '../../../redux/task/taskAction'
 import { _mutation } from '../../apollo/resolver/mutation'
 import { createTaskMutation } from '../../apollo/schema'
 import { addTaskIDB } from '../../indexeddb/action/task/addTask'
-import { ETaskActionTypes } from '../../../redux/task/taskTypes'
+import { ETaskActionTypes, ITaskState } from '../../../redux/task/taskTypes.d'
+
 /*  Workflow for creating Task
 
 1. Läd userdata aus redux 
-2. added task mit status false zu redux 
-3. versucht task ans backend zu senden 
-   a. bei Success zu idb hinzufügen und status auf true setzen, da es am backend an kam
+2. edit redux if true keep going and send: false
+3. edit dynamo 
+   a. bei Success zu edit idb hinzufügen und send auf true setzen, da es am backend an kam
       danach den task im redux store updaten, auch status auf true, da es am backend ist
-   b. bei fail zu idb hinzufügen und status auf false, da es nicht versendet werden kann.
+   b. bei fail zu idb edit und send auf false, da es nicht versendet werden kann.
 
 */
-export const editTask = async (params?: any) => {
-  // get store
-  const editor = store.getState().userState.username || undefined
-  const workspace = store.getState().userState.workspace || undefined
+export const createTask = async (params: ITaskState) => {
+  const task: ITaskState = { ...params, send: false }
 
   // redux
   await store.dispatch(
     createTaskAction({
-      type: ETaskActionTypes.ADD_TASK,
-      payload: { title: params.title, send: false }
+      type: ETaskActionTypes.UPDATE_TASK,
+      payload: task
     })
   )
   //dynamo
   await _mutation({
-    variables: {
-      workspace,
-      editor,
-      title: params.title
-    },
+    variables: task,
     mutation: createTaskMutation
   })
     .then(res => {
-      addTaskIDB({ workspace, editor, title: params.title, send: true })
+      addTaskIDB({ ...task, send: true })
         .then(async res => {
           await store.dispatch(
             createTaskAction({
               type: ETaskActionTypes.UPDATE_TASK,
-              payload: { send: true }
+              payload: { taskId: task.taskId, send: true }
             })
           )
         })
         .catch(err => console.log(err))
     })
     .catch(err => {
-      addTaskIDB({ workspace, editor, title: params.title, send: false })
-        .then(async res => {
-          await store.dispatch(
-            createTaskAction({
-              type: ETaskActionTypes.UPDATE_TASK,
-              payload: { send: false }
-            })
-          )
-        })
-        .catch(err => console.log(err))
+      //TODO: ADD TO QUEUE bzw. start job
+      //BODY nur wenn offline -> muss background job laufen
     })
 }
