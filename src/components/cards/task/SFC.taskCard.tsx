@@ -18,12 +18,28 @@ const useStyles = makeStyles({
     height: 20
   }
 })
-interface IProps {}
+interface IProps {
+  priority?: 1 | 2 | 3 | 4 | 5
+  complexity?: number
+  title: string
+  project?: string
+  dueDate?: string
+  startDate?: string
+  endDate?: string
+}
 
-const TaskCard = (props: IProps) => {
+export const TaskCard:any = (props: IProps) => {
+  const {
+    priority,
+    complexity,
+    dueDate,
+    title,
+    project,
+    startDate,
+    endDate
+  } = props
   const classes = useStyles()
   const [toggle, setToggle] = useState(false)
-  console.log(toggle)
   return (
     <Card className={classes.card}>
       <Flex
@@ -32,14 +48,20 @@ const TaskCard = (props: IProps) => {
         style={{ width: '100%' }}
       >
         <Box pl={'4px'}>
-          <DescIcons classes={classes} priority={1} complexity={10} />
+          <DescIcons
+            classes={classes}
+            priority={priority}
+            complexity={complexity}
+          />
         </Box>
         <Box width={5 / 6} pl={'10px'}>
           <BodyTask
-            title="Email an Max schreiben"
-            project="EBliq"
-            dueDate="Heute"
+            title={title}
+            project={project}
+            dueDate={dueDate}
             toggle={toggle}
+            startDate={startDate}
+            endDate={endDate}
           />
         </Box>
         <CheckBox
