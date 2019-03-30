@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Card from '@material-ui/core/Card'
 import { Flex, Box } from 'rebass'
 import { makeStyles } from '@material-ui/styles'
 import { FormControlLabel, Checkbox, Typography, Chip } from '@material-ui/core'
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
-import CheckBoxIcon from '@material-ui/icons/CheckBox'
-import SvgIcon from '@material-ui/core/SvgIcon'
+import { FlagIcon, CheckBoxFilled, CheckBoxNotFilled } from '../../icon/index'
+import { DescIcons } from './leftPart'
+import { BodyTask } from './bodyPart'
+import { CheckBox } from './rightPart'
 
 const useStyles = makeStyles({
   card: {
@@ -19,16 +20,10 @@ const useStyles = makeStyles({
 })
 interface IProps {}
 
-const FlagIcon = ({ color, size }: { color: any; size: any }) => (
-  <SvgIcon fontSize={size}>
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z" fill={color} />
-  </SvgIcon>
-)
-
 const TaskCard = (props: IProps) => {
   const classes = useStyles()
-
+  const [toggle, setToggle] = useState(false)
+  console.log(toggle)
   return (
     <Card className={classes.card}>
       <Flex
@@ -36,36 +31,22 @@ const TaskCard = (props: IProps) => {
         justifyContent="center"
         style={{ width: '100%' }}
       >
-        <Box width={1 / 6}>
-          <Checkbox
-            color="primary"
-            icon={<CheckBoxOutlineBlankIcon fontSize="default" />}
-            checkedIcon={<CheckBoxIcon fontSize="default" />}
-            value="checkedI"
+        <Box pl={'4px'}>
+          <DescIcons classes={classes} priority={1} complexity={10} />
+        </Box>
+        <Box width={5 / 6} pl={'10px'}>
+          <BodyTask
+            title="Email an Max schreiben"
+            project="EBliq"
+            dueDate="Heute"
+            toggle={toggle}
           />
         </Box>
-        <Box width={3 / 6}>
-          <Flex
-            alignItems="flex-start"
-            justifyContent="center"
-            flexDirection="column"
-          >
-            <Box width={1}>
-              <Typography variant="h6" component="h1">
-                Title
-              </Typography>
-            </Box>
-            <Box width={1}>
-              <Typography variant="subtitle1" component="h2">
-                Projekt
-              </Typography>
-            </Box>
-          </Flex>
-        </Box>
-        <Box width={2 / 6}>
-          <Chip label="8" variant="outlined" className={classes.chip} />
-          <FlagIcon size="medium" color="yellow" />
-        </Box>
+        <CheckBox
+          onChange={() => {
+            setToggle(!toggle)
+          }}
+        />
       </Flex>
     </Card>
   )

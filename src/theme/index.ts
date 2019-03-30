@@ -26,6 +26,9 @@ const defaultTheme = {
     },
     subtitle1: {
       fontSize: '0.7rem'
+    },
+    subtitle2: {
+      fontSize: '0.66rem'
     }
   }
 }

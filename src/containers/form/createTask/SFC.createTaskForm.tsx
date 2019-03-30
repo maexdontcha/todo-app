@@ -20,12 +20,20 @@ import {
 } from '../../../components'
 import { doStates } from './static.createTaskForm'
 import { createTask } from '../../../api/utils/state/createTask'
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles({
+  input: {
+    padding: 8
+  }
+})
 
 const CreateTaskForm: React.SFC<{}> = (props: any) => {
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('')
   const [beschreibung, setBeschreibung] = useState('')
   const { handleAddTodo } = props
+  const classes = useStyles()
   console.log(props)
   const funcDir: any = {
     title: setTitle,
@@ -62,11 +70,7 @@ const CreateTaskForm: React.SFC<{}> = (props: any) => {
                 onChange={handleChange}
                 myType={'title'}
                 autoFocus={true}
-                style={{
-                  input: {
-                    padding: 8
-                  }
-                }}
+                style={classes}
               />
             </Box>
             {/* <OutlinedNativeSelect selectValues={doStates} onChange={() => {}} /> */}
