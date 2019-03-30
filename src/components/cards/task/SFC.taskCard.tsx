@@ -47,7 +47,7 @@ export const TaskCard: any = (props: IProps) => {
         justifyContent="center"
         style={{ width: '100%' }}
       >
-        <Box pl={'4px'} alignSelf={'flex-start'}>
+        <Box pl={'4px'}>
           <DescIcons
             classes={classes}
             priority={priority}
