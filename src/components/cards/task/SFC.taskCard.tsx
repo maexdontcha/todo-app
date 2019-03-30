@@ -28,7 +28,7 @@ interface IProps {
   endDate?: string
 }
 
-export const TaskCard:any = (props: IProps) => {
+export const TaskCard: any = (props: IProps) => {
   const {
     priority,
     complexity,
@@ -47,14 +47,14 @@ export const TaskCard:any = (props: IProps) => {
         justifyContent="center"
         style={{ width: '100%' }}
       >
-        <Box pl={'4px'}>
+        <Box pl={'4px'} alignSelf={'flex-start'}>
           <DescIcons
             classes={classes}
             priority={priority}
             complexity={complexity}
           />
         </Box>
-        <Box width={5 / 6} pl={'10px'}>
+        <Box width={1} pl={'10px'}>
           <BodyTask
             title={title}
             project={project}
@@ -64,11 +64,13 @@ export const TaskCard:any = (props: IProps) => {
             endDate={endDate}
           />
         </Box>
-        <CheckBox
-          onChange={() => {
-            setToggle(!toggle)
-          }}
-        />
+        <Box alignSelf={'flex-end'}>
+          <CheckBox
+            onChange={() => {
+              setToggle(!toggle)
+            }}
+          />
+        </Box>
       </Flex>
     </Card>
   )

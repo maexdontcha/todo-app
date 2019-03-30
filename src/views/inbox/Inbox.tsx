@@ -2,18 +2,22 @@ import React, { Component } from 'react'
 import TaskCard from '../../components/cards/task/SFC.taskCard'
 import testdaten from './data'
 interface IProps {}
-interface IState {}
+interface IState {
+  tasks: any
+}
 
 class Inbox extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
-    console.log(props)
+    this.state = {
+      tasks: testdaten
+    }
   }
+
   render() {
     return (
       <React.Fragment>
-        {testdaten.map((e: any) => {
-          console.log(e)
+        {this.state.tasks.map((e: any) => {
           return (
             <TaskCard
               priority={e.priority}
