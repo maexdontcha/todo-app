@@ -33,6 +33,10 @@ interface IProps extends WithStyles<typeof styles> {
   autoFocus?: boolean
   LabelShrink?: boolean
   style?: Object
+  select?: boolean
+  native?: boolean
+  options?: any
+  value?: any
 }
 
 function outlinedTextField(props: IProps) {
@@ -47,17 +51,23 @@ function outlinedTextField(props: IProps) {
     autoFocus,
     LabelShrink,
     myId,
-    style
+    style,
+    select,
+    native,
+    options,
+    value
   } = props
   const cssClasses: any = { ...classes, ...style }
   return (
     <TextField
+      select={select}
       className={cssClasses.root}
       fullWidth={fullWidth || true}
       id={myId || myType}
       label={myLabel}
       variant="outlined"
       type={myType || ''}
+      value={value}
       onChange={onChange.bind('')}
       multiline={multiline || false}
       autoFocus={autoFocus}
@@ -67,7 +77,18 @@ function outlinedTextField(props: IProps) {
           input: cssClasses.input
         }
       }}
-    />
+      SelectProps={{
+        native: native
+      }}
+    >
+      {options
+        ? options.map((option: any) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))
+        : ''}
+    </TextField>
   )
 }
 
