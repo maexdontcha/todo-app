@@ -23,20 +23,27 @@ const styles = {
   }
 }
 interface IProps {
-  classes: any
+  classes?: any
   title: string
-  changeHeader: boolean
   rightComponent?: any
-  scroll: boolean
+  scroll?: boolean
+  showTitle?: boolean
+  showLeft?: boolean
+  showRight?: boolean
   // scrollElement?: any
 }
 
 // Man brauch einen Element mit Classe Tabbar-scroll-Element damit es funktioniert
 
-class _Tabbar extends React.Component<any, any> {
+class _Tabbar extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props)
-    this.state = { display: props.scroll ? false : true }
+    this.state = {
+      display: props.scroll ? false : true,
+      showTitle: props.showTitle ? true : false,
+      showLeft: props.showLeft ? true : false,
+      showRight: props.showRight ? true : false
+    }
     this.handleScroll = this.handleScroll.bind(this)
   }
   componentDidMount() {
@@ -60,21 +67,31 @@ class _Tabbar extends React.Component<any, any> {
 
   handleScroll(position: any) {
     if (position >= 44) {
-      this.setState({ display: true })
+      this.setState({
+        display: true,
+        showTitle: true,
+        showLeft: true,
+        showRight: true
+      })
     }
     if (position < 44) {
-      this.setState({ display: false })
+      this.setState({
+        display: false,
+        showTitle: false,
+        showLeft: false,
+        showRight: false
+      })
     }
   }
 
   render() {
     const { classes, title, rightComponent } = this.props
-    const { display } = this.state
+    const { display, showTitle, showLeft, showRight } = this.state
     console.log('render Tabbar')
     return (
       <AppBar className={classes.root} position={'sticky'} color={'inherit'}>
         <Toolbar style={{ minHeight: 35, padding: 0 }}>
-          {display ? (
+          {display || showLeft || showRight || showTitle ? (
             <React.Fragment>
               <Fade duration={300}>
                 <Flex
@@ -83,24 +100,37 @@ class _Tabbar extends React.Component<any, any> {
                   justifyContent="space-between"
                 >
                   <Box width={1 / 4} style={{ textAlign: 'left' }}>
-                    <Button style={{ textTransform: 'none' }}>
-                      <ArrowBackIcon color="primary" />
-                      <Typography
-                        variant="h3"
-                        color="primary"
-                        className={classes.grow}
-                      >
-                        Zurück
-                      </Typography>
-                    </Button>
+                    {showLeft ? (
+                      <Button style={{ textTransform: 'none' }}>
+                        <ArrowBackIcon color="primary" />
+
+                        <Typography
+                          variant="h3"
+                          color="primary"
+                          className={classes.grow}
+                        >
+                          Zurück
+                        </Typography>
+                      </Button>
+                    ) : (
+                      ''
+                    )}
                   </Box>
                   <Box style={{ textAlign: 'center' }} width={1 / 2}>
-                    <Typography variant="h3" className={classes.grow}>
-                      {title}
-                    </Typography>
+                    {showTitle ? (
+                      <Typography variant="h3" className={classes.grow}>
+                        {title}
+                      </Typography>
+                    ) : (
+                      ''
+                    )}
                   </Box>
                   <Box width={1 / 4} style={{ textAlign: 'right' }}>
-                    {rightComponent}
+                    {showRight
+                      ? rightComponent
+                        ? { rightComponent }
+                        : ''
+                      : ''}
                   </Box>
                 </Flex>
               </Fade>

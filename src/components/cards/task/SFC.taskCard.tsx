@@ -13,6 +13,8 @@ const useStyles = makeStyles({
   card: {
     display: 'flex',
     minWidth: 340
+    // ,
+    // borderBottom: '1px solid #ccc'
   },
   chip: {
     height: 20

@@ -12,8 +12,9 @@ import { handleHookChange } from '../../../api/utils/handleHookChanges'
 // Types
 import { IState, IProps, IfuncDir } from './Types.createTask'
 import { Register } from '../../../views'
-import CreateTaskForm from '../../form/createTask/connect.createTaskFrom'
+import CreateTaskForm from '../../form/createTask/SFC.createTaskForm'
 import { Fab } from '@material-ui/core'
+import { createTask } from '../../../api/utils/state/createTask'
 
 const CreateTaskDrawer: React.SFC<IState> = (props: IProps) => {
   const [toggle, setToggle] = useState(false)
@@ -39,7 +40,7 @@ const CreateTaskDrawer: React.SFC<IState> = (props: IProps) => {
           setToggle(!toggle)
         }}
         openState={toggle}
-        Component={<CreateTaskForm />}
+        Component={<CreateTaskForm handleSubmit={createTask} />}
       />
     </React.Fragment>
   )

@@ -5,7 +5,7 @@ import { routes } from '../../routes'
 const Content: React.SFC<any> = props => {
   console.log('render Content')
   return (
-    <div id={'MAIN'}>
+    <main style={{ paddingBottom: 35 }}>
       {routes.map(route => (
         <SaveRoute
           path={route.path}
@@ -15,7 +15,7 @@ const Content: React.SFC<any> = props => {
           title={route.displayName}
         />
       ))}
-    </div>
+    </main>
   )
 }
 export default Content

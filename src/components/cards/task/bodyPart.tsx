@@ -33,18 +33,19 @@ export const BodyTask = (props: IBody) => {
             {startDate} - {endDate}
           </Typography>
         </Box>
-      ) : dueDate ? (
-        <Box width={1}>
-          <Typography
-            variant="subtitle2"
-            component="h3"
-            color={'textSecondary'}
-            style={toggle ? { color: '#ccc' } : {}}
-          >
-            {dueDate}
-          </Typography>
-        </Box>
       ) : (
+        // : dueDate ? (
+        //   <Box width={1}>
+        //     <Typography
+        //       variant="subtitle2"
+        //       component="h3"
+        //       color={'textSecondary'}
+        //       style={toggle ? { color: '#ccc' } : {}}
+        //     >
+        //       {dueDate}
+        //     </Typography>
+        //   </Box>
+        // )
         ''
       )}
 

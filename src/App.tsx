@@ -52,7 +52,6 @@ interface IState {
   acceptedInstall: boolean
   declinedInstall: boolean
   title: string
-  changeHeader: boolean
 }
 declare const window: any
 
@@ -72,9 +71,8 @@ class App extends Component<IProps, IState> {
         // console.log(`${err} text`)
       })
     this.state = {
-      theme: true,
+      theme: false,
       title: 'Inbox',
-      changeHeader: false,
       readyToAdd: false,
       successfullyInstalled: false,
       acceptedInstall: false,
@@ -164,7 +162,6 @@ class App extends Component<IProps, IState> {
       <BrowserRouter>
         <React.Fragment>
           <Content />
-          <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <BottomNavigation setTitle={this.setTitle} />
         </React.Fragment>
       </BrowserRouter>

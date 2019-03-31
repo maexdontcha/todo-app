@@ -1,7 +1,6 @@
 import React from 'react'
-import Inbox from '../views/inbox/connect.inbox'
-import Login from '../views/Login'
-import Info from '../views/Info'
+
+import { CreateTaskView, Info, Login, Inbox } from '../views'
 import RestoreIcon from '@material-ui/icons/Restore'
 import MenuIcon from '@material-ui/icons/Menu'
 import DashboardIcon from '@material-ui/icons/Dashboard'
@@ -15,7 +14,7 @@ export interface IRoute {
   position?: number
   groups: any | string | string[]
   bottomNavigation: boolean
-  icon: JSX.Element
+  icon?: JSX.Element
 }
 
 const myroutes: IRoute[] = [
@@ -54,6 +53,13 @@ const myroutes: IRoute[] = [
     position: 4,
     bottomNavigation: true,
     icon: <MenuIcon />
+  },
+  {
+    path: '/create',
+    component: CreateTaskView,
+    groups: '',
+    displayName: 'Aufgabe erstellen',
+    bottomNavigation: false
   }
 ]
 
