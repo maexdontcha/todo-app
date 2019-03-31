@@ -4,9 +4,19 @@ export default gql`
   query getTasksByEditor($workspace: String!, $editor: String!) {
     getTasksByEditor(workspace: $workspace, editor: $editor) {
       workspace
-      title
       editor
+      taskId
+      creator
+      title
       description
+      priority
+      project
+      parentProject
+      startTime
+      endTime
+      category
+      doState
+      complexity
     }
   }
 `

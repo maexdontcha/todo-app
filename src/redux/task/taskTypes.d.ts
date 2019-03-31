@@ -29,7 +29,10 @@ export interface ITaskState {
   subTasks?: string[]
   complexity?: number
 }
-
+export interface ITaskLoadState {
+  force?: boolean
+  workspace?: string
+}
 export interface ITaskReduxAction {
   type: ETaskActionTypes
   payload: ITaskState | ITaskState[]

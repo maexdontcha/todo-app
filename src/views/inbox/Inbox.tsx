@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-
-import TaskCard from '../../components/cards/task/SFC.taskCard'
-import testdaten from './data'
 import { Tabbar, Title } from '../../components'
-import { Paper } from '@material-ui/core'
-import Header from '../../components/header/tabbar'
 
 import { NormalList } from '../../containers'
-import { store } from '../../redux'
 
 interface IProps {
   title: any
@@ -26,14 +19,11 @@ class Inbox extends Component<IProps, IState> {
       changer: false,
       scrollElement: {}
     }
-    console.log(props)
   }
 
   render() {
     console.log('render Inbox')
     const { tasks, title } = this.props
-    console.log(tasks)
-    let changer: boolean = false
     return (
       <React.Fragment>
         <Tabbar title={title} useScroll={true} showLeft={false} />

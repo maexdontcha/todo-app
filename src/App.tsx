@@ -37,6 +37,7 @@ import { Tabbar } from './components'
 // import { loadTodos, clearTodos } from './api/indexeddb/action'
 import { Database } from './api/indexeddb/db'
 import { loadTasksIDB, clearTasksIDB } from './api/indexeddb/action'
+import { loadTask } from './api/utils/state/loadTask'
 // import { createTodo } from './api/utils/state/createTask'
 interface IProps {
   darkMode: boolean
@@ -61,11 +62,12 @@ class App extends Component<IProps, IState> {
     // props.taskLoad()
 
     Auth.currentSession()
-      .then(token => {
-        props.userLogin({
+      .then(async token => {
+        await props.userLogin({
           payload: token,
           type: 'LOGIN'
         })
+        await loadTask()
       })
       .catch(err => {
         // console.log(`${err} text`)
