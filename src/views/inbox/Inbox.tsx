@@ -31,7 +31,10 @@ class Inbox extends Component<IProps, IState> {
     let changer: boolean = false
     return (
       <React.Fragment>
-        <div className="scrolled" style={{ height: '100vh', overflow: 'auto' }}>
+        <div
+          className="Tabbar-scroll-Element"
+          style={{ height: '100vh', overflow: 'auto' }}
+        >
           <Tabbar title={this.props.title} scroll={true} />
           <Title title={this.props.title} />
 

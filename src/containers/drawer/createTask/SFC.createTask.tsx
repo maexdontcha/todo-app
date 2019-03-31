@@ -24,6 +24,7 @@ const CreateTaskDrawer: React.SFC<IState> = (props: IProps) => {
   return (
     <React.Fragment>
       <Fab
+        size="medium"
         color="primary"
         onClick={() => {
           setToggle(!toggle)

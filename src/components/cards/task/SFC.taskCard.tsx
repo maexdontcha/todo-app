@@ -26,6 +26,7 @@ interface IProps {
   dueDate?: string
   startDate?: string
   endDate?: string
+  category?: string
 }
 export const TaskCard: any = (props: IProps) => {
   const {
@@ -35,7 +36,8 @@ export const TaskCard: any = (props: IProps) => {
     title,
     project,
     startDate,
-    endDate
+    endDate,
+    category
   } = props
   const classes = useStyles()
   const [toggle, setToggle] = useState(false)
@@ -46,11 +48,11 @@ export const TaskCard: any = (props: IProps) => {
         justifyContent="center"
         style={{ width: '100%' }}
       >
-        <Box pl={'4px'}>
-          <DescIcons
-            classes={classes}
-            priority={priority}
-            complexity={complexity}
+        <Box alignSelf={'flex-end'}>
+          <CheckBox
+            onChange={() => {
+              setToggle(!toggle)
+            }}
           />
         </Box>
         <Box width={1} pl={'10px'}>
@@ -63,11 +65,12 @@ export const TaskCard: any = (props: IProps) => {
             endDate={endDate}
           />
         </Box>
-        <Box alignSelf={'flex-end'}>
-          <CheckBox
-            onChange={() => {
-              setToggle(!toggle)
-            }}
+        <Box pl={'4px'}>
+          <DescIcons
+            classes={classes}
+            priority={priority}
+            complexity={complexity}
+            category={category}
           />
         </Box>
       </Flex>

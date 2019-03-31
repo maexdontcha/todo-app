@@ -31,6 +31,8 @@ interface IProps {
   // scrollElement?: any
 }
 
+// Man brauch einen Element mit Classe Tabbar-scroll-Element damit es funktioniert
+
 class _Tabbar extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
@@ -39,7 +41,7 @@ class _Tabbar extends React.Component<any, any> {
   }
   componentDidMount() {
     if (this.props.scroll) {
-      let elem1 = document.getElementsByClassName('scrolled')[0]
+      let elem1 = document.getElementsByClassName('Tabbar-scroll-Element')[0]
       elem1.addEventListener('scroll', (e: any) => {
         this.handleScroll(elem1.scrollTop)
       })
@@ -51,7 +53,7 @@ class _Tabbar extends React.Component<any, any> {
 
   componentWillUnmount() {
     if (this.props.scroll) {
-      var elem1 = document.getElementsByClassName('scrolled')[0]
+      var elem1 = document.getElementsByClassName('Tabbar-scroll-Element')[0]
       elem1.removeEventListener('scroll', this.handleScroll)
     }
   }
