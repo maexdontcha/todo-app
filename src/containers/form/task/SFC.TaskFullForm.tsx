@@ -182,7 +182,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
               />
             </Box>
             <Box width={1} px={'2px'}>
-              <Button color="primary" type="submit">
+              <Button variant="contained" color="primary" type="submit">
                 Hinzufügen
               </Button>
             </Box>

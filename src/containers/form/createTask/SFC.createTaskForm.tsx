@@ -135,7 +135,9 @@ const CreateTaskForm: React.SFC<any> = (props: any) => {
                       setProjectBoolean(!projectBoolean)
                     }}
                   >
-                    <CreateNewFolder color="primary" />
+                    <CreateNewFolder
+                      color={projectBoolean ? 'primary' : 'inherit'}
+                    />
                   </IconButton>
                 </Box>
                 <Box>
@@ -144,7 +146,9 @@ const CreateTaskForm: React.SFC<any> = (props: any) => {
                       setDueDateBoolean(!dueDateBoolean)
                     }}
                   >
-                    <CalendarAdd color="primary" />
+                    <CalendarAdd
+                      color={dueDateBoolean ? 'primary' : 'inherit'}
+                    />
                   </IconButton>
                 </Box>
                 <Box>
@@ -154,7 +158,7 @@ const CreateTaskForm: React.SFC<any> = (props: any) => {
                         toggleDrawer()
                       }}
                     >
-                      <OpenInNew color="primary" />
+                      <OpenInNew color={'inherit'} />
                     </IconButton>
                   </Link>
                 </Box>
