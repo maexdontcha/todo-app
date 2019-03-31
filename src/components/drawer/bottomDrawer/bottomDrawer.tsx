@@ -30,7 +30,7 @@ function BottomDrawer(props: IProps) {
         <div
           // onClick={onChange.bind('')}
           // onKeyDown={onChange.bind('')}
-          style={{ marginBottom: '55px' }}
+          style={{ marginBottom: '35px', marginTop: '5px' }}
         >
           {Component}
         </div>

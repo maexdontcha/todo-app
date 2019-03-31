@@ -83,7 +83,7 @@ function outlinedTextField(props: IProps) {
     >
       {options
         ? options.map((option: any) => (
-            <option key={option.value} value={option.value}>
+            <option key={Math.random()} value={option.value}>
               {option.label}
             </option>
           ))

@@ -3,7 +3,7 @@
   "tables": {
     "tasks": {
       "name": "TASKS",
-      "schema": "id++, editor, workspace, title, send"
+      "schema": "taskId, editor, workspace, title, send"
     }
   }
 }

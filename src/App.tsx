@@ -187,7 +187,7 @@ class App extends Component<IProps, IState> {
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <React.Fragment>
-          <Paper square={true} style={{ height: '100vh', overflow: 'auto' }}>
+          <Paper square={true} style={{ height: '100vh', overflow: 'hidden' }}>
             {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
             {this.shouldShowAddButton() ? (
               <button onClick={this.addToHome}>Add to Home Screen</button>

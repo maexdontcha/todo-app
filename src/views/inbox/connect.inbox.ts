@@ -10,22 +10,12 @@ import {
 
 const mapStateToProps = (store: any) => {
   return {
-    tasks: store.taskState.todos || []
+    tasks: store.taskState.tasks || []
   }
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return {
-    handleAddTodo(title: any) {
-      dispatch(addTaskIDB(title))
-    },
-    handleDeleteTodo(id: any) {
-      dispatch(deleteTaskIDB(id))
-    },
-    handleUpdateTodo(id: any, done: any) {
-      dispatch(editTaskIDB(id, done))
-    }
-  }
+  return {}
 }
 
 export default connect(

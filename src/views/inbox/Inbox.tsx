@@ -6,11 +6,15 @@ import testdaten from './data'
 import { Tabbar, Title } from '../../components'
 import { Paper } from '@material-ui/core'
 import Header from '../../components/header/tabbar'
+
+import { NormalList } from '../../containers'
+import { store } from '../../redux'
+
 interface IProps {
   title: any
+  tasks: any
 }
 interface IState {
-  tasks: any
   changer: boolean
   scrollElement: any
 }
@@ -19,40 +23,23 @@ class Inbox extends Component<IProps, IState> {
   constructor(props: any) {
     super(props)
     this.state = {
-      tasks: testdaten,
       changer: false,
       scrollElement: {}
     }
-    let header: boolean = false
+    console.log(props)
   }
 
   render() {
     console.log('render Inbox')
+    const { tasks, title } = this.props
+    console.log(tasks)
     let changer: boolean = false
     return (
       <React.Fragment>
-        <div
-          className="Tabbar-scroll-Element"
-          style={{ height: '100vh', overflow: 'auto' }}
-        >
-          <Tabbar title={this.props.title} scroll={true} />
-          <Title title={this.props.title} />
-
-          {this.state.tasks.map((e: any) => {
-            return (
-              <TaskCard
-                key={Math.random()}
-                priority={e.priority}
-                complexity={e.complexity}
-                title={e.title}
-                project={e.project}
-                dueDate={e.dueDate}
-                toggle={e.toggle}
-                startDate={e.startDate}
-                endDate={e.endDate}
-              />
-            )
-          })}
+        <Tabbar title={title} useScroll={true} showLeft={false} />
+        <div className="Tabbar-scroll-Element">
+          <Title title={title} />
+          <NormalList data={tasks} />
         </div>
       </React.Fragment>
     )

@@ -7,6 +7,8 @@ import { createBrowserHistory } from 'history'
 
 //material-ui
 import CheckIcon from '@material-ui/icons/Check'
+import AddIcon from '@material-ui/icons/Add'
+import EditIcon from '@material-ui/icons/Edit'
 
 // _components
 import {
@@ -19,15 +21,12 @@ import { makeStyles } from '@material-ui/styles'
 import { TextField, Button } from '@material-ui/core'
 
 const CreateTaskFullForm: React.SFC<any> = (props: any) => {
-  const [task, setTask] = useState(props.task)
-
+  const [task, setTask] = useState(props.propTask || {})
+  const { type, handleSubmit } = props
   const handleChange: any = (event: any) => {
     let atr = event.currentTarget.id
     let value = event.currentTarget.value
-    console.log(atr)
-    console.log(value)
     setTask({ ...task, ...{ [atr]: value } })
-    console.log(task)
   }
   return (
     <Flex alignItems={'center'} justifyContent={'center'}>
@@ -47,7 +46,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
              */
             e.preventDefault()
             e.stopPropagation()
-            console.log(task)
+            console.log(definedValues)
             // handleSubmit(definedValues)
           }}
         >
@@ -60,6 +59,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
             <Box width={1} px={'2px'}>
               <OutlinedTextField
                 onChange={handleChange}
+                value={task.title ? task.title : ''}
                 myType={'title'}
                 myLabel={'Titel'}
                 autoFocus={true}
@@ -69,6 +69,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
             <Box width={1} px={'2px'}>
               <OutlinedTextField
                 onChange={handleChange}
+                value={task.description ? task.description : ''}
                 myType={'description'}
                 myLabel={'Beschreibung'}
                 autoFocus={true}
@@ -81,6 +82,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
                 select={true}
                 native={true}
                 onChange={handleChange}
+                value={task.project}
                 myType={'project'}
                 myLabel={'Projekt'}
                 autoFocus={true}
@@ -97,6 +99,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
                 select={true}
                 native={true}
                 onChange={handleChange}
+                value={task.category}
                 myType={'category'}
                 myLabel={'Kategorie'}
                 options={[
@@ -111,6 +114,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
               <OutlinedTextField
                 select={true}
                 onChange={handleChange}
+                value={task.complexity}
                 myId={'complexity'}
                 myLabel={'Komplexität'}
                 native={true}
@@ -135,7 +139,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
                 select={true}
                 onChange={handleChange}
                 myType={'priority'}
-                value={undefined}
+                value={task.priority}
                 myLabel={'Priorität'}
                 native={true}
                 options={[
@@ -155,6 +159,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
                 myType={'date'}
                 myId={'dueDate'}
                 myLabel={'Do Date'}
+                value={task.dueDate ? task.dueDate : ''}
                 autoFocus={true}
                 LabelShrink={true}
               />
@@ -166,6 +171,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
                 myType={'time'}
                 myId={'startTime'}
                 myLabel={'von'}
+                value={task.startTime ? task.startTime : ''}
                 autoFocus={true}
                 LabelShrink={true}
               />
@@ -174,6 +180,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
             <Box width={1 / 2} pl={'4px'} pr={'2px'}>
               <OutlinedTextField
                 onChange={handleChange}
+                value={task.endTime ? task.endTime : ''}
                 myType={'time'}
                 myId={'endTime'}
                 myLabel={'bis'}
@@ -183,7 +190,15 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
             </Box>
             <Box width={1} px={'2px'}>
               <Button variant="contained" color="primary" type="submit">
-                Hinzufügen
+                {type === 'create' ? (
+                  <React.Fragment>
+                    <AddIcon /> Hinzufügen
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <EditIcon /> Bearbeiten
+                  </React.Fragment>
+                )}
               </Button>
             </Box>
           </Flex>

@@ -27,7 +27,7 @@ interface IProps {
   classes?: any
   title: string
   rightComponent?: any
-  scroll?: boolean
+  useScroll?: boolean
   showTitle?: boolean
   showLeft?: boolean
   showRight?: boolean
@@ -40,15 +40,17 @@ class _Tabbar extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props)
     this.state = {
-      display: props.scroll ? false : true,
-      showTitle: props.showTitle ? true : false,
-      showLeft: props.showLeft ? true : false,
-      showRight: props.showRight ? true : false
+      display: props.display || false,
+      useScroll: props.useScroll ? false : true,
+      showTitle: props.showTitle || false,
+      showLeft: props.showLeft || false,
+      showRight: props.showRight || false
     }
+    console.log(this.state)
     this.handleScroll = this.handleScroll.bind(this)
   }
   componentDidMount() {
-    if (this.props.scroll) {
+    if (this.props.useScroll) {
       let elem1 = document.getElementsByClassName('Tabbar-scroll-Element')[0]
       elem1.addEventListener('scroll', (e: any) => {
         this.handleScroll(elem1.scrollTop)
@@ -56,11 +58,11 @@ class _Tabbar extends React.Component<IProps, any> {
     }
   }
   shouldComponentUpdate(nextProps: any, nextState: any) {
-    return this.state.display !== nextState.display
+    return this.state.useScroll !== nextState.useScroll
   }
 
   componentWillUnmount() {
-    if (this.props.scroll) {
+    if (this.props.useScroll) {
       var elem1 = document.getElementsByClassName('Tabbar-scroll-Element')[0]
       elem1.removeEventListener('scroll', this.handleScroll)
     }
@@ -69,30 +71,32 @@ class _Tabbar extends React.Component<IProps, any> {
   handleScroll(position: any) {
     if (position >= 44) {
       this.setState({
-        display: true,
-        showTitle: true,
+        useScroll: true,
         showLeft: true,
-        showRight: true
+        showRight: true,
+        showTitle: true
       })
     }
     if (position < 44) {
       this.setState({
-        display: false,
-        showTitle: false,
-        showLeft: false,
-        showRight: false
+        useScroll: false,
+        showLeft: this.props.showLeft || false,
+        showRight: this.props.showRight || false,
+        showTitle: this.props.showTitle || false
       })
     }
   }
 
   render() {
     const { classes, title, rightComponent } = this.props
-    const { display, showTitle, showLeft, showRight } = this.state
+    const { display, showTitle, showLeft, showRight, useScroll } = this.state
     console.log('render Tabbar')
     return (
       <AppBar className={classes.root} position={'sticky'} color={'inherit'}>
         <Toolbar style={{ minHeight: 35, padding: 0 }}>
-          {display || showLeft || showRight || showTitle ? (
+          {(useScroll && !display) ||
+          (!useScroll && display) ||
+          (useScroll && display) ? (
             <React.Fragment>
               <Fade duration={300}>
                 <Flex

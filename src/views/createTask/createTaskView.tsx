@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { Tabbar, Title } from '../../components'
 import { TaskFullForm } from '../../containers'
+import { createTask } from '../../api/utils/state/createTask'
 
 interface IProps {
   title: any
@@ -28,9 +29,14 @@ class CreateTaskView extends Component<IProps, IState> {
           className="Tabbar-scroll-Element"
           style={{ height: '100vh', overflow: 'auto' }}
         >
-          <Tabbar title={this.props.title} showLeft={true} scroll={true} />
+          <Tabbar
+            title={this.props.title}
+            showLeft={true}
+            useScroll={true}
+            display={true}
+          />
           <Title title={this.props.title} />
-          <TaskFullForm />
+          <TaskFullForm type={'create'} handleSubmit={createTask} />
         </div>
       </React.Fragment>
     )
