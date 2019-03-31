@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos'
 import { Flex, Box } from 'rebass'
 import Fade from 'react-reveal/Fade'
+import { createBrowserHistory } from 'history'
 
 const styles = {
   root: {
@@ -101,7 +102,12 @@ class _Tabbar extends React.Component<IProps, any> {
                 >
                   <Box width={1 / 4} style={{ textAlign: 'left' }}>
                     {showLeft ? (
-                      <Button style={{ textTransform: 'none' }}>
+                      <Button
+                        style={{ textTransform: 'none' }}
+                        onClick={() => {
+                          createBrowserHistory().goBack()
+                        }}
+                      >
                         <ArrowBackIcon color="primary" />
 
                         <Typography

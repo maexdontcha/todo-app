@@ -40,7 +40,14 @@ const CreateTaskDrawer: React.SFC<IState> = (props: IProps) => {
           setToggle(!toggle)
         }}
         openState={toggle}
-        Component={<CreateTaskForm handleSubmit={createTask} />}
+        Component={
+          <CreateTaskForm
+            handleSubmit={createTask}
+            toggleDrawer={() => {
+              setToggle(!toggle)
+            }}
+          />
+        }
       />
     </React.Fragment>
   )

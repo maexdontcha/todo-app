@@ -17,12 +17,10 @@ class CreateTaskView extends Component<IProps, IState> {
       changer: false,
       scrollElement: {}
     }
-    let header: boolean = false
   }
 
   render() {
     console.log('render Inbox')
-    let changer: boolean = false
     return (
       <React.Fragment>
         <div

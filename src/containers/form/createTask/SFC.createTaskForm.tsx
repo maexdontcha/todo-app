@@ -44,7 +44,7 @@ const CreateTaskForm: React.SFC<any> = (props: any) => {
   const [title, setTitle] = useState(undefined)
   const [date, setDueDate] = useState(undefined)
   const [project, setProject] = useState(undefined)
-  const { handleSubmit } = props
+  const { handleSubmit, toggleDrawer } = props
   const classes = useStyles()
   const funcDir: any = {
     title: setTitle,
@@ -152,7 +152,11 @@ const CreateTaskForm: React.SFC<any> = (props: any) => {
                 </Box>
                 <Box>
                   <Link to={'/create'}>
-                    <IconButton>
+                    <IconButton
+                      onClick={() => {
+                        toggleDrawer()
+                      }}
+                    >
                       <OpenInNew color="primary" />
                     </IconButton>
                   </Link>
