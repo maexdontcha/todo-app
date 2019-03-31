@@ -9,6 +9,7 @@ interface propTypes {
   path: string
   permittedGroups: any
   userLogin: any
+  title: string
 }
 
 class SaveRoute extends Component<propTypes, {}> {
@@ -25,6 +26,8 @@ class SaveRoute extends Component<propTypes, {}> {
   }
 
   render() {
+    console.log('render Saveroute')
+
     const { component: Component, permittedGroups, ...rest } = this.props
     return (
       <Route
@@ -34,7 +37,7 @@ class SaveRoute extends Component<propTypes, {}> {
         {...rest}
         render={props =>
           this.checkAccess(permittedGroups[0]) ? (
-            <Component {...props} />
+            <Component {...props} title={this.props.title} />
           ) : (
             <Redirect to="/" />
           )

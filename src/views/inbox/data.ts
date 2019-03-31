@@ -35,6 +35,31 @@ export default [
     dueDate: 'Morgen'
   },
   {
+    priority: 2,
+    title: 'Bewerbungen schreiben',
+    dueDate: 'Morgen'
+  },
+  {
+    priority: 2,
+    title: 'Bewerbungen schreiben',
+    dueDate: 'Morgen'
+  },
+  {
+    priority: 2,
+    title: 'Bewerbungen schreiben',
+    dueDate: 'Morgen'
+  },
+  {
+    priority: 2,
+    title: 'Bewerbungen schreiben',
+    dueDate: 'Morgen'
+  },
+  {
+    priority: 2,
+    title: 'Bewerbungen schreiben',
+    dueDate: 'Morgen'
+  },
+  {
     priority: 3,
     title: 'neuer Task',
     project: 'Ebliq',

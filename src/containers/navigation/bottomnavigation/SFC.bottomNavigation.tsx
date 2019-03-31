@@ -47,8 +47,6 @@ const _BottomNavigation = (props: IProps) => {
     >
       {NavigationItems.map(e => {
         if (e.displayName && e.position && e.position <= 2) {
-          console.log(e)
-
           return (
             <BottomNavigationAction
               // @ts-ignore: Wait fix from material-UI
@@ -67,8 +65,6 @@ const _BottomNavigation = (props: IProps) => {
       <CreateTaskDrawer />
       {NavigationItems.map(e => {
         if (e.displayName && e.position && e.position > 2) {
-          console.log(e)
-
           return (
             <BottomNavigationAction
               // @ts-ignore: Wait fix from material-UI

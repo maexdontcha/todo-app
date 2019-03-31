@@ -14,7 +14,8 @@ import AddButton from './buttons/fab/addButton'
 import CircularIndeterminate from './progress/circularIndeterminate'
 
 //tabbar
-import Tabbar from './tabbar/Tabbar'
+import Tabbar from './header/tabbar'
+import Title from './header/title'
 
 //Drawer
 import BottomDrawer from './drawer/bottomDrawer/bottomDrawer'
@@ -26,6 +27,7 @@ export {
   IconLabelButtons,
   CircularIndeterminate,
   Tabbar,
+  Title,
   BottomDrawer,
   OutlinedNativeSelect,
   AddButton

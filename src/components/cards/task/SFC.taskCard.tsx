@@ -27,7 +27,6 @@ interface IProps {
   startDate?: string
   endDate?: string
 }
-
 export const TaskCard: any = (props: IProps) => {
   const {
     priority,

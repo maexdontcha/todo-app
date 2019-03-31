@@ -2,7 +2,6 @@
 
 // React
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import {
   BrowserRouter,
   Link,
@@ -83,7 +82,6 @@ class App extends Component<IProps, IState> {
     }
     this.addToHome = this.addToHome.bind(this)
     this.setTitle = this.setTitle.bind(this)
-    this.onScrollNavbar = this.onScrollNavbar.bind(this)
     this.shouldShowAddButton = this.shouldShowAddButton.bind(this)
     this.openWindowOrTab = this.openWindowOrTab.bind(this)
   }
@@ -159,32 +157,12 @@ class App extends Component<IProps, IState> {
   }
   //TODO: change scroll to eventlistener scroll
   //BODY: scroll funktion abändern mit thortteling
-  onScrollNavbar() {
-    console.log('calledscroll')
-    var n: any = ReactDOM.findDOMNode(this) || 0
-
-    if (n.scrollTop >= 44) {
-      if (!this.state.changeHeader) {
-        this.setState({ changeHeader: true })
-      }
-    }
-    if (n.scrollTop < 44) {
-      if (this.state.changeHeader) {
-        this.setState({ changeHeader: false })
-      }
-    }
-  }
 
   renderMainFrame() {
     console.log('calledrender')
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Tabbar
-            theme={this.state.theme}
-            title={this.state.title}
-            changeHeader={this.state.changeHeader}
-          />
           <Content />
           <button onClick={this.handleLogout.bind(this)}>Logout</button>
           <BottomNavigation setTitle={this.setTitle} />
@@ -212,13 +190,7 @@ class App extends Component<IProps, IState> {
     return (
       <MuiThemeProvider theme={this.state.theme ? lightTheme : darkTheme}>
         <React.Fragment>
-          <Paper
-            square={true}
-            style={{ height: '100vh', overflow: 'auto' }}
-            onScroll={() => {
-              this.onScrollNavbar()
-            }}
-          >
+          <Paper square={true} style={{ height: '100vh', overflow: 'auto' }}>
             {loggedin ? this.renderMainFrame() : this.renderNoLoginMode()}
             {this.shouldShowAddButton() ? (
               <button onClick={this.addToHome}>Add to Home Screen</button>
