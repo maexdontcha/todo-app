@@ -27,6 +27,7 @@ interface IProps extends WithStyles<typeof styles> {
   onChange: Function
   myLabel?: string
   myType?: string
+  myId?: string
   fullWidth?: boolean
   multiline?: boolean
   autoFocus?: boolean
@@ -45,6 +46,7 @@ function outlinedTextField(props: IProps) {
     multiline,
     autoFocus,
     LabelShrink,
+    myId,
     style
   } = props
   const cssClasses: any = { ...classes, ...style }
@@ -52,14 +54,14 @@ function outlinedTextField(props: IProps) {
     <TextField
       className={cssClasses.root}
       fullWidth={fullWidth || true}
-      id={myType}
+      id={myId || myType}
       label={myLabel}
       variant="outlined"
       type={myType || ''}
       onChange={onChange.bind('')}
       multiline={multiline || false}
       autoFocus={autoFocus}
-      InputLabelProps={{ shrink: LabelShrink || false }}
+      InputLabelProps={{ shrink: LabelShrink }}
       InputProps={{
         classes: {
           input: cssClasses.input

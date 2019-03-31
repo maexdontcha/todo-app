@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { Tabbar, Title } from '../../components'
+import { TaskFullForm } from '../../containers'
 
 interface IProps {
   title: any
@@ -29,6 +30,7 @@ class CreateTaskView extends Component<IProps, IState> {
         >
           <Tabbar title={this.props.title} showLeft={true} scroll={true} />
           <Title title={this.props.title} />
+          <TaskFullForm />
         </div>
       </React.Fragment>
     )

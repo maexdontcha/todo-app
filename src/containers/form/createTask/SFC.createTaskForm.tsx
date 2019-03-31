@@ -32,9 +32,6 @@ import { CreateNewFolder, OpenInNew } from '@material-ui/icons'
 const useStyles = makeStyles({
   input: {
     padding: 8
-  },
-  outlined: {
-    transform: 'translate(14px, 10px) scale(1)'
   }
 })
 
