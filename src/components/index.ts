@@ -3,6 +3,7 @@ import SaveRoute from './routing/SaveRoute'
 
 // Buttons
 import IconLabelButtons from './buttons/iconLabelButton'
+import LongPress from './buttons/longPress'
 
 // Form
 import OutlinedTextField from './fields/outlinedTextField'
@@ -30,5 +31,6 @@ export {
   Title,
   BottomDrawer,
   OutlinedNativeSelect,
-  AddButton
+  AddButton,
+  LongPress
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CreateTaskView, Info, Login, Inbox } from '../views'
+import { CreateTaskView, Info, Login, Inbox, EditTaskView } from '../views'
 import RestoreIcon from '@material-ui/icons/Restore'
 import MenuIcon from '@material-ui/icons/Menu'
 import DashboardIcon from '@material-ui/icons/Dashboard'
@@ -59,6 +59,13 @@ const myroutes: IRoute[] = [
     component: CreateTaskView,
     groups: '',
     displayName: 'Aufgabe erstellen',
+    bottomNavigation: false
+  },
+  {
+    path: '/edit',
+    component: EditTaskView,
+    groups: '',
+    displayName: 'Aufgabe bearbeiten',
     bottomNavigation: false
   }
 ]

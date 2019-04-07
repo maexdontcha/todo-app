@@ -14,6 +14,7 @@ import {
 import { userLogin } from './redux/userLogin'
 import { IAppState } from './redux/store'
 import { connect } from 'react-redux'
+import { createBrowserHistory } from 'history'
 
 // AWS API
 import { Auth } from 'aws-amplify'
@@ -39,6 +40,7 @@ import { Database } from './api/indexeddb/db'
 import { loadTasksIDB, clearTasksIDB } from './api/indexeddb/action'
 import { loadTask } from './api/utils/state/loadTask'
 // import { createTodo } from './api/utils/state/createTask'
+
 interface IProps {
   darkMode: boolean
   userLoginState: any

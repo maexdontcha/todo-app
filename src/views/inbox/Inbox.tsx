@@ -24,10 +24,11 @@ class Inbox extends Component<IProps, IState> {
   render() {
     console.log('render Inbox')
     const { tasks, title } = this.props
+
     return (
       <React.Fragment>
         <Tabbar title={title} useScroll={true} showLeft={false} />
-        <div className="Tabbar-scroll-Element">
+        <div className="Tabbar-scroll-Element" style={{ height: '85vh' }}>
           <Title title={title} />
           <NormalList data={tasks} />
         </div>
