@@ -9,7 +9,7 @@ import LongPress from './buttons/longPress'
 import OutlinedTextField from './fields/outlinedTextField'
 import OutlinedNativeSelect from './fields/outlinedNativeSelect'
 import LoginButton from './buttons/fab/loginButton'
-import AddButton from './buttons/fab/addButton'
+import FabButton from './buttons/fab/fabButton'
 
 // progress
 import CircularIndeterminate from './progress/circularIndeterminate'
@@ -31,6 +31,6 @@ export {
   Title,
   BottomDrawer,
   OutlinedNativeSelect,
-  AddButton,
+  FabButton,
   LongPress
 }

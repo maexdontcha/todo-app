@@ -3,16 +3,20 @@ import React, { useState } from 'react'
 import Card from '@material-ui/core/Card'
 import { Flex, Box } from 'rebass'
 import { makeStyles } from '@material-ui/styles'
-import { FormControlLabel, Checkbox, Typography, Chip } from '@material-ui/core'
-import { FlagIcon, CheckBoxFilled, CheckBoxNotFilled } from '../../icon/index'
 import { DescIcons } from './leftPart'
 import { BodyTask } from './bodyPart'
 import { CheckBox } from './rightPart'
-import { LongPress } from '../../index'
+import { LongPress, FabButton } from '../../index'
 import { createBrowserHistory } from 'history'
+import ShareIcon from '@material-ui/icons/Share';
+import EditIcon from '@material-ui/icons/Edit';
 
+
+import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider'
 import { Redirect } from 'react-router'
+import addButton from '../../buttons/fab/fabButton';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   card: {
@@ -64,7 +68,12 @@ export const TaskCard: any = (props: IProps) => {
   )
   return (
     <React.Fragment>
-      {edit ? (
+      {/* {edit ? ( */}
+        EditIcon
+        <FabButton component={Link} to="/open-collective" size={'small'} onClick={() => {
+          alert('hi')
+        }
+        } icon={<EditIcon/>}/>
         <Card className={classes.card} {...backspaceLongPress}>
           <Flex
             alignItems="center"
@@ -98,12 +107,12 @@ export const TaskCard: any = (props: IProps) => {
             </Box>
           </Flex>
         </Card>
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/edit',
-            state: props
-          }}
+      // ) : (
+      //   <Redirect
+      //     to={{
+      //       pathname: '/edit',
+      //       state: props
+      //     }}
         />
       )}
       <Divider style={{ maxWidth: 667 }} variant="fullWidth" />
