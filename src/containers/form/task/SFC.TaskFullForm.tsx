@@ -11,12 +11,7 @@ import AddIcon from '@material-ui/icons/Add'
 import EditIcon from '@material-ui/icons/Edit'
 
 // _components
-import {
-  OutlinedTextField,
-  AddButton,
-  CircularIndeterminate,
-  OutlinedNativeSelect
-} from '../../../components'
+import { OutlinedTextField } from '../../../components'
 import { makeStyles } from '@material-ui/styles'
 import { TextField, Button } from '@material-ui/core'
 

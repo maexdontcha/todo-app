@@ -14,12 +14,7 @@ import { createBrowserHistory } from 'history'
 import CheckIcon from '@material-ui/icons/Check'
 
 // _components
-import {
-  OutlinedTextField,
-  AddButton,
-  CircularIndeterminate,
-  OutlinedNativeSelect
-} from '../../../components'
+import { OutlinedTextField } from '../../../components'
 import { Link } from 'react-router-dom'
 
 import { CalendarAdd } from '../../../components/icon'

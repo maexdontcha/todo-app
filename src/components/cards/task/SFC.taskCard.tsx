@@ -8,15 +8,12 @@ import { BodyTask } from './bodyPart'
 import { CheckBox } from './rightPart'
 import { LongPress, FabButton } from '../../index'
 import { createBrowserHistory } from 'history'
-import ShareIcon from '@material-ui/icons/Share';
-import EditIcon from '@material-ui/icons/Edit';
 
-
-import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider'
 import { Redirect } from 'react-router'
-import addButton from '../../buttons/fab/fabButton';
-import { Link } from 'react-router-dom';
+import addButton from '../../buttons/fab/fabButton'
+import { Link } from 'react-router-dom'
+import { TaskActions } from './taskActions'
 
 const useStyles = makeStyles({
   card: {
@@ -55,13 +52,13 @@ export const TaskCard: any = (props: IProps) => {
   } = props
   const classes = useStyles()
   const [toggle, setToggle] = useState(false)
-  const [edit, setEdit] = useState(true)
+  const [edit, setEdit] = useState(false)
   //TODO: Add History to redux
   //BODY: Add history to redux and fix all push and pops
 
   const backspaceLongPress = LongPress(
     async () => {
-      setEdit(false)
+      setEdit(true)
     },
     200,
     { opacity: 0.1 }
@@ -69,52 +66,47 @@ export const TaskCard: any = (props: IProps) => {
   return (
     <React.Fragment>
       {/* {edit ? ( */}
-        EditIcon
-        <FabButton component={Link} to="/open-collective" size={'small'} onClick={() => {
-          alert('hi')
-        }
-        } icon={<EditIcon/>}/>
-        <Card className={classes.card} {...backspaceLongPress}>
-          <Flex
-            alignItems="center"
-            justifyContent="center"
-            style={{ width: '100%' }}
-          >
-            <Box alignSelf={'flex-end'}>
-              <CheckBox
-                onChange={() => {
-                  setToggle(!toggle)
-                }}
-              />
-            </Box>
-            <Box width={1} pl={'10px'}>
-              <BodyTask
-                title={title}
-                project={project}
-                dueDate={dueDate}
-                toggle={toggle}
-                startDate={startDate}
-                endDate={endDate}
-              />
-            </Box>
-            <Box pl={'4px'}>
-              <DescIcons
-                classes={classes}
-                priority={priority}
-                complexity={complexity}
-                category={category}
-              />
-            </Box>
-          </Flex>
-        </Card>
-      // ) : (
+      {edit ? <TaskActions state={props} /> : ''}
+      <Card className={classes.card} {...backspaceLongPress}>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          style={{ width: '100%' }}
+        >
+          <Box alignSelf={'flex-end'}>
+            <CheckBox
+              onChange={() => {
+                setToggle(!toggle)
+              }}
+            />
+          </Box>
+          <Box width={1} pl={'10px'}>
+            <BodyTask
+              title={title}
+              project={project}
+              dueDate={dueDate}
+              toggle={toggle}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          </Box>
+          <Box pl={'4px'}>
+            <DescIcons
+              classes={classes}
+              priority={priority}
+              complexity={complexity}
+              category={category}
+            />
+          </Box>
+        </Flex>
+      </Card>
+      {/* // ) : (
       //   <Redirect
       //     to={{
       //       pathname: '/edit',
       //       state: props
-      //     }}
-        />
-      )}
+      //     }} */}
+      {/* /> )} */}
       <Divider style={{ maxWidth: 667 }} variant="fullWidth" />
     </React.Fragment>
   )
