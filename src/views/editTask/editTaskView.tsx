@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import { Tabbar, Title } from '../../components'
 import { TaskFullForm } from '../../containers'
-import { createTask } from '../../api/utils/state/createTask'
 import { editTask } from '../../api/utils/state/editTask'
 
 interface IProps {
@@ -24,7 +23,6 @@ class EditTaskView extends Component<IProps, IState> {
   }
 
   render() {
-    console.log('render Inbox')
     return (
       <React.Fragment>
         <div

@@ -24,7 +24,6 @@ class Inbox extends Component<IProps, IState> {
   render() {
     console.log('render Inbox')
     const { tasks, title } = this.props
-
     return (
       <React.Fragment>
         <Tabbar title={title} useScroll={true} showLeft={false} />

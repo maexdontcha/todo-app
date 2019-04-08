@@ -29,6 +29,7 @@ class NormalList extends Component<IProps, IState> {
               toggle={e.toggle}
               startDate={e.startDate}
               endDate={e.endDate}
+              taskId={e.taskId}
             />
           )
         })}

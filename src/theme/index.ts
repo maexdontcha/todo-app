@@ -57,7 +57,7 @@ export const darkTheme = createMuiTheme({
       main: '#0d84ff'
     },
     secondary: {
-      main: '#ffd180'
+      main: '#1e1e1e'
     }
   },
   overrides: {

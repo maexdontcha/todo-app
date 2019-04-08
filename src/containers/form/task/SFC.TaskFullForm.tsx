@@ -32,7 +32,7 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
           onSubmit={e => {
             let definedValues: any = {}
             for (const attr in task) {
-              if (task[attr] !== undefined) {
+              if (task[attr] !== undefined || task[attr] !== 'null') {
                 definedValues[attr] = task[attr]
               }
             }
@@ -41,8 +41,8 @@ const CreateTaskFullForm: React.SFC<any> = (props: any) => {
              */
             e.preventDefault()
             e.stopPropagation()
-            console.log(definedValues)
-            // handleSubmit(definedValues)
+            // console.log(definedValues)
+            handleSubmit(definedValues)
           }}
         >
           <Flex

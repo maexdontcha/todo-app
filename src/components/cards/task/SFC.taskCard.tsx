@@ -38,6 +38,7 @@ interface IProps {
   endDate?: string
   category?: string
   history?: any
+  taskId?: any
 }
 export const TaskCard: any = (props: IProps) => {
   const {
@@ -59,6 +60,9 @@ export const TaskCard: any = (props: IProps) => {
   const backspaceLongPress = LongPress(
     async () => {
       setEdit(true)
+      setTimeout(() => {
+        setEdit(false)
+      }, 5000)
     },
     200,
     { opacity: 0.1 }

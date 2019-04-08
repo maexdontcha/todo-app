@@ -18,8 +18,17 @@ import { ITask } from './stateType.d'
 */
 export const editTask = async (params: ITask) => {
   const task: ITask = { ...params, send: false }
+  console.log(task)
 
+  if (
+    !store.getState().userState.username ||
+    !store.getState().userState.workspace
+  )
+    throw Error('kein Username oder Store in Redux Store')
+  task.editor = store.getState().userState.username
+  task.workspace = params.workspace || store.getState().userState.workspace
   // redux
+
   await store.dispatch(
     createTaskAction({
       type: ETaskActionTypes.UPDATE_TASK,

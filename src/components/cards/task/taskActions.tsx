@@ -16,6 +16,7 @@ export const TaskActions = (props: IProps) => {
         size={'small'}
         icon={<EditIcon fontSize={'small'} />}
         state={props.state}
+        color="secondary"
         style={{ position: 'absolute', transform: 'translate(0px,-50px)' }}
       />
       <FabButton
@@ -24,6 +25,7 @@ export const TaskActions = (props: IProps) => {
           alert('Share')
         }}
         size={'small'}
+        color="secondary"
         icon={<ShareIcon fontSize={'small'} />}
         style={{ position: 'absolute', transform: 'translate(50px,-50px)' }}
       />
@@ -33,6 +35,7 @@ export const TaskActions = (props: IProps) => {
           alert('Delete')
         }}
         size={'small'}
+        color="secondary"
         icon={<DeleteIcon fontSize={'small'} />}
         style={{ position: 'absolute', transform: 'translate(100px,-50px)' }}
       />
